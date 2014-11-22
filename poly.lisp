@@ -23,6 +23,7 @@
 ; x = [A..Z,a..z]
 ; exponent = [0..9]+
 ; operator = [x, +, -]
+; term with (x 0) indicates a constant
 ; FUNCTION DEFS:
 (defun pIsIn (term expression)
 	(if expression
@@ -40,49 +41,58 @@
 							(list (car foo) (+ (car (cdr foo)) (car (cdr (car y)))))
 							foo))
 					x)
-				(if (pIsIn (car (car y)) x) '() (list (car y))))
+				(if (pIsIn (car (car y)) x) 
+					'() 
+					(list (car y))))
 		(cdr y))
 		x))
+(defun removex0 (exp)
+    (if (> (list-length exp) 1)
+        (remove-if #'(lambda (term) (equal 0 (car (cdr term)))) exp)
+        exp)) ; removes a zero exponent from squish'd terms ((x 1) (y 2) ...) if not the only term
 (defun orderInner (exp)
-	;(qsort exp)) ; TODO: fix
-	exp)
+	(qsort exp))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; modified version of brunocodutra's qsort
 ; sourced from: http://stackoverflow.com/questions/19082032/quicksort-in-lisp
 (defun qsort (L)
-  (cond
-    ((null L) nil)
-    (t
-      (append
-        (qsort (list< (car L) (cdr L)))
-        (cons (car L) nil) 
-        (qsort (list>= (car L) (cdr L)))))))
+	(cond
+		((null L) nil)
+			(t
+				(append	
+					(qsort (list< (car L) (cdr L)))
+					(cons (car L) nil) 
+					(qsort (list>= (car L) (cdr L)))))))
 (defun list< (a b)
-  (cond
-    ((or (null a)(null b)) nil)
-    (( < (char-code (character (car a))) (car (char-code (character (car b))))) (list< a (cdr b)))
-    (t(cons (car b) (list< a (cdr b))))))
+	(cond
+		((or (null a) (null b)) nil)
+		((< (char-code (character (car a))) (char-code (character (car (car b))))) (list< a (cdr b)))
+		(t(cons (car b) (list< a (cdr b))))))
 (defun list>= (a b)
-  (cond
-    ((or ( null a)(null b)) nil)
-    (( >= (char-code (character (car a))) (car (char-code (character (car b))))) (list>= a (cdr b)))
-    (t(cons (car b) (list>= a (cdr b))))))
+	(cond
+		((or ( null a) (null b)) nil)
+		((>= (char-code (character (car a))) (char-code (character (car (car b))))) (list>= a (cdr b)))
+		(t(cons (car b) (list>= a (cdr b))))))
 ; end of qsort
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun binarify (exp)
-	exp)
-(defun simplify (exp) ; TODO: handle many term addition and subtraction
-	(cond ((equal '+ (car (cdr exp))) (p+ (car exp) (car (cdr (cdr exp)))))
-		  ((equal '- (car (cdr exp))) (p- (car exp) (car (cdr (cdr exp)))))
-		  ((equal '* (car (cdr exp))) (p* (car exp) (car (cdr (cdr exp)))))
-		  (t exp)))
+    (if (> (list-length exp) 1)
+        (list (car exp) (car (cdr exp)) (binarify (cdr (cdr exp)))) 
+        (car exp)))
+(defun dive (exp) ; TODO: handle many term addition and subtraction
+	(let ((foo (collect exp)))
+		(cond ((equal '+ (car (cdr foo))) (p+ (car foo) (car (cdr (cdr foo)))))
+	 	   	  ((equal '- (car (cdr foo))) (p- (car foo) (car (cdr (cdr foo)))))
+	  	      ((equal '* (car (cdr foo))) (p* (car foo) (car (cdr (cdr foo)))))
+			  (t foo))))
 (defun p+ (exp1 exp2)
-	(let ((x (simplify exp1)) (y (simplify exp2)))
+	(let ((x (dive exp1)) (y (dive exp2)))
 		(if (equal (car (cdr x)) (car (cdr y)))
 			(list (+ (car x) (car y)) (car (cdr x)))
 			(list x '+ y))))
 (defun p- (exp1 exp2)
-	(let ((x (simplify exp1)) (y (simplify exp2)))
+	(let ((x (dive exp1)) (y (dive exp2)))
 		(if (equal (car (cdr x)) (car (cdr y)))
 			(list (- (car x) (car y)) (car (cdr x)))
 			(list x '- y))))
@@ -91,24 +101,30 @@
 		'() 
 		(if (equal op1 op2) 
 			(p* x y)
-			'(0)))) ; TODO: negate for different op1 and op2
+			(p* x (list '(-1 (x 0)) '* y))))) ; negate for different op1 and op2
 (defun delimit+ (exp)		
 	(if (cdr exp) 
 		(append (list (car exp)) (append (list '+) (delimit+ (cdr exp)))) 
 		exp))
-(defun p* (exp1 exp2)
-	(let ((x (simplify exp1)) (y (simplify exp2)))
+(defun p* (exp1 exp2) ; TODO: don't pass on (x 0) terms
+	(let ((x (dive exp1)) (y (dive exp2)))
 		(if (or (listp (car x)) (listp (car y))) ; if one of the arguments is more than one term
 			(let ((p1 (pickPermute* (car x) '+ '+ (car y))) 
 				  (p2 (pickPermute* (car x) '+ (car (cdr y)) (car (cdr (cdr y)))))
 				  (p3 (pickPermute* (car (cdr (cdr x))) (car (cdr y)) '+ (car y)))
 				  (p4 (pickPermute* (car (cdr (cdr x))) (car (cdr x)) (car (cdr y)) (car (cdr (cdr y)))))) ; in the form (p1 +/- p2) * (p3 +/- p4)
-				(simplify (delimit+ (remove '() (list p1 p2 p3 p4))))) ; deal with each item and create permutations 
+				(dive (binarify (delimit+ (remove '() (list p1 p2 p3 p4)))))) ; deal with each item and arrange permutations 
 			(append ; otherwise multiply two terms
 				(list (* (car x) (car y))) 
-				(orderInner (squish* (cdr x) (cdr y)))))))
+				(orderInner (removex0 (squish* (cdr x) (cdr y))))))))
+(defun collect (exp) ; TODO: collect
+	(if (listp (car exp)) ; if the argument is more than one term) 
+		exp 
+		exp))
+(defun simplify (exp)
+	(dive exp))
 ; TESTS:
-(format t "Hello world! Let's do some maths.")
+(format t "~%Hello world! Let's do some maths.")
 (format t "~%~%Poly functions:")
 
 ;TESTBED
@@ -154,3 +170,6 @@
 ;= (1 (x 2)) + (2 (x 1) (y 1)) + (1 (y 2))
 (print (simplify '(((1 (x 1)) + (1 (y 1))) * ((1 (x 1)) - (1 (y 1))))))
 ;=?
+(format t "~%~%MEGA TEST:")
+;(print (simplify '(((((((10 (x 2)) + (1 (y 2))) * (2 (x 0))) * ((27 (x 1)) + (12 (y 7)))) * ((1 (y 1)) - ((1 (y 2)) - (1 (y 2))))) - (1 (z 2))) * (7 (x 1)))))
+;(print (equal '((3780 (x 4) (y 1)) + ((378 (x 2) (y 3)) + ((1680 (x 3) (y 8)) + ((168 (x 1) (y 10)) - (7 (x 1) (z 2)))))) (simplify '(((((((10 (x 2)) + (1 (y 2))) * (2 (x 0))) * ((27 (x 1)) + (12 (y 7)))) * ((1 (y 1)) - ((1 (y 2)) - (1 (y 2))))) - (1 (z 2))) * (7 (x 1)))))))

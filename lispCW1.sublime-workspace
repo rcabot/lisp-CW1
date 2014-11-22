@@ -843,7 +843,7 @@
 							"syntax": "Packages/Lisp/Lisp.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 783.0,
+						"translation.y": 871.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -868,7 +868,9 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Lisp/Lisp.tmLanguage"
+							"syntax": "Packages/Lisp/Lisp.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
