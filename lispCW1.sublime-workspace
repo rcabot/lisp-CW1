@@ -455,7 +455,7 @@
 			"file": "poly.lisp",
 			"settings":
 			{
-				"buffer_size": 6071,
+				"buffer_size": 7119,
 				"line_ending": "Windows"
 			}
 		},
@@ -463,7 +463,7 @@
 			"file": "lambda.lisp",
 			"settings":
 			{
-				"buffer_size": 528,
+				"buffer_size": 5189,
 				"line_ending": "Windows"
 			}
 		}
@@ -655,7 +655,7 @@
 	],
 	"find":
 	{
-		"height": 27.0
+		"height": 36.0
 	},
 	"find_in_files":
 	{
@@ -670,6 +670,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"*it",
+			"foo",
+			"exp",
+			"simplify",
+			"(car a)",
+			"character (car b)",
+			"(car b)",
 			"(car (car",
 			"car (car b",
 			"car b",
@@ -790,14 +797,7 @@
 			"page_source",
 			"/x",
 			"-",
-			")\n",
-			"messages",
-			"results",
-			"$entityManage",
-			"list.",
-			"location",
-			"grades",
-			"grade"
+			")\n"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -818,7 +818,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -827,15 +827,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6071,
+						"buffer_size": 7119,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1822,
-								1822
+								4982,
+								4866
 							]
 						],
 						"settings":
@@ -843,10 +843,10 @@
 							"syntax": "Packages/Lisp/Lisp.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 871.0,
+						"translation.y": 2125.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -855,28 +855,28 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 528,
+						"buffer_size": 5189,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								488,
-								0
+								4498,
+								4498
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Lisp/Lisp.tmLanguage",
-							"tab_size": 2,
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1924.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]

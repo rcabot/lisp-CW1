@@ -95,14 +95,28 @@
     (dive exp))
 
 
-(defun collect*it (old new)
-    (cond ((equal '+ (car (cdr old))) (append new (list (collect*it (car old) new) (collect*it (car (cdr (cdr old))) new))))
-          ((equal '- (car (cdr old))) (collect*it (p* (car old) (list '(-1 (x 0)) '* (car (cdr (cdr old))))) new))
+
+
+
+(defun sumTerms-it (term old new)
+    (if old
+        (if (equal (cdr (car old)) (cdr term)) 
+            (sumTerms-it (p+ term (car old)) (cdr old) new) 
+            (sumTerms-it term (cdr old) (append new (list (car old))))))
+        (list old new term))
+(defun sumTerms (old new)
+    (let ((it (sumTerms-it (car old) (cdr old) new)))
+        (if old 
+            (sumTerms (car it) (append (list (car (cdr (cdr it)))) (car (cdr it))))
+            new)))
+(defun collect-it (old new)
+    (cond ((equal '+ (car (cdr old))) (append new (list (collect-it (car old) new) (collect-it (car (cdr (cdr old))) new))))
+          ((equal '- (car (cdr old))) (collect-it (p* (car old) (list '(-1 (x 0)) '* (car (cdr (cdr old))))) new))
           ((equal '* (car (cdr old))) (append new old))
           (t (append new old))))
 (defun collect (exp) ; TODO: now iteratively add terms up!
-    (if (listp (car exp)) ; if the argument is more than one term) 
-        (binarify (delimit+ (sumTerms (collect*it exp '())))) 
+    (if (listp (car exp)) ; if the argument is more than one term
+        (collect-it exp '()) ;(binarify (delimit+ (sumTerms (collect-it exp '()) '()))) 
         exp))
 
 (print (collect '((2 (x 1) (y 2) + ((2 (x 1) (y 2)) + (3 (x 2)))))))
