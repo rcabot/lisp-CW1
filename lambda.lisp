@@ -53,7 +53,7 @@
     (if (> (list-length exp) 1)
         (list (car exp) (car (cdr exp)) (binarify (cdr (cdr exp)))) 
         (car exp)))
-(defun dive (exp) ; TODO: handle many term addition and subtraction
+(defun dive (exp)
     (let ((foo (collect exp)))
         (cond ((equal '+ (car (cdr foo))) (p+ (car foo) (car (cdr (cdr foo)))))
               ((equal '- (car (cdr foo))) (p- (car foo) (car (cdr (cdr foo)))))
@@ -97,7 +97,11 @@
 
 
 
-
+(defun isTerm (exp)
+    (cond ((equal '+ (car (cdr exp))) nil)
+          ((equal '- (car (cdr exp))) nil)
+          ((equal '* (car (cdr exp))) nil)
+          (t (equal t t))))
 (defun sumTerms-it (term old new)
     (if old
         (if (equal (cdr (car old)) (cdr term)) 
@@ -110,14 +114,19 @@
             (sumTerms (car it) (append (list (car (cdr (cdr it)))) (car (cdr it))))
             new)))
 (defun collect-it (old new)
-    (cond ((equal '+ (car (cdr old))) (append new (list (collect-it (car old) new) (collect-it (car (cdr (cdr old))) new))))
-          ((equal '- (car (cdr old))) (collect-it (p* (car old) (list '(-1 (x 0)) '* (car (cdr (cdr old))))) new))
-          ((equal '* (car (cdr old))) (append new old))
-          (t (append new old))))
-(defun collect (exp) ; TODO: now iteratively add terms up!
-    (if (listp (car exp)) ; if the argument is more than one term
-        (collect-it exp '()) ;(binarify (delimit+ (sumTerms (collect-it exp '()) '()))) 
-        exp))
+    (print (cond ((equal '+ (car (cdr old))) (append new (collect-it (car old) new) (collect-it (car (cdr (cdr old))) new)))
+              ((equal '- (car (cdr old))) (collect-it (p* (car old) (list '(-1 (x 0)) '* (car (cdr (cdr old))))) new)) ;ALTER THIS
+              ((equal '* (car (cdr old))) (append new (list old)))
+              ;((not (isTerm (car old))) (append new (collect-it (car old) '())))
+              (t (append new (list old))))))
+(defun collect (exp)
+    (if (isTerm exp) ; if the argument is one term
+        exp
+        (binarify (delimit+ (sumTerms (collect-it exp '()) '())))));(collect-it exp '())));
 
-(print (collect '((2 (x 1) (y 2) + ((2 (x 1) (y 2)) + (3 (x 2)))))))
-(print (collect '((2 (x 1) (y 2) + ((2 (x 1) (y 2)) * (3 (x 2)))))))
+(print (collect '((2 (x 1) (y 2)) + ((2 (x 1) (y 2)) + (3 (x 2))))))
+(print "^ answer")
+(print (collect '((2 (x 1) (y 2)) + ((2 (x 1) (y 2)) * (3 (x 2))))))
+(print "^ answer")
+(print (collect '((2 (x 1) (y 2)) + ((2 (x 1) (y 2)) - (3 (x 2))))))
+(print "^ answer")
