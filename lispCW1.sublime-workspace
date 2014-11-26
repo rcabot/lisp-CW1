@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"remove",
+				"removec0"
+			],
+			[
+				"deu",
+				"debugPrint"
+			],
+			[
+				"print",
+				"debugPrint"
+			],
+			[
 				"coll",
 				"collect-it"
 			],
@@ -396,10 +408,6 @@
 				"SaveLocation"
 			],
 			[
-				"print",
-				"printDiceMap"
-			],
-			[
 				"mont",
 				"monthToNumber"
 			],
@@ -459,7 +467,7 @@
 			"file": "poly.lisp",
 			"settings":
 			{
-				"buffer_size": 7119,
+				"buffer_size": 9880,
 				"line_ending": "Windows"
 			}
 		},
@@ -467,7 +475,7 @@
 			"file": "lambda.lisp",
 			"settings":
 			{
-				"buffer_size": 5510,
+				"buffer_size": 265,
 				"line_ending": "Windows"
 			}
 		}
@@ -674,6 +682,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			")) ",
+			" a",
+			"a",
+			"y",
+			"x",
+			"'(-1 (x 0))",
+			"print",
 			"\n",
 			"bunFaceIndices[i]",
 			"hiZ",
@@ -794,14 +809,7 @@
 			"// Set The Color To Red",
 			"// Draw A Quad",
 			"// Done Drawing The Quad",
-			"Bottom Right Of The Quad (Front)",
-			"Bottom Left Of The Quad (Front)",
-			"Top Left Of The Quad (Front)",
-			"Top Right Of The Quad (Front)",
-			"char",
-			"intlist",
-			"intList",
-			"intlist"
+			"Bottom Right Of The Quad (Front)"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -822,7 +830,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -831,15 +839,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7119,
+						"buffer_size": 9880,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								869,
-								869
+								9461,
+								9601
 							]
 						],
 						"settings":
@@ -848,10 +856,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1793.0,
+						"translation.y": 3749.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -860,15 +868,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5510,
+						"buffer_size": 265,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								700,
-								700
+								265,
+								2
 							]
 						],
 						"settings":
@@ -878,10 +886,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1504.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
