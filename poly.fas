@@ -1,6 +1,6 @@
 (|SYSTEM|::|VERSION| '(20080430.))
 #0Y_ #0Y |CHARSET|::|UTF-8|
-#Y(#:|1 33 (DEFUN PISIN (TERM EXPRESSION) ...)-1|
+#Y(#:|1 37 (DEFUN PISIN (TERM EXPRESSION) ...)-1|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC 32 9C C5 19 01)
    (|COMMON-LISP-USER|::|PISIN| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
     #Y(|COMMON-LISP-USER|::|PISIN|
@@ -8,9 +8,11 @@
             9F 5B 78 8E 14 73 AE 95 02 29 02 05 6F 19 03)
        () (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)
        (|COMMON-LISP-USER|::|TERM| |COMMON-LISP-USER|::|EXPRESSION|)
-       |COMMON-LISP|::|NIL| 1))
+       "gets a representative TERM and a representative EXPRESSION \n
+    and returns true if it contains the term"
+       1))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|34 48 (DEFUN SQUISH* (X Y) ...)-2|
+#Y(#:|39 57 (DEFUN SQUISH* (X Y) ...)-2|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC 32 9C C5 19 01)
    (|COMMON-LISP-USER|::|SQUISH*| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
     #Y(|COMMON-LISP-USER|::|SQUISH*|
@@ -26,10 +28,12 @@
            (|COMMON-LISP-USER|::|FOO|) |COMMON-LISP|::|NIL| 1)
         |COMMON-LISP-USER|::|PISIN|)
        (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)
-       (|COMMON-LISP-USER|::|X| |COMMON-LISP-USER|::|Y|) |COMMON-LISP|::|NIL|
+       (|COMMON-LISP-USER|::|X| |COMMON-LISP-USER|::|Y|)
+       "takes 2 representative TERMs without \n
+    coefficients and multiplies them"
        1))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|49 54 (DEFUN REMOVEC0 (EXP) ...)-3|
+#Y(#:|59 66 (DEFUN REMOVEC0 (EXP) ...)-3|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC 32 9C C5 19 01)
    (|COMMON-LISP-USER|::|REMOVEC0| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
     #Y(|COMMON-LISP-USER|::|REMOVEC0|
@@ -42,9 +46,12 @@
            (|COMMON-LISP-USER|::|TERM|) |COMMON-LISP|::|NIL| 1)
         0.)
        (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)
-       (|COMMON-LISP|::|EXP|) |COMMON-LISP|::|NIL| 1))
+       (|COMMON-LISP|::|EXP|)
+       "takes a flat list of terms to be summed without and removes \n
+    a term if it has a zero coefficient"
+       1))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|55 58 (DEFUN REMOVEX0 (EXP) ...)-4|
+#Y(#:|68 74 (DEFUN REMOVEX0 (EXP) ...)-4|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC 32 9C C5 19 01)
    (|COMMON-LISP-USER|::|REMOVEX0| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
     #Y(|COMMON-LISP-USER|::|REMOVEX0|
@@ -56,18 +63,23 @@
            (|COMMON-LISP|::|T| |COMMON-LISP|::|NIL| |COMMON-LISP|::|NIL|)
            (|COMMON-LISP-USER|::|TERM|) |COMMON-LISP|::|NIL| 1))
        (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)
-       (|COMMON-LISP|::|EXP|) |COMMON-LISP|::|NIL| 1))
+       (|COMMON-LISP|::|EXP|)
+       "removes a zero exponent from raw squish'd terms ((x 1) (y 2) ...) \n
+    if not the only term, \n
+    and also 0 coeff terms"
+       1))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|58 60 (DEFUN ORDERINNER (EXP) ...)-5|
+#Y(#:|76 78 (DEFUN ORDERINNER (EXP) ...)-5|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC 32 9C C5 19 01)
    (|COMMON-LISP-USER|::|ORDERINNER| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
     #Y(|COMMON-LISP-USER|::|ORDERINNER|
        #15Y(00 00 00 00 01 00 00 00 26 02 AD 2F 00 19 02)
        (|COMMON-LISP-USER|::|QSORT|)
        (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)
-       (|COMMON-LISP|::|EXP|) |COMMON-LISP|::|NIL| 1))
+       (|COMMON-LISP|::|EXP|) "extensible wrapper for the quicksort function"
+       1))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|62 72 (DEFUN QSORT (L) ...)-6|
+#Y(#:|80 89 (DEFUN QSORT (L) ...)-6|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC 32 9C C5 19 01)
    (|COMMON-LISP-USER|::|QSORT| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
     #Y(|COMMON-LISP-USER|::|QSORT|
@@ -77,7 +89,7 @@
        (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)
        (|COMMON-LISP-USER|::|L|) |COMMON-LISP|::|NIL| 1))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|73 77 (DEFUN LIST< (A B) ...)-7|
+#Y(#:|91 98 (DEFUN LIST< (A B) ...)-7|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC 32 9C C5 19 01)
    (|COMMON-LISP-USER|::|LIST<| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
     #Y(|COMMON-LISP-USER|::|LIST<|
@@ -88,7 +100,7 @@
        (|COMMON-LISP-USER|::|A| |COMMON-LISP-USER|::|B|) |COMMON-LISP|::|NIL|
        1))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|78 82 (DEFUN LIST>= (A B) ...)-8|
+#Y(#:|100 106 (DEFUN LIST>= (A B) ...)-8|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC 32 9C C5 19 01)
    (|COMMON-LISP-USER|::|LIST>=| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
     #Y(|COMMON-LISP-USER|::|LIST>=|
@@ -99,16 +111,20 @@
        (|COMMON-LISP-USER|::|A| |COMMON-LISP-USER|::|B|) |COMMON-LISP|::|NIL|
        1))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|83 88 (DEFUN BINARIFY (EXP) ...)-9|
+#Y(#:|108 117 (DEFUN BINARIFY (EXP) ...)-9|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC 32 9C C5 19 01)
    (|COMMON-LISP-USER|::|BINARIFY| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
     #Y(|COMMON-LISP-USER|::|BINARIFY|
        #36Y(00 00 00 00 01 00 00 00 26 02 AD 71 A0 DA 90 01 32 04 9E 5B 19 02
             94 01 9F 5C 78 A0 5C 79 6C 6A 61 03 19 02)
        (1.) (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)
-       (|COMMON-LISP|::|EXP|) |COMMON-LISP|::|NIL| 1))
+       (|COMMON-LISP|::|EXP|)
+       "takes a flat list of representational EXPRESSIONs and TERMs delimited by \n
+    + and returns a single sided binary tree of expressions\n
+    e.g. (a + b + c):=(a + (b + c)"
+       1))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|89 94 (DEFUN DIVE (EXP) ...)-10|
+#Y(#:|119 130 (DEFUN DIVE (EXP) ...)-10|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC 32 9C C5 19 01)
    (|COMMON-LISP-USER|::|DIVE| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
     #Y(|COMMON-LISP-USER|::|DIVE|
@@ -119,9 +135,13 @@
         |COMMON-LISP-USER|::|P+| |COMMON-LISP|::|-| |COMMON-LISP-USER|::|P-|
         |COMMON-LISP|::|*| |COMMON-LISP-USER|::|P*|)
        (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)
-       (|COMMON-LISP|::|EXP|) |COMMON-LISP|::|NIL| 1))
+       (|COMMON-LISP|::|EXP|)
+       "gets a representational EXPRESSION and evaluates it \n
+    depending on it's contents, or returns if exp is a \n
+    TERM"
+       1))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|95 99 (DEFUN P+ (EXP1 EXP2) ...)-11|
+#Y(#:|132 137 (DEFUN P+ (EXP1 EXP2) ...)-11|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC 32 9C C5 19 01)
    (|COMMON-LISP-USER|::|P+| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
     #Y(|COMMON-LISP-USER|::|P+|
@@ -130,9 +150,9 @@
        (|COMMON-LISP-USER|::|DIVE| |COMMON-LISP|::|+|)
        (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)
        (|COMMON-LISP-USER|::|EXP1| |COMMON-LISP-USER|::|EXP2|)
-       |COMMON-LISP|::|NIL| 1))
+       "sums two representational EXPRESSIONs or TERMs" 1))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|100 104 (DEFUN P- (EXP1 EXP2) ...)-12|
+#Y(#:|139 145 (DEFUN P- (EXP1 EXP2) ...)-12|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC 32 9C C5 19 01)
    (|COMMON-LISP-USER|::|P-| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
     #Y(|COMMON-LISP-USER|::|P-|
@@ -141,9 +161,11 @@
        (|COMMON-LISP-USER|::|DIVE| |COMMON-LISP|::|-|)
        (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)
        (|COMMON-LISP-USER|::|EXP1| |COMMON-LISP-USER|::|EXP2|)
-       |COMMON-LISP|::|NIL| 1))
+       "subtracts EXPRESSION or TERM exp1 from \n
+    EXPRESSION or TERM exp2"
+       1))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|105 108 (DEFUN PICKPERMUTE* (X OP1 OP2 ...) ...)-13|
+#Y(#:|147 152 (DEFUN PICKPERMUTE* (X OP1 OP2 ...) ...)-13|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC 32 9C C5 19 01)
    (|COMMON-LISP-USER|::|PICKPERMUTE*| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
     #Y(|COMMON-LISP-USER|::|PICKPERMUTE*|
@@ -153,9 +175,11 @@
        (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)
        (|COMMON-LISP-USER|::|X| |COMMON-LISP-USER|::|OP1|
         |COMMON-LISP-USER|::|OP2| |COMMON-LISP-USER|::|Y|)
-       |COMMON-LISP|::|NIL| 1))
+       "gets two representational expressions and their signage,\n
+    and returns their product"
+       1))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|108 112 (DEFUN DELIMIT+ (EXP) ...)-14|
+#Y(#:|154 159 (DEFUN DELIMIT+ (EXP) ...)-14|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC 32 9C C5 19 01)
    (|COMMON-LISP-USER|::|DELIMIT+| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
     #Y(|COMMON-LISP-USER|::|DELIMIT+|
@@ -163,9 +187,12 @@
             7B 01 95 03 6C 6E 73 02 23 33 02 23 19 02)
        (|COMMON-LISP|::|+|)
        (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)
-       (|COMMON-LISP|::|EXP|) |COMMON-LISP|::|NIL| 1))
+       (|COMMON-LISP|::|EXP|)
+       "takes a flat list of representational expressions that \n
+    need to be added together and delimits them with +"
+       1))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|113 143 (DEFUN P* (EXP1 EXP2) ...)-15|
+#Y(#:|161 203 (DEFUN P* (EXP1 EXP2) ...)-15|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC 32 9C C5 19 01)
    (|COMMON-LISP-USER|::|P*| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
     #Y(|COMMON-LISP-USER|::|P*|
@@ -185,27 +212,29 @@
         |COMMON-LISP-USER|::|ORDERINNER|)
        (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)
        (|COMMON-LISP-USER|::|EXP1| |COMMON-LISP-USER|::|EXP2|)
-       |COMMON-LISP|::|NIL| 1))
+       "multiplies EXPRESSION or TERM exp1 from \n
+    EXPRESSION or TERM exp2"
+       1))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|148 149 (DEFUN SIMPLIFY (EXP) ...)-16|
+#Y(#:|205 207 (DEFUN SIMPLIFY (EXP) ...)-16|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC 32 9C C5 19 01)
    (|COMMON-LISP-USER|::|SIMPLIFY| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
     #Y(|COMMON-LISP-USER|::|SIMPLIFY|
        #15Y(00 00 00 00 01 00 00 00 26 02 AD 2F 00 19 02)
        (|COMMON-LISP-USER|::|DIVE|)
        (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)
-       (|COMMON-LISP|::|EXP|) |COMMON-LISP|::|NIL| 1))
+       (|COMMON-LISP|::|EXP|) "extensible wrapper for the dive function" 1))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|151 153 (DEFUN DEBUGPRINT (EXP MESSAGE) ...)-17|
+#Y(#:|209 212 (DEFUN DEBUGPRINT (EXP MESSAGE) ...)-17|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC 32 9C C5 19 01)
    (|COMMON-LISP-USER|::|DEBUGPRINT| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
     #Y(|COMMON-LISP-USER|::|DEBUGPRINT|
        #22Y(00 00 00 00 02 00 00 00 26 03 AD 38 01 31 8E AE 38 01 31 8E 19 03)
        () (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)
        (|COMMON-LISP|::|EXP| |COMMON-LISP-USER|::|MESSAGE|)
-       |COMMON-LISP|::|NIL| 1))
+       "used for debugging scaffolds" 1))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|156 160 (DEFUN ISTERM (EXP) ...)-18|
+#Y(#:|214 220 (DEFUN ISTERM (EXP) ...)-18|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC 32 9C C5 19 01)
    (|COMMON-LISP-USER|::|ISTERM| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
     #Y(|COMMON-LISP-USER|::|ISTERM|
@@ -213,9 +242,12 @@
             9E 5C 78 25 02 03 00 19 02 9E 19 02)
        (|COMMON-LISP|::|+| |COMMON-LISP|::|-| |COMMON-LISP|::|*|)
        (|COMMON-LISP|::|T| |COMMON-LISP|::|NIL| |COMMON-LISP|::|NIL|)
-       (|COMMON-LISP|::|EXP|) |COMMON-LISP|::|NIL| 1))
+       (|COMMON-LISP|::|EXP|)
+       "returns true if exp is a representational TERM\n
+    and false otherwise"
+       1))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|161 166 (DEFUN SUMTERMS-IT (TERM OLD NEW) ...)-19|
+#Y(#:|222 230 (DEFUN SUMTERMS-IT (TERM OLD NEW) ...)-19|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC 32 9C C5 19 01)
    (|COMMON-LISP-USER|::|SUMTERMS-IT| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
     #Y(|COMMON-LISP-USER|::|SUMTERMS-IT|
@@ -226,9 +258,12 @@
        (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)
        (|COMMON-LISP-USER|::|TERM| |COMMON-LISP-USER|::|OLD|
         |COMMON-LISP-USER|::|NEW|)
-       |COMMON-LISP|::|NIL| 1))
+       "takes a term and a flat list of representational terms,\n
+    adds it (if it can) to every other term in the list, \n
+    returns them appended to new"
+       1))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|167 171 (DEFUN SUMTERMS (OLD NEW) ...)-20|
+#Y(#:|232 240 (DEFUN SUMTERMS (OLD NEW) ...)-20|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC 32 9C C5 19 01)
    (|COMMON-LISP-USER|::|SUMTERMS| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
     #Y(|COMMON-LISP-USER|::|SUMTERMS|
@@ -237,9 +272,11 @@
        (|COMMON-LISP-USER|::|SUMTERMS-IT|)
        (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)
        (|COMMON-LISP-USER|::|OLD| |COMMON-LISP-USER|::|NEW|)
-       |COMMON-LISP|::|NIL| 1))
+       "takes a flat list of representational terms, and returns them \n
+    appended to new"
+       1))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|172 177 (DEFUN COLLECT-IT (OLD NEW) ...)-21|
+#Y(#:|242 256 (DEFUN COLLECT-IT (OLD NEW) ...)-21|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC 32 9C C5 19 01)
    (|COMMON-LISP-USER|::|COLLECT-IT| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
     #Y(|COMMON-LISP-USER|::|COLLECT-IT|
@@ -251,9 +288,11 @@
         |COMMON-LISP|::|*|)
        (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)
        (|COMMON-LISP-USER|::|OLD| |COMMON-LISP-USER|::|NEW|)
-       |COMMON-LISP|::|NIL| 1))
+       "gets a representational expression and returns a flattened \n
+    list of terms which can be summed together"
+       1))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|178 181 (DEFUN COLLECT (EXP) ...)-22|
+#Y(#:|258 262 (DEFUN COLLECT (EXP) ...)-22|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC 32 9C C5 19 01)
    (|COMMON-LISP-USER|::|COLLECT| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
     #Y(|COMMON-LISP-USER|::|COLLECT|
@@ -263,163 +302,164 @@
         |COMMON-LISP-USER|::|SUMTERMS| |COMMON-LISP-USER|::|REMOVEC0|
         |COMMON-LISP-USER|::|DELIMIT+| |COMMON-LISP-USER|::|BINARIFY|)
        (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)
-       (|COMMON-LISP|::|EXP|) |COMMON-LISP|::|NIL| 1))
+       (|COMMON-LISP|::|EXP|)
+       "collects like representational terms in the expression" 1))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|183 186 (FORMAT T "~%Hello world! Let's do some maths.")-23|
+#Y(#:|264 266 (FORMAT T "~%Hello world! Let's do some maths.")-23|
    #18Y(00 00 00 00 00 00 00 00 20 01 DA 6B 01 33 01 15 19 01)
-   (#Y(#:|183 186 (FORMAT T "~%Hello world! Let's do some maths.")-23-1|
+   (#Y(#:|264 266 (FORMAT T "~%Hello world! Let's do some maths.")-23-1|
        #19Y(00 00 00 00 01 00 00 00 21 17 DA AF 38 02 31 95 9E 19 03)
        ("\n
 Hello world! Let's do some maths.")
        (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
     |COMMON-LISP|::|*STANDARD-OUTPUT*|)
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|187 187 (FORMAT T "~%~%Poly functions:")-24|
+#Y(#:|267 267 (FORMAT T "~%~%Poly functions:")-24|
    #18Y(00 00 00 00 00 00 00 00 20 01 DA 6B 01 33 01 15 19 01)
-   (#Y(#:|187 187 (FORMAT T "~%~%Poly functions:")-24-1|
+   (#Y(#:|267 267 (FORMAT T "~%~%Poly functions:")-24-1|
        #19Y(00 00 00 00 01 00 00 00 21 17 DA AF 38 02 31 95 9E 19 03)
        ("\n\n
 Poly functions:")
        (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
     |COMMON-LISP|::|*STANDARD-OUTPUT*|)
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|192 198 (PRINT (P+ '# '#))-25|
+#Y(#:|269 269 (PRINT (P+ '# '#))-25|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 70 02 38 01 31 8E 19 01)
    ((4. (|COMMON-LISP-USER|::|X| 2.)) (3. (|COMMON-LISP-USER|::|X| 2.))
     |COMMON-LISP-USER|::|P+|)
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|199 199 (PRINT (EQUAL # '#))-26|
+#Y(#:|270 270 (PRINT (EQUAL # '#))-26|
    #23Y(00 00 00 00 00 00 00 00 20 01 DA DB 70 02 DD 72 14 38 01 31 8E 19 01)
    ((4. (|COMMON-LISP-USER|::|X| 2.)) (3. (|COMMON-LISP-USER|::|X| 2.))
     |COMMON-LISP-USER|::|P+| (7. (|COMMON-LISP-USER|::|X| 2.)))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|200 200 (PRINT (P- '# '#))-27|
+#Y(#:|271 271 (PRINT (P- '# '#))-27|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 70 02 38 01 31 8E 19 01)
    ((4. (|COMMON-LISP-USER|::|X| 2.)) (3. (|COMMON-LISP-USER|::|X| 2.))
     |COMMON-LISP-USER|::|P-|)
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|201 201 (PRINT (EQUAL # '#))-28|
+#Y(#:|272 272 (PRINT (EQUAL # '#))-28|
    #23Y(00 00 00 00 00 00 00 00 20 01 DA DB 70 02 DD 72 14 38 01 31 8E 19 01)
    ((4. (|COMMON-LISP-USER|::|X| 2.)) (3. (|COMMON-LISP-USER|::|X| 2.))
     |COMMON-LISP-USER|::|P-| (1. (|COMMON-LISP-USER|::|X| 2.)))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|202 202 (PRINT (P* '# '#))-29|
+#Y(#:|273 273 (PRINT (P* '# '#))-29|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 70 02 38 01 31 8E 19 01)
    ((4. (|COMMON-LISP-USER|::|X| 2.)) (3. (|COMMON-LISP-USER|::|X| 2.))
     |COMMON-LISP-USER|::|P*|)
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|203 203 (PRINT (EQUAL # '#))-30|
+#Y(#:|274 274 (PRINT (EQUAL # '#))-30|
    #23Y(00 00 00 00 00 00 00 00 20 01 DA DB 70 02 DD 72 14 38 01 31 8E 19 01)
    ((4. (|COMMON-LISP-USER|::|X| 2.)) (3. (|COMMON-LISP-USER|::|X| 2.))
     |COMMON-LISP-USER|::|P*| (12. (|COMMON-LISP-USER|::|X| 4.)))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|204 204 (PRINT (P+ '# '#))-31|
+#Y(#:|275 275 (PRINT (P+ '# '#))-31|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 70 02 38 01 31 8E 19 01)
    ((4. (|COMMON-LISP-USER|::|X| 2.)) (3. (|COMMON-LISP-USER|::|Y| 2.))
     |COMMON-LISP-USER|::|P+|)
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|205 205 (PRINT (EQUAL # '#))-32|
+#Y(#:|276 276 (PRINT (EQUAL # '#))-32|
    #23Y(00 00 00 00 00 00 00 00 20 01 DA DB 70 02 DD 72 14 38 01 31 8E 19 01)
    ((4. (|COMMON-LISP-USER|::|X| 2.)) (3. (|COMMON-LISP-USER|::|Y| 2.))
     |COMMON-LISP-USER|::|P+|
     ((4. (|COMMON-LISP-USER|::|X| 2.)) |COMMON-LISP|::|+|
      (3. (|COMMON-LISP-USER|::|Y| 2.))))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|206 206 (PRINT (P- '# '#))-33|
+#Y(#:|277 277 (PRINT (P- '# '#))-33|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 70 02 38 01 31 8E 19 01)
    ((4. (|COMMON-LISP-USER|::|X| 2.)) (3. (|COMMON-LISP-USER|::|Y| 2.))
     |COMMON-LISP-USER|::|P-|)
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|207 207 (PRINT (EQUAL # '#))-34|
+#Y(#:|278 278 (PRINT (EQUAL # '#))-34|
    #23Y(00 00 00 00 00 00 00 00 20 01 DA DB 70 02 DD 72 14 38 01 31 8E 19 01)
    ((4. (|COMMON-LISP-USER|::|X| 2.)) (3. (|COMMON-LISP-USER|::|Y| 2.))
     |COMMON-LISP-USER|::|P-|
     ((4. (|COMMON-LISP-USER|::|X| 2.)) |COMMON-LISP|::|-|
      (3. (|COMMON-LISP-USER|::|Y| 2.))))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|208 208 (PRINT (P* '# '#))-35|
+#Y(#:|279 279 (PRINT (P* '# '#))-35|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 70 02 38 01 31 8E 19 01)
    ((4. (|COMMON-LISP-USER|::|X| 2.)) (3. (|COMMON-LISP-USER|::|Y| 2.))
     |COMMON-LISP-USER|::|P*|)
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|209 209 (PRINT (EQUAL # '#))-36|
+#Y(#:|280 280 (PRINT (EQUAL # '#))-36|
    #23Y(00 00 00 00 00 00 00 00 20 01 DA DB 70 02 DD 72 14 38 01 31 8E 19 01)
    ((4. (|COMMON-LISP-USER|::|X| 2.)) (3. (|COMMON-LISP-USER|::|Y| 2.))
     |COMMON-LISP-USER|::|P*|
     (12. (|COMMON-LISP-USER|::|X| 2.) (|COMMON-LISP-USER|::|Y| 2.)))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|210 210 (PRINT (P* '# '#))-37|
+#Y(#:|281 281 (PRINT (P* '# '#))-37|
    #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 70 02 38 01 31 8E 19 01)
    ((4. (|COMMON-LISP-USER|::|X| 2.) (|COMMON-LISP-USER|::|Y| 2.))
     (3. (|COMMON-LISP-USER|::|X| 3.) (|COMMON-LISP-USER|::|Y| 2.))
     |COMMON-LISP-USER|::|P*|)
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|211 211 (PRINT (EQUAL # '#))-38|
+#Y(#:|282 282 (PRINT (EQUAL # '#))-38|
    #23Y(00 00 00 00 00 00 00 00 20 01 DA DB 70 02 DD 72 14 38 01 31 8E 19 01)
    ((4. (|COMMON-LISP-USER|::|X| 2.) (|COMMON-LISP-USER|::|Y| 2.))
     (3. (|COMMON-LISP-USER|::|X| 3.) (|COMMON-LISP-USER|::|Y| 2.))
     |COMMON-LISP-USER|::|P*|
     (12. (|COMMON-LISP-USER|::|X| 5.) (|COMMON-LISP-USER|::|Y| 4.)))
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|212 212 (FORMAT T "~%~%Full simplification:")-39|
+#Y(#:|284 284 (FORMAT T "~%~%Full simplification:")-39|
    #18Y(00 00 00 00 00 00 00 00 20 01 DA 6B 01 33 01 15 19 01)
-   (#Y(#:|212 212 (FORMAT T "~%~%Full simplification:")-39-1|
+   (#Y(#:|284 284 (FORMAT T "~%~%Full simplification:")-39-1|
        #19Y(00 00 00 00 01 00 00 00 21 17 DA AF 38 02 31 95 9E 19 03)
        ("\n\n
 Full simplification:")
        (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
     |COMMON-LISP|::|*STANDARD-OUTPUT*|)
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|213 213 (PRINT (SIMPLIFY '#))-40|
+#Y(#:|285 285 (PRINT (SIMPLIFY '#))-40|
    #19Y(00 00 00 00 00 00 00 00 20 01 DA 6F 01 38 01 31 8E 19 01)
    ((4. (|COMMON-LISP-USER|::|X| 2.)) |COMMON-LISP-USER|::|SIMPLIFY|)
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|214 215 (PRINT (SIMPLIFY '#))-41|
+#Y(#:|286 287 (PRINT (SIMPLIFY '#))-41|
    #19Y(00 00 00 00 00 00 00 00 20 01 DA 6F 01 38 01 31 8E 19 01)
    (((4. (|COMMON-LISP-USER|::|X| 1.) (|COMMON-LISP-USER|::|Y| 5.))
      |COMMON-LISP|::|*| (1. (|COMMON-LISP-USER|::|X| 4.)))
     |COMMON-LISP-USER|::|SIMPLIFY|)
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|216 217 (PRINT (SIMPLIFY '#))-42|
+#Y(#:|288 289 (PRINT (SIMPLIFY '#))-42|
    #19Y(00 00 00 00 00 00 00 00 20 01 DA 6F 01 38 01 31 8E 19 01)
    (((4. (|COMMON-LISP-USER|::|X| 2.)) |COMMON-LISP|::|*|
      (2. (|COMMON-LISP-USER|::|Y| 5.)))
     |COMMON-LISP-USER|::|SIMPLIFY|)
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|218 219 (PRINT (SIMPLIFY '#))-43|
+#Y(#:|290 291 (PRINT (SIMPLIFY '#))-43|
    #19Y(00 00 00 00 00 00 00 00 20 01 DA 6F 01 38 01 31 8E 19 01)
    (((4. (|COMMON-LISP-USER|::|X| 2.)) |COMMON-LISP|::|+|
      (2. (|COMMON-LISP-USER|::|Y| 5.)))
     |COMMON-LISP-USER|::|SIMPLIFY|)
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|220 221 (PRINT (SIMPLIFY '#))-44|
+#Y(#:|292 293 (PRINT (SIMPLIFY '#))-44|
    #19Y(00 00 00 00 00 00 00 00 20 01 DA 6F 01 38 01 31 8E 19 01)
    (((4. (|COMMON-LISP-USER|::|X| 2.)) |COMMON-LISP|::|-|
      (2. (|COMMON-LISP-USER|::|Y| 5.)))
     |COMMON-LISP-USER|::|SIMPLIFY|)
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|222 223 (PRINT (SIMPLIFY '#))-45|
+#Y(#:|294 295 (PRINT (SIMPLIFY '#))-45|
    #19Y(00 00 00 00 00 00 00 00 20 01 DA 6F 01 38 01 31 8E 19 01)
    (((4. (|COMMON-LISP-USER|::|X| 2.)) |COMMON-LISP|::|+|
      ((2. (|COMMON-LISP-USER|::|Y| 5.)) |COMMON-LISP|::|+|
       (7. (|COMMON-LISP-USER|::|Z| 2.))))
     |COMMON-LISP-USER|::|SIMPLIFY|)
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|224 225 (PRINT (SIMPLIFY '#))-46|
+#Y(#:|296 297 (PRINT (SIMPLIFY '#))-46|
    #19Y(00 00 00 00 00 00 00 00 20 01 DA 6F 01 38 01 31 8E 19 01)
    (((4. (|COMMON-LISP-USER|::|X| 2.)) |COMMON-LISP|::|-|
      ((2. (|COMMON-LISP-USER|::|Y| 5.)) |COMMON-LISP|::|+|
       (7. (|COMMON-LISP-USER|::|Z| 2.))))
     |COMMON-LISP-USER|::|SIMPLIFY|)
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|226 227 (PRINT (SIMPLIFY '#))-47|
+#Y(#:|298 299 (PRINT (SIMPLIFY '#))-47|
    #19Y(00 00 00 00 00 00 00 00 20 01 DA 6F 01 38 01 31 8E 19 01)
    (((4. (|COMMON-LISP-USER|::|X| 2.)) |COMMON-LISP|::|+|
      ((2. (|COMMON-LISP-USER|::|Y| 5.)) |COMMON-LISP|::|*|
       (7. (|COMMON-LISP-USER|::|Z| 2.))))
     |COMMON-LISP-USER|::|SIMPLIFY|)
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|228 229 (PRINT (SIMPLIFY '#))-48|
+#Y(#:|300 301 (PRINT (SIMPLIFY '#))-48|
    #19Y(00 00 00 00 00 00 00 00 20 01 DA 6F 01 38 01 31 8E 19 01)
    ((((1. (|COMMON-LISP-USER|::|X| 1.)) |COMMON-LISP|::|+|
       (1. (|COMMON-LISP-USER|::|Y| 1.)))
@@ -428,7 +468,7 @@ Full simplification:")
       (1. (|COMMON-LISP-USER|::|Y| 1.))))
     |COMMON-LISP-USER|::|SIMPLIFY|)
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|230 231 (PRINT (SIMPLIFY '#))-49|
+#Y(#:|302 303 (PRINT (SIMPLIFY '#))-49|
    #19Y(00 00 00 00 00 00 00 00 20 01 DA 6F 01 38 01 31 8E 19 01)
    ((((1. (|COMMON-LISP-USER|::|X| 1.)) |COMMON-LISP|::|+|
       (1. (|COMMON-LISP-USER|::|Y| 1.)))
@@ -437,16 +477,16 @@ Full simplification:")
       (1. (|COMMON-LISP-USER|::|Y| 1.))))
     |COMMON-LISP-USER|::|SIMPLIFY|)
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|232 233 (FORMAT T "~%~%MEGA TEST:")-50|
+#Y(#:|304 306 (FORMAT T "~%~%MEGA TEST:")-50|
    #18Y(00 00 00 00 00 00 00 00 20 01 DA 6B 01 33 01 15 19 01)
-   (#Y(#:|232 233 (FORMAT T "~%~%MEGA TEST:")-50-1|
+   (#Y(#:|304 306 (FORMAT T "~%~%MEGA TEST:")-50-1|
        #19Y(00 00 00 00 01 00 00 00 21 17 DA AF 38 02 31 95 9E 19 03)
        ("\n\n
 MEGA TEST:")
        (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
     |COMMON-LISP|::|*STANDARD-OUTPUT*|)
    (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
-#Y(#:|234 234 (PRINT (SIMPLIFY '#))-51|
+#Y(#:|307 307 (PRINT (SIMPLIFY '#))-51|
    #19Y(00 00 00 00 00 00 00 00 20 01 DA 6F 01 38 01 31 8E 19 01)
    ((((((((10. (|COMMON-LISP-USER|::|X| 2.)) |COMMON-LISP|::|+|
           (1. (|COMMON-LISP-USER|::|Y| 2.)))
