@@ -1,32 +1,23 @@
-; CM20214/CM20221
-; Advanced Programming Principles/Programming II
-; Assessed Coursework Assignment 1
-; Due: 5pm., Friday 12th Dec 2014, via Moodle
-; Implement simple polynomial arithmetic in Lisp, with the polynomials represented in some suitable way within Lisp.
-; Your code should
-; • implement the three polynomial arithmetic operations +, − and ∗. The functions should be named p+, p- and p*
-; • expand and collect together like terms, e.g., the sum of x + y and x should be 2x + y rather than x + y + x while the product of (x + y) and (x + z) should be x2 + xz + xy + yz. The order of the terms is your choice.
-; • p+, p-, p* should all be functions of exactly two arguments, both being polynomials presented in your chosen
-; format, and should return a polynomial in your chosen format. Thus, if p1 is x + y + 1 and p2 is 2xy + x + z,
-; then (p+ p1 p2) returns your representation for 2xy+2x+y+z+1; and (p- (p+ p1 p2) p2) returns
-; your representation for x + y + 1.
-
-; REPRESENTATION:
-; (expression)
-; where:
-; expression = ((expression) operator (expression)) [EXPRESSION]
-; OR
-; expression = (coefficient (x exponent)+) [TERM]
-; coefficient = [0..9]+
-; x = [A..Z,a..z]
-; exponent = [0..9]+
-; operator = [x, +, -]
-; term with (x 0) indicates a constant
-; (x exponent)s are sorted alphabetically
-; inputs and results must always be a list of binary operations, such as:
-; ((x + (2x + y)) * 2x)
-
 ; FUNCTION DEFS:
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; modified version of YBE's file access syntax
+; source: http://stackoverflow.com/questions
+;           /9495376/how-to-create-and-write-into-text-file-in-lisp
+
+(defun doTest (test result)
+    (with-open-file (file "./testresults.txt"
+                     :direction :output
+                     :if-exists :append
+                     :if-does-not-exist :create)
+    (format file "TEST: ~a~%EXPC: ~a~%PASS? ~a~%" 
+        test result (equal test result)))
+    (format t "TEST: ~a~%EXPC: ~a~%PASS? ~a~%" 
+        test result (equal test result)))
+
+; end of file writing functionality
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defun pIsIn (term expression)
     "gets a representative TERM and a representative EXPRESSION 
     and returns true if it contains the term"
@@ -36,25 +27,13 @@
             (pIsIn term (cdr expression)))
         nil))
 
-(defun squish* (x y)
-    "takes 2 representative TERMs without 
-    coefficients and multiplies them"
-    (if y 
-        (squish* 
-            (append 
-                (map 'list 
-                    #'(lambda (foo) 
-                        (if (equal (car (car y)) (car foo)) 
-                            (list 
-                                (car foo) 
-                                (+ (car (cdr foo)) (car (cdr (car y)))))
-                            foo))
-                    x)
-                (if (pIsIn (car (car y)) x) 
-                    '() 
-                    (list (car y))))
-        (cdr y))
-        x))
+(defun isTerm (exp)
+    "returns true if exp is a representational TERM
+    and false otherwise"
+    (cond ((equal '+ (car (cdr exp))) nil)
+          ((equal '- (car (cdr exp))) nil)
+          ((equal '* (car (cdr exp))) nil)
+          (t exp)))
 
 (defun removec0 (exp)
     "takes a flat list of terms to be summed without and removes 
@@ -74,7 +53,9 @@
 			exp)) 
 
 (defun orderInner (exp)
-    "extensible wrapper for the quicksort function"
+    "gets a TERM without a coefficient and 
+    sorts the inner symbols and their exponents
+    (extensible wrapper for the quicksort function)"
     (qsort exp))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -103,7 +84,7 @@
         ((>= 
             (char-code (character (car a))) 
             (char-code (character (car (car b))))) (list>= a (cdr b)))
-        (t(cons (car b) (list>= a (cdr b))))))
+        (t (cons (car b) (list>= a (cdr b))))))
 
 ; end of qsort
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -116,11 +97,15 @@
         (list (car exp) (car (cdr exp)) (binarify (cdr (cdr exp)))) 
         (car exp)))
 
+(defun simplify (exp)
+    "extensible wrapper for the dive function"
+    (dive exp))
+
 (defun dive (exp)
     "gets a representational EXPRESSION and evaluates it 
     depending on it's contents, or returns if exp is a 
     TERM"
-    (let ((foo (collect exp)))
+    (let ((foo exp)) ;;collect
             (cond ((equal '+ (car (cdr foo))) 
                     (p+ (car foo) (car (cdr (cdr foo)))))
                   ((equal '- (car (cdr foo))) 
@@ -129,20 +114,12 @@
                     (p* (car foo) (car (cdr (cdr foo)))))
                   (t foo))))
 
-(defun p+ (exp1 exp2)
-    "sums two representational EXPRESSIONs or TERMs"
-    (let ((x (dive exp1)) (y (dive exp2)))
-        (if (equal (cdr x) (cdr y))
-            (list (+ (car x) (car y)) (car (cdr x)))
-            (list x '+ y))))
-
-(defun p- (exp1 exp2)
-    "subtracts EXPRESSION or TERM exp1 from 
-    EXPRESSION or TERM exp2"
-    (let ((x (dive exp1)) (y (dive exp2)))
-        (if (equal (cdr x) (cdr y))
-            (list (- (car x) (car y)) (car (cdr x)))
-            (list x '- y))))
+(defun delimit+ (exp)
+    "takes a flat list of representational expressions that 
+    need to be added together and delimits them with +"
+    (if (cdr exp) 
+        (append (list (car exp)) (append (list '+) (delimit+ (cdr exp)))) 
+        exp))
 
 (defun pickPermute* (x op1 op2 y)
     "gets two representational expressions and their signage,
@@ -151,73 +128,35 @@
         (p* x y)
         (p* y (p* x '(-1 (x 0))))))
 
-(defun delimit+ (exp)
-    "takes a flat list of representational expressions that 
-    need to be added together and delimits them with +"
-    (if (cdr exp) 
-        (append (list (car exp)) (append (list '+) (delimit+ (cdr exp)))) 
-        exp))
+(defun squish* (x y)
+    "takes 2 representative TERMs without 
+    coefficients and multiplies them"
+    (if y 
+        (squish* 
+            (append 
+                (map 'list 
+                    #'(lambda (foo) 
+                        (if (equal (car (car y)) (car foo)) 
+                            (list 
+                                (car foo) 
+                                (+ (car (cdr foo)) (car (cdr (car y)))))
+                            foo))
+                    x)
+                (if (pIsIn (car (car y)) x) 
+                    '() 
+                    (list (car y))))
+        (cdr y))
+        x))
 
-(defun p* (exp1 exp2) 
-    "multiplies EXPRESSION or TERM exp1 from 
-    EXPRESSION or TERM exp2"
-    (let ((x (dive exp1)) (y (dive exp2)))
-            (if (not (isTerm x))
-                (if (not (isTerm y))
-	                (let ((p1 (pickPermute* 
-                                (car x) '+ '+ (car y)))
-	                      (p2 (pickPermute* 
-                                (car x) 
-                                '+ 
-                                (car (cdr y)) 
-                                (car (cdr (cdr y)))))
-	                      (p3 (pickPermute* 
-                                (car (cdr (cdr x))) 
-                                (car (cdr y)) 
-                                '+ 
-                                (car y)))
-	                      (p4 (pickPermute* 
-                                (car (cdr (cdr x))) 
-                                (car (cdr x)) 
-                                (car (cdr y)) 
-                                (car (cdr (cdr y))))))
-	                    (dive (binarify (delimit+ (remove '() 
-                                (list p1 p2 p3 p4))))))
-	            	(let ((p1 (pickPermute* 
-                            (car x) '+ '+ y))
-	                      (p2 (pickPermute* 
-                            (car (cdr (cdr x))) 
-                            '+ 
-                            (car (cdr x)) 
-                            y)))
-	                     (dive (binarify (delimit+ (remove '() 
-                            (list p1 p2)))))))
-                (if (not (isTerm y))
-                	(let ((p1 (pickPermute* 
-                            (car y) '+ '+ x))
-	                      (p2 (pickPermute* 
-                            (car (cdr (cdr y))) '+ (car (cdr y)) x)))
-	                    (dive (binarify (delimit+ (remove '() (list p1 p2))))))
-                	(append
-	                    (list (* (car x) (car y))) 
-	                    (orderInner (removex0 (squish* (cdr x) (cdr y)))))))))
-
-(defun simplify (exp)
-    "extensible wrapper for the dive function"
-    (dive exp))
-
-(defun debugPrint (exp message)
-    "used for debugging scaffolds"
-	(print message)
-	(print exp))
-
-(defun isTerm (exp)
-    "returns true if exp is a representational TERM
-    and false otherwise"
-    (cond ((equal '+ (car (cdr exp))) nil)
-          ((equal '- (car (cdr exp))) nil)
-          ((equal '* (car (cdr exp))) nil)
-          (t exp)))
+(defun sumTerms (old new)
+    "takes a flat list of representational terms, sums like terms, and returns 
+    them appended to new"
+    (let ((it (sumTerms-it (car old) (cdr old) new)))
+            (if old 
+                (sumTerms 
+                    (car it) 
+                    (append (list (car (cdr (cdr it)))) (car (cdr it))))
+                new)))
 
 (defun sumTerms-it (term old new)
     "takes a term and a flat list of representational terms,
@@ -229,15 +168,13 @@
                 (sumTerms-it term (cdr old) (append new (list (car old)))))
             (list old new term)))
 
-(defun sumTerms (old new)
-    "takes a flat list of representational terms, and returns them 
-    appended to new"
-    (let ((it (sumTerms-it (car old) (cdr old) new)))
-            (if old 
-                (sumTerms 
-                    (car it) 
-                    (append (list (car (cdr (cdr it)))) (car (cdr it))))
-                new)))
+(defun collect (exp)
+    "collects like representational terms in the expression"
+    (if (isTerm exp)
+            exp
+            (binarify (delimit+ (removec0 (sumTerms 
+                (collect-it exp '()) 
+                '()))))))
 
 (defun collect-it (old new)
     "gets a representational expression and returns a flattened 
@@ -255,54 +192,122 @@
           (t 
             (append new (list old)))))
 
-(defun collect (exp)
-    "collects like representational terms in the expression"
-    (if (isTerm exp) ; if the argument is one term
-            exp
-            (binarify (delimit+ (removec0 (sumTerms (collect-it exp '()) '()))))))
+(defun p* (exp1 exp2) 
+    "multiplies EXPRESSION or TERM exp1 from 
+    EXPRESSION or TERM exp2"
+    (let ((x (dive exp1)) (y (dive exp2)))
+        (if (not (isTerm x))
+            (if (not (isTerm y))
+                (let ((p1 (pickPermute* 
+                            (car x) '+ '+ (car y)))
+                      (p2 (pickPermute* 
+                            (car x) 
+                            '+ 
+                            (car (cdr y)) 
+                            (car (cdr (cdr y)))))
+                      (p3 (pickPermute* 
+                            (car (cdr (cdr x))) 
+                            (car (cdr y)) 
+                            '+ 
+                            (car y)))
+                      (p4 (pickPermute* 
+                            (car (cdr (cdr x))) 
+                            (car (cdr x)) 
+                            (car (cdr y)) 
+                            (car (cdr (cdr y))))))
+                    (dive (binarify (delimit+ (remove '() 
+                            (list p1 p2 p3 p4))))))
+                (let ((p1 (pickPermute* 
+                        (car x) '+ '+ y))
+                      (p2 (pickPermute* 
+                        (car (cdr (cdr x))) 
+                        '+ 
+                        (car (cdr x)) 
+                        y)))
+                     (dive (binarify (delimit+ (remove '() 
+                        (list p1 p2)))))))
+            (if (not (isTerm y))
+                (let ((p1 (pickPermute* 
+                        (car y) '+ '+ x))
+                      (p2 (pickPermute* 
+                        (car (cdr (cdr y))) '+ (car (cdr y)) x)))
+                    (dive (binarify (delimit+ (remove '() (list p1 p2))))))
+                (append
+                    (list (* (car x) (car y))) 
+                    (orderInner (removex0 (squish* (cdr x) (cdr y)))))))))
 
-; TESTS:
+(defun p+ (exp1 exp2)
+    "sums two representational EXPRESSIONs or TERMs"
+    (let ((x (dive exp1)) (y (dive exp2)))
+            (if (equal (cdr x) (cdr y))
+                (list (+ (car x) (car y)) (car (cdr x)))
+                (collect (list x '+ y)))))
 
-(format t "~%Hello world! Let's do some maths.")
-(format t "~%~%Poly functions:")
+(defun p- (exp1 exp2)
+    "subtracts EXPRESSION or TERM exp1 from 
+    EXPRESSION or TERM exp2"
+    (p+ exp1 (p* exp2 '(-1 (x 0)))))
 
-(print (p+ '(4 (x 2)) '(3 (x 2))))
-(print (equal (p+ '(4 (x 2)) '(3 (x 2))) '(7 (x 2))))
-(print (p- '(4 (x 2)) '(3 (x 2))))
-(print (equal (p- '(4 (x 2)) '(3 (x 2))) '(1 (x 2))))
-(print (p* '(4 (x 2)) '(3 (x 2))))
-(print (equal (p* '(4 (x 2)) '(3 (x 2))) '(12 (x 4))))
-(print (p+ '(4 (x 2)) '(3 (y 2))))
-(print (equal (p+ '(4 (x 2)) '(3 (y 2))) '((4 (x 2)) + (3 (y 2)))))
-(print (p- '(4 (x 2)) '(3 (y 2))))
-(print (equal (p- '(4 (x 2)) '(3 (y 2))) '((4 (x 2)) - (3 (y 2)))))
-(print (p* '(4 (x 2)) '(3 (y 2))))
-(print (equal (p* '(4 (x 2)) '(3 (y 2))) '(12 (x 2) (y 2))))
-(print (p* '(4 (x 2) (y 2)) '(3 (x 3) (y 2))))
-(print (equal (p* '(4 (x 2) (y 2)) '(3 (x 3) (y 2))) '(12 (x 5) (y 4))))
+; TEST SUITE:
 
-(format t "~%~%Full simplification:")
-(print (simplify '(4 (x 2))))
-;= (4 (x 2))
-(print (simplify '((4 (x 1) (y 5)) * (1 (x 4)))))
-;= (4 (x 5) (y 5))
-(print (simplify '((4 (x 2)) * (2 (y 5)))))
-;= (8 (x 2) (y 5))
-(print (simplify '((4 (x 2)) + (2 (y 5)))))
-;= ((4 (x 2)) + (2 (y 5)))
-(print (simplify '((4 (x 2)) - (2 (y 5)))))
-;= ((4 (x 2)) - (2 (y 5)))
-(print (simplify '((4 (x 2)) + ((2 (y 5)) + (7 (z 2))))))
-;= ((4 (x 2)) + (2 (y 5))) + (7 (z 2))
-(print (simplify '((4 (x 2)) - ((2 (y 5)) + (7 (z 2))))))
-;= ((4 (x 2)) - (2 (y 5))) + (7 (z 2))
-(print (simplify '((4 (x 2)) + ((2 (y 5)) * (7 (z 2))))))
-;= ((4 (x 2)) + (14 (y 5) (z 2)))
-(print (simplify '(((1 (x 1)) + (1 (y 1))) * ((1 (x 1)) + (1 (y 1))))))
-;= (1 (x 2)) + (2 (x 1) (y 1)) + (1 (y 2))
-(print (simplify '(((1 (x 1)) + (1 (y 1))) * ((1 (x 1)) - (1 (y 1))))))
-;=?
+(format t "Hello world! Let's do some maths.~%")
+(format t "Poly functions:~%")
 
-(format t "~%~%MEGA TEST:")
-(print (simplify '(((((((10 (x 2)) + (1 (y 2))) * (2 (x 0))) * ((27 (x 1)) + (12 (y 7)))) * ((1 (y 1)) - ((1 (y 2)) - (1 (y 2))))) - (1 (z 2))) * (7 (x 1)))))
-; (print (equal '((3780 (x 4) (y 1)) + ((378 (x 2) (y 3)) + ((1680 (x 3) (y 8)) + ((168 (x 1) (y 10)) - (7 (x 1) (z 2)))))) (simplify '(((((((10 (x 2)) + (1 (y 2))) * (2 (x 0))) * ((27 (x 1)) + (12 (y 7)))) * ((1 (y 1)) - ((1 (y 2)) - (1 (y 2))))) - (1 (z 2))) * (7 (x 1)))))))
+; (doTest (p+ '(2 (x 1)) '(2 (x 1) (y 1))) '((2 (x 1)) + (2 (x 1) (y 1))))
+; (doTest (p* '(2 (x 0)) '(2 (x 0))) '(4 (x 0)))
+; (doTest (p+ '(1 (x 1)) '((1 (x 1)) + (1 (y 1)))) 
+;     '((2 (X 1)) + (1 (Y 1))))
+
+
+
+
+(doTest (p* '((1 (x 1) + (1 (y 1)))) '((1 (x 1)) + (1 (y 2)))) 
+    '((1 (x 2)) + (2 (x 1) (y 1)) + (1 (y 2))))
+
+
+
+
+
+
+; (doTest (p+ '(4 (x 2)) '(3 (x 2))) '(7 (x 2)))
+; (doTest (p- '(4 (x 2)) '(3 (x 2))) '(1 (x 2)))
+; (doTest (p* '(4 (x 2)) '(3 (x 2))) '(12 (x 4)))
+; (doTest (p+ '(4 (x 2)) '(3 (y 2))) '((4 (x 2)) + (3 (y 2))))
+; (doTest (p- '(4 (x 2)) '(3 (y 2))) '((4 (x 2)) + (-3 (y 2))))
+; (doTest (p* '(4 (x 2)) '(3 (y 2))) '(12 (x 2) (y 2)))
+; (doTest (p* '(4 (x 2) (y 2)) '(3 (x 3) (y 2))) '(12 (x 5) (y 4)))
+
+; (format t "~%Full simplification:~%")
+; (doTest (simplify '(4 (x 2))) '(4 (x 2)))
+; (doTest (simplify '((4 (x 1) (y 5)) * (1 (x 4)))) '(4 (x 5) (y 5)))
+; (doTest (simplify '((4 (x 2)) * (2 (y 5)))) '(8 (x 2) (y 5)))
+; (doTest (simplify '((4 (x 2)) + (2 (y 5)))) '((4 (x 2)) + (2 (y 5))))
+; (doTest (simplify '((4 (x 2)) - (2 (y 5)))) '((4 (x 2)) + (-2 (y 5))))
+; (doTest (simplify '((4 (x 2)) + ((2 (y 5)) + (7 (z 2))))) 
+;     '((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2)))))
+; (doTest (simplify '((4 (x 2)) - ((2 (y 5)) + (7 (z 2))))) 
+;     '((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2)))))
+; (doTest (simplify '((4 (x 2)) + ((2 (y 5)) * (7 (z 2))))) 
+;     '((4 (x 2)) + (14 (y 5) (z 2))))
+; (doTest (simplify '(((1 (x 1)) + (1 (y 1))) * ((1 (x 1)) + (1 (y 1))))) 
+;     '((1 (x 2)) + (2 (x 1) (y 1)) + (1 (y 2))))
+; (doTest (simplify '(((1 (x 1)) + (1 (y 1))) * ((1 (x 1)) - (1 (y 1))))) 
+;     '((1 (X 2)) + (-1 (Y 2))))
+
+; (format t "~%Mega test:~%")
+; (doTest (simplify 
+; '(((((((10 (x 2))
+;  + (1 (y 2)))
+;   * (2 (x 0)))
+;    * ((27 (x 1))
+;     + (12 (y 7))))
+;      * ((1 (y 1))
+;       - ((1 (y 2))
+;        - (1 (y 2)))))
+;         - (1 (z 2)))
+;          * (7 (x 1))))
+; '((3780 (X 4) (Y 1)) +
+;  ((1680 (X 3) (Y 8)) +
+;   ((378 (X 2) (Y 3)) + 
+;     ((168 (X 1) (Y 10)) + 
+;         (-7 (X 1) (Z 2)))))))

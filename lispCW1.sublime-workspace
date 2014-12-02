@@ -467,15 +467,15 @@
 			"file": "poly.lisp",
 			"settings":
 			{
-				"buffer_size": 9751,
+				"buffer_size": 10799,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "lambda.lisp",
+			"file": "README.md",
 			"settings":
 			{
-				"buffer_size": 265,
+				"buffer_size": 1757,
 				"line_ending": "Windows"
 			}
 		}
@@ -536,6 +536,8 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Ryan/Drive/Uni/Programming/Lisp/CW1/old.lisp",
+		"/C/Users/Ryan/Drive/Uni/Programming/Lisp/CW1/lambda.lisp",
 		"/C/wamp/www/IP15/css/custom.css",
 		"/C/Users/Ryan/Drive/Uni/Programming/OGL/CM20219 Coursework/loadobj/loadobj/objloader.cpp",
 		"/C/wamp/www/IP15/header.php",
@@ -555,7 +557,6 @@
 		"/C/wamp/www/IP15/outstanding.php",
 		"/C/wamp/www/IP15/newtemplate.php",
 		"/C/wamp/www/IP15/topnav.php",
-		"/C/Users/Ryan/Drive/Uni/Programming/Lisp/CW1/lambda.lisp",
 		"/C/wamp/www/pitcher/js/pitchdetect.js",
 		"/C/wamp/www/pitcher/index.html",
 		"/C/Users/Ryan/Drive/Uni/CM20219 Integrated Project/Frontend Mockups/header.php",
@@ -662,12 +663,11 @@
 		"/C/wamp/www/instructor/act_tournament_create.php",
 		"/C/wamp/www/global_mysql.php",
 		"/C/wamp/www/global_mysql - Copy.php",
-		"/C/wamp/www/wiredmad/vendor/bin/doctrine.php",
-		"/C/wamp/www/wiredmad/vendor/bin/doctrine"
+		"/C/wamp/www/wiredmad/vendor/bin/doctrine.php"
 	],
 	"find":
 	{
-		"height": 26.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -682,6 +682,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"+",
+			"doTest",
+			";= ",
+			"(print (simplify",
+			"ABB",
+			"str",
+			"doTest",
+			"debugPrint",
 			"bunABB[3",
 			"bunABB[1",
 			"bunABB[2",
@@ -801,15 +809,7 @@
 			"cube[",
 			" cube[",
 			"cube[",
-			"norms",
-			"cube",
-			"CUBE",
-			"1",
-			"CUBE",
-			"y",
-			"x",
-			"y",
-			"x"
+			"norms"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -839,24 +839,29 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9751,
+						"buffer_size": 10799,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								512,
+								512
 							]
 						],
 						"settings":
 						{
+							"rulers":
+							[
+								80
+							],
 							"syntax": "Packages/Lisp/Lisp.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3043.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -864,26 +869,24 @@
 				},
 				{
 					"buffer": 1,
-					"file": "lambda.lisp",
+					"file": "README.md",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 265,
+						"buffer_size": 1757,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								265,
-								2
+								1757,
+								1757
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Lisp/Lisp.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -897,7 +900,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 26.0
+		"height": 27.0
 	},
 	"input":
 	{
@@ -937,7 +940,7 @@
 	"project": "lispCW1.sublime-project",
 	"replace":
 	{
-		"height": 48.0
+		"height": 50.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -972,7 +975,7 @@
 	"settings":
 	{
 	},
-	"show_minimap": true,
+	"show_minimap": false,
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": false,
