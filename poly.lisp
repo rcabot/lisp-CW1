@@ -163,10 +163,10 @@
     adds it (if it can) to every other term in the list, 
     returns them appended to new"
     (if old
-            (if (equal (cdr (car old)) (cdr term)) 
-                (sumTerms-it (p+ term (car old)) (cdr old) new) 
-                (sumTerms-it term (cdr old) (append new (list (car old)))))
-            (list old new term)))
+        (if (equal (cdr (car old)) (cdr term)) 
+            (sumTerms-it (p+ term (car old)) (cdr old) new) 
+            (sumTerms-it term (cdr old) (append new (list (car old)))))
+        (list old new term)))
 
 (defun collect (exp)
     "collects like representational terms in the expression"
@@ -240,7 +240,7 @@
     "sums two representational EXPRESSIONs or TERMs"
     (let ((x (dive exp1)) (y (dive exp2)))
             (if (equal (cdr x) (cdr y))
-                (list (+ (car x) (car y)) (car (cdr x)))
+                (append (list (+ (car x) (car y))) (cdr x))
                 (collect (list x '+ y)))))
 
 (defun p- (exp1 exp2)
@@ -253,61 +253,51 @@
 (format t "Hello world! Let's do some maths.~%")
 (format t "Poly functions:~%")
 
-; (doTest (p+ '(2 (x 1)) '(2 (x 1) (y 1))) '((2 (x 1)) + (2 (x 1) (y 1))))
-; (doTest (p* '(2 (x 0)) '(2 (x 0))) '(4 (x 0)))
-; (doTest (p+ '(1 (x 1)) '((1 (x 1)) + (1 (y 1)))) 
-;     '((2 (X 1)) + (1 (Y 1))))
+(doTest (p+ '(2 (x 1)) '(2 (x 1) (y 1))) '((2 (x 1)) + (2 (x 1) (y 1))))
+(doTest (p* '(2 (x 0)) '(2 (x 0))) '(4 (x 0)))
+(doTest (p+ '(1 (x 1)) '((1 (x 1)) + (1 (y 1)))) 
+    '((2 (X 1)) + (1 (Y 1))))
+(doTest (p* '((1 (x 1)) + (1 (y 1))) '((1 (x 1)) + (1 (y 2)))) 
+    '((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3))))))
+(doTest (p+ '(4 (x 2)) '(3 (x 2))) '(7 (x 2)))
+(doTest (p- '(4 (x 2)) '(3 (x 2))) '(1 (x 2)))
+(doTest (p* '(4 (x 2)) '(3 (x 2))) '(12 (x 4)))
+(doTest (p+ '(4 (x 2)) '(3 (y 2))) '((4 (x 2)) + (3 (y 2))))
+(doTest (p- '(4 (x 2)) '(3 (y 2))) '((4 (x 2)) + (-3 (y 2))))
+(doTest (p* '(4 (x 2)) '(3 (y 2))) '(12 (x 2) (y 2)))
+(doTest (p* '(4 (x 2) (y 2)) '(3 (x 3) (y 2))) '(12 (x 5) (y 4)))
 
+(format t "~%Full simplification:~%")
+(doTest (simplify '(4 (x 2))) '(4 (x 2)))
+(doTest (simplify '((4 (x 1) (y 5)) * (1 (x 4)))) '(4 (x 5) (y 5)))
+(doTest (simplify '((4 (x 2)) * (2 (y 5)))) '(8 (x 2) (y 5)))
+(doTest (simplify '((4 (x 2)) + (2 (y 5)))) '((4 (x 2)) + (2 (y 5))))
+(doTest (simplify '((4 (x 2)) - (2 (y 5)))) '((4 (x 2)) + (-2 (y 5))))
+(doTest (simplify '((4 (x 2)) + ((2 (y 5)) + (7 (z 2))))) 
+    '((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2)))))
+(doTest (simplify '((4 (x 2)) - ((2 (y 5)) + (7 (z 2))))) 
+    '((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2)))))
+(doTest (simplify '((4 (x 2)) + ((2 (y 5)) * (7 (z 2))))) 
+    '((4 (x 2)) + (14 (y 5) (z 2))))
+(doTest (simplify '(((1 (x 1)) + (1 (y 1))) * ((1 (x 1)) + (1 (y 1))))) 
+    '((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2)))))
+(doTest (simplify '(((1 (x 1)) + (1 (y 1))) * ((1 (x 1)) - (1 (y 1))))) 
+    '((1 (X 2)) + (-1 (Y 2))))
 
-
-
-(doTest (p* '((1 (x 1) + (1 (y 1)))) '((1 (x 1)) + (1 (y 2)))) 
-    '((1 (x 2)) + (2 (x 1) (y 1)) + (1 (y 2))))
-
-
-
-
-
-
-; (doTest (p+ '(4 (x 2)) '(3 (x 2))) '(7 (x 2)))
-; (doTest (p- '(4 (x 2)) '(3 (x 2))) '(1 (x 2)))
-; (doTest (p* '(4 (x 2)) '(3 (x 2))) '(12 (x 4)))
-; (doTest (p+ '(4 (x 2)) '(3 (y 2))) '((4 (x 2)) + (3 (y 2))))
-; (doTest (p- '(4 (x 2)) '(3 (y 2))) '((4 (x 2)) + (-3 (y 2))))
-; (doTest (p* '(4 (x 2)) '(3 (y 2))) '(12 (x 2) (y 2)))
-; (doTest (p* '(4 (x 2) (y 2)) '(3 (x 3) (y 2))) '(12 (x 5) (y 4)))
-
-; (format t "~%Full simplification:~%")
-; (doTest (simplify '(4 (x 2))) '(4 (x 2)))
-; (doTest (simplify '((4 (x 1) (y 5)) * (1 (x 4)))) '(4 (x 5) (y 5)))
-; (doTest (simplify '((4 (x 2)) * (2 (y 5)))) '(8 (x 2) (y 5)))
-; (doTest (simplify '((4 (x 2)) + (2 (y 5)))) '((4 (x 2)) + (2 (y 5))))
-; (doTest (simplify '((4 (x 2)) - (2 (y 5)))) '((4 (x 2)) + (-2 (y 5))))
-; (doTest (simplify '((4 (x 2)) + ((2 (y 5)) + (7 (z 2))))) 
-;     '((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2)))))
-; (doTest (simplify '((4 (x 2)) - ((2 (y 5)) + (7 (z 2))))) 
-;     '((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2)))))
-; (doTest (simplify '((4 (x 2)) + ((2 (y 5)) * (7 (z 2))))) 
-;     '((4 (x 2)) + (14 (y 5) (z 2))))
-; (doTest (simplify '(((1 (x 1)) + (1 (y 1))) * ((1 (x 1)) + (1 (y 1))))) 
-;     '((1 (x 2)) + (2 (x 1) (y 1)) + (1 (y 2))))
-; (doTest (simplify '(((1 (x 1)) + (1 (y 1))) * ((1 (x 1)) - (1 (y 1))))) 
-;     '((1 (X 2)) + (-1 (Y 2))))
-
-; (format t "~%Mega test:~%")
-; (doTest (simplify 
-; '(((((((10 (x 2))
-;  + (1 (y 2)))
-;   * (2 (x 0)))
-;    * ((27 (x 1))
-;     + (12 (y 7))))
-;      * ((1 (y 1))
-;       - ((1 (y 2))
-;        - (1 (y 2)))))
-;         - (1 (z 2)))
-;          * (7 (x 1))))
-; '((3780 (X 4) (Y 1)) +
-;  ((1680 (X 3) (Y 8)) +
-;   ((378 (X 2) (Y 3)) + 
-;     ((168 (X 1) (Y 10)) + 
-;         (-7 (X 1) (Z 2)))))))
+(format t "~%Mega test:~%")
+(doTest (simplify 
+'(((((((10 (x 2))
+ + (1 (y 2)))
+  * (2 (x 0)))
+   * ((27 (x 1))
+    + (12 (y 7))))
+     * ((1 (y 1))
+      - ((1 (y 2))
+       - (1 (y 2)))))
+        - (1 (z 2)))
+         * (7 (x 1))))
+'((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + 
+    ((168 (X 1) (Y 10)) + 
+        (-7 (X 1) (Z 2)))))))

@@ -467,7 +467,7 @@
 			"file": "poly.lisp",
 			"settings":
 			{
-				"buffer_size": 10799,
+				"buffer_size": 11027,
 				"line_ending": "Windows"
 			}
 		},
@@ -839,15 +839,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10799,
+						"buffer_size": 11027,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								512,
-								512
+								9323,
+								11027
 							]
 						],
 						"settings":
