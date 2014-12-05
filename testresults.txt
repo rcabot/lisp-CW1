@@ -601,3 +601,1451 @@ EXPC:
  ((1680 (X 3) (Y 8)) +
   ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
 PASS? T
+TEST: ((2 (X 1)) + (2 (X 1) (Y 1)))
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+TEST: (4 (X 0))
+EXPC: (4 (X 0))
+PASS? T
+TEST: ((2 (X 1)) + (1 (Y 1)))
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+TEST: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+TEST: (7 (X 2))
+EXPC: (7 (X 2))
+PASS? T
+TEST: (1 (X 2))
+EXPC: (1 (X 2))
+PASS? T
+TEST: (12 (X 4))
+EXPC: (12 (X 4))
+PASS? T
+TEST: ((4 (X 2)) + (3 (Y 2)))
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+TEST: ((4 (X 2)) + (-3 (Y 2)))
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+TEST: (12 (X 2) (Y 2))
+EXPC: (12 (X 2) (Y 2))
+PASS? T
+TEST: (12 (X 5) (Y 4))
+EXPC: (12 (X 5) (Y 4))
+PASS? T
+TEST: (4 (X 2))
+EXPC: (4 (X 2))
+PASS? T
+TEST: (4 (X 5) (Y 5))
+EXPC: (4 (X 5) (Y 5))
+PASS? T
+TEST: (8 (X 2) (Y 5))
+EXPC: (8 (X 2) (Y 5))
+PASS? T
+TEST: ((4 (X 2)) + (2 (Y 5)))
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + (-2 (Y 5)))
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+TEST: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+TEST: ((1 (X 2)) + (-1 (Y 2)))
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+TEST: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+TEST: ((2 (X 1)) + (2 (X 1) (Y 1)))
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+TEST: (4 (X 0))
+EXPC: (4 (X 0))
+PASS? T
+TEST: ((2 (X 1)) + (1 (Y 1)))
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+TEST: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+TEST: (7 (X 2))
+EXPC: (7 (X 2))
+PASS? T
+TEST: (1 (X 2))
+EXPC: (1 (X 2))
+PASS? T
+TEST: (12 (X 4))
+EXPC: (12 (X 4))
+PASS? T
+TEST: ((4 (X 2)) + (3 (Y 2)))
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+TEST: ((4 (X 2)) + (-3 (Y 2)))
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+TEST: (12 (X 2) (Y 2))
+EXPC: (12 (X 2) (Y 2))
+PASS? T
+TEST: (12 (X 5) (Y 4))
+EXPC: (12 (X 5) (Y 4))
+PASS? T
+TEST: (4 (X 2))
+EXPC: (4 (X 2))
+PASS? T
+TEST: (4 (X 5) (Y 5))
+EXPC: (4 (X 5) (Y 5))
+PASS? T
+TEST: (8 (X 2) (Y 5))
+EXPC: (8 (X 2) (Y 5))
+PASS? T
+TEST: ((4 (X 2)) + (2 (Y 5)))
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + (-2 (Y 5)))
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+TEST: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+TEST: ((1 (X 2)) + (-1 (Y 2)))
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+TEST: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+TEST: ((2 (X 1)) + (2 (X 1) (Y 1)))
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+TEST: (4 (X 0))
+EXPC: (4 (X 0))
+PASS? T
+TEST: ((2 (X 1)) + (1 (Y 1)))
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+TEST: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+TEST: (7 (X 2))
+EXPC: (7 (X 2))
+PASS? T
+TEST: (1 (X 2))
+EXPC: (1 (X 2))
+PASS? T
+TEST: (12 (X 4))
+EXPC: (12 (X 4))
+PASS? T
+TEST: ((4 (X 2)) + (3 (Y 2)))
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+TEST: ((4 (X 2)) + (-3 (Y 2)))
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+TEST: (12 (X 2) (Y 2))
+EXPC: (12 (X 2) (Y 2))
+PASS? T
+TEST: (12 (X 5) (Y 4))
+EXPC: (12 (X 5) (Y 4))
+PASS? T
+TEST: (4 (X 2))
+EXPC: (4 (X 2))
+PASS? T
+TEST: (4 (X 5) (Y 5))
+EXPC: (4 (X 5) (Y 5))
+PASS? T
+TEST: (8 (X 2) (Y 5))
+EXPC: (8 (X 2) (Y 5))
+PASS? T
+TEST: ((4 (X 2)) + (2 (Y 5)))
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + (-2 (Y 5)))
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+TEST: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+TEST: ((1 (X 2)) + (-1 (Y 2)))
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+TEST: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+TEST: ((2 (X 1)) + (2 (X 1) (Y 1)))
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+TEST: (4 (X 0))
+EXPC: (4 (X 0))
+PASS? T
+TEST: ((2 (X 1)) + (1 (Y 1)))
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+TEST: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+TEST: (7 (X 2))
+EXPC: (7 (X 2))
+PASS? T
+TEST: (1 (X 2))
+EXPC: (1 (X 2))
+PASS? T
+TEST: (12 (X 4))
+EXPC: (12 (X 4))
+PASS? T
+TEST: ((4 (X 2)) + (3 (Y 2)))
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+TEST: ((4 (X 2)) + (-3 (Y 2)))
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+TEST: (12 (X 2) (Y 2))
+EXPC: (12 (X 2) (Y 2))
+PASS? T
+TEST: (12 (X 5) (Y 4))
+EXPC: (12 (X 5) (Y 4))
+PASS? T
+TEST: (4 (X 2))
+EXPC: (4 (X 2))
+PASS? T
+TEST: (4 (X 5) (Y 5))
+EXPC: (4 (X 5) (Y 5))
+PASS? T
+TEST: (8 (X 2) (Y 5))
+EXPC: (8 (X 2) (Y 5))
+PASS? T
+TEST: ((4 (X 2)) + (2 (Y 5)))
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + (-2 (Y 5)))
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+TEST: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+TEST: ((1 (X 2)) + (-1 (Y 2)))
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+TEST: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+TEST: ((2 (X 1)) + (2 (X 1) (Y 1)))
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+TEST: (4 (X 0))
+EXPC: (4 (X 0))
+PASS? T
+TEST: ((2 (X 1)) + (1 (Y 1)))
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+TEST: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+TEST: (7 (X 2))
+EXPC: (7 (X 2))
+PASS? T
+TEST: (1 (X 2))
+EXPC: (1 (X 2))
+PASS? T
+TEST: (12 (X 4))
+EXPC: (12 (X 4))
+PASS? T
+TEST: ((4 (X 2)) + (3 (Y 2)))
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+TEST: ((4 (X 2)) + (-3 (Y 2)))
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+TEST: (12 (X 2) (Y 2))
+EXPC: (12 (X 2) (Y 2))
+PASS? T
+TEST: (12 (X 5) (Y 4))
+EXPC: (12 (X 5) (Y 4))
+PASS? T
+TEST: (4 (X 2))
+EXPC: (4 (X 2))
+PASS? T
+TEST: (4 (X 5) (Y 5))
+EXPC: (4 (X 5) (Y 5))
+PASS? T
+TEST: (8 (X 2) (Y 5))
+EXPC: (8 (X 2) (Y 5))
+PASS? T
+TEST: ((4 (X 2)) + (2 (Y 5)))
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + (-2 (Y 5)))
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+TEST: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+TEST: ((1 (X 2)) + (-1 (Y 2)))
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+TEST: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+TEST: ((2 (X 1)) + (2 (X 1) (Y 1)))
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+TEST: (4 (X 0))
+EXPC: (4 (X 0))
+PASS? T
+TEST: ((2 (X 1)) + (1 (Y 1)))
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+TEST: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+TEST: (7 (X 2))
+EXPC: (7 (X 2))
+PASS? T
+TEST: (1 (X 2))
+EXPC: (1 (X 2))
+PASS? T
+TEST: (12 (X 4))
+EXPC: (12 (X 4))
+PASS? T
+TEST: ((4 (X 2)) + (3 (Y 2)))
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+TEST: ((4 (X 2)) + (-3 (Y 2)))
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+TEST: (12 (X 2) (Y 2))
+EXPC: (12 (X 2) (Y 2))
+PASS? T
+TEST: (12 (X 5) (Y 4))
+EXPC: (12 (X 5) (Y 4))
+PASS? T
+TEST: (4 (X 2))
+EXPC: (4 (X 2))
+PASS? T
+TEST: (4 (X 5) (Y 5))
+EXPC: (4 (X 5) (Y 5))
+PASS? T
+TEST: (8 (X 2) (Y 5))
+EXPC: (8 (X 2) (Y 5))
+PASS? T
+TEST: ((4 (X 2)) + (2 (Y 5)))
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + (-2 (Y 5)))
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+TEST: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+TEST: ((1 (X 2)) + (-1 (Y 2)))
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+TEST: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+TEST: ((2 (X 1)) + (2 (X 1) (Y 1)))
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+TEST: (4 (X 0))
+EXPC: (4 (X 0))
+PASS? T
+TEST: ((2 (X 1)) + (1 (Y 1)))
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+TEST: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+TEST: (7 (X 2))
+EXPC: (7 (X 2))
+PASS? T
+TEST: (1 (X 2))
+EXPC: (1 (X 2))
+PASS? T
+TEST: (12 (X 4))
+EXPC: (12 (X 4))
+PASS? T
+TEST: ((4 (X 2)) + (3 (Y 2)))
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+TEST: ((4 (X 2)) + (-3 (Y 2)))
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+TEST: (12 (X 2) (Y 2))
+EXPC: (12 (X 2) (Y 2))
+PASS? T
+TEST: (12 (X 5) (Y 4))
+EXPC: (12 (X 5) (Y 4))
+PASS? T
+TEST: (4 (X 2))
+EXPC: (4 (X 2))
+PASS? T
+TEST: (4 (X 5) (Y 5))
+EXPC: (4 (X 5) (Y 5))
+PASS? T
+TEST: (8 (X 2) (Y 5))
+EXPC: (8 (X 2) (Y 5))
+PASS? T
+TEST: ((4 (X 2)) + (2 (Y 5)))
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + (-2 (Y 5)))
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+TEST: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+TEST: ((1 (X 2)) + (-1 (Y 2)))
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+TEST: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+TEST: ((2 (X 1)) + (2 (X 1) (Y 1)))
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+TEST: (4 (X 0))
+EXPC: (4 (X 0))
+PASS? T
+TEST: ((2 (X 1)) + (1 (Y 1)))
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+TEST: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+TEST: (7 (X 2))
+EXPC: (7 (X 2))
+PASS? T
+TEST: (1 (X 2))
+EXPC: (1 (X 2))
+PASS? T
+TEST: (12 (X 4))
+EXPC: (12 (X 4))
+PASS? T
+TEST: ((4 (X 2)) + (3 (Y 2)))
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+TEST: ((4 (X 2)) + (-3 (Y 2)))
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+TEST: (12 (X 2) (Y 2))
+EXPC: (12 (X 2) (Y 2))
+PASS? T
+TEST: (12 (X 5) (Y 4))
+EXPC: (12 (X 5) (Y 4))
+PASS? T
+TEST: (4 (X 2))
+EXPC: (4 (X 2))
+PASS? T
+TEST: (4 (X 5) (Y 5))
+EXPC: (4 (X 5) (Y 5))
+PASS? T
+TEST: (8 (X 2) (Y 5))
+EXPC: (8 (X 2) (Y 5))
+PASS? T
+TEST: ((4 (X 2)) + (2 (Y 5)))
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + (-2 (Y 5)))
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+TEST: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+TEST: ((1 (X 2)) + (-1 (Y 2)))
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+TEST: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+TEST: ((2 (X 1)) + (2 (X 1) (Y 1)))
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+TEST: (4 (X 0))
+EXPC: (4 (X 0))
+PASS? T
+TEST: ((2 (X 1)) + (1 (Y 1)))
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+TEST: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+TEST: (7 (X 2))
+EXPC: (7 (X 2))
+PASS? T
+TEST: (1 (X 2))
+EXPC: (1 (X 2))
+PASS? T
+TEST: (12 (X 4))
+EXPC: (12 (X 4))
+PASS? T
+TEST: ((4 (X 2)) + (3 (Y 2)))
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+TEST: ((4 (X 2)) + (-3 (Y 2)))
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+TEST: (12 (X 2) (Y 2))
+EXPC: (12 (X 2) (Y 2))
+PASS? T
+TEST: (12 (X 5) (Y 4))
+EXPC: (12 (X 5) (Y 4))
+PASS? T
+TEST: (4 (X 2))
+EXPC: (4 (X 2))
+PASS? T
+TEST: (4 (X 5) (Y 5))
+EXPC: (4 (X 5) (Y 5))
+PASS? T
+TEST: (8 (X 2) (Y 5))
+EXPC: (8 (X 2) (Y 5))
+PASS? T
+TEST: ((4 (X 2)) + (2 (Y 5)))
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + (-2 (Y 5)))
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+TEST: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+TEST: ((1 (X 2)) + (-1 (Y 2)))
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+TEST: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+TEST: ((2 (X 1)) + (2 (X 1) (Y 1)))
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+TEST: (4 (X 0))
+EXPC: (4 (X 0))
+PASS? T
+TEST: ((2 (X 1)) + (1 (Y 1)))
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+TEST: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+TEST: (7 (X 2))
+EXPC: (7 (X 2))
+PASS? T
+TEST: (1 (X 2))
+EXPC: (1 (X 2))
+PASS? T
+TEST: (12 (X 4))
+EXPC: (12 (X 4))
+PASS? T
+TEST: ((4 (X 2)) + (3 (Y 2)))
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+TEST: ((4 (X 2)) + (-3 (Y 2)))
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+TEST: (12 (X 2) (Y 2))
+EXPC: (12 (X 2) (Y 2))
+PASS? T
+TEST: (12 (X 5) (Y 4))
+EXPC: (12 (X 5) (Y 4))
+PASS? T
+TEST: (4 (X 2))
+EXPC: (4 (X 2))
+PASS? T
+TEST: (4 (X 5) (Y 5))
+EXPC: (4 (X 5) (Y 5))
+PASS? T
+TEST: (8 (X 2) (Y 5))
+EXPC: (8 (X 2) (Y 5))
+PASS? T
+TEST: ((4 (X 2)) + (2 (Y 5)))
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + (-2 (Y 5)))
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+TEST: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+TEST: ((1 (X 2)) + (-1 (Y 2)))
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+TEST: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+TEST: ((2 (X 1)) + (2 (X 1) (Y 1)))
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+TEST: (4 (X 0))
+EXPC: (4 (X 0))
+PASS? T
+TEST: ((2 (X 1)) + (1 (Y 1)))
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+TEST: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+TEST: (7 (X 2))
+EXPC: (7 (X 2))
+PASS? T
+TEST: (1 (X 2))
+EXPC: (1 (X 2))
+PASS? T
+TEST: (12 (X 4))
+EXPC: (12 (X 4))
+PASS? T
+TEST: ((4 (X 2)) + (3 (Y 2)))
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+TEST: ((4 (X 2)) + (-3 (Y 2)))
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+TEST: (12 (X 2) (Y 2))
+EXPC: (12 (X 2) (Y 2))
+PASS? T
+TEST: (12 (X 5) (Y 4))
+EXPC: (12 (X 5) (Y 4))
+PASS? T
+TEST: (4 (X 2))
+EXPC: (4 (X 2))
+PASS? T
+TEST: (4 (X 5) (Y 5))
+EXPC: (4 (X 5) (Y 5))
+PASS? T
+TEST: (8 (X 2) (Y 5))
+EXPC: (8 (X 2) (Y 5))
+PASS? T
+TEST: ((4 (X 2)) + (2 (Y 5)))
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + (-2 (Y 5)))
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+TEST: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+TEST: ((1 (X 2)) + (-1 (Y 2)))
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+TEST: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+TEST: ((2 (X 1)) + (2 (X 1) (Y 1)))
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+TEST: (4 (X 0))
+EXPC: (4 (X 0))
+PASS? T
+TEST: ((2 (X 1)) + (1 (Y 1)))
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+TEST: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+TEST: (7 (X 2))
+EXPC: (7 (X 2))
+PASS? T
+TEST: (1 (X 2))
+EXPC: (1 (X 2))
+PASS? T
+TEST: (12 (X 4))
+EXPC: (12 (X 4))
+PASS? T
+TEST: ((4 (X 2)) + (3 (Y 2)))
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+TEST: ((4 (X 2)) + (-3 (Y 2)))
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+TEST: (12 (X 2) (Y 2))
+EXPC: (12 (X 2) (Y 2))
+PASS? T
+TEST: (12 (X 5) (Y 4))
+EXPC: (12 (X 5) (Y 4))
+PASS? T
+TEST: (4 (X 2))
+EXPC: (4 (X 2))
+PASS? T
+TEST: (4 (X 5) (Y 5))
+EXPC: (4 (X 5) (Y 5))
+PASS? T
+TEST: (8 (X 2) (Y 5))
+EXPC: (8 (X 2) (Y 5))
+PASS? T
+TEST: ((4 (X 2)) + (2 (Y 5)))
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + (-2 (Y 5)))
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+TEST: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+TEST: ((1 (X 2)) + (-1 (Y 2)))
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+TEST: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+TEST: ((2 (X 1)) + (2 (X 1) (Y 1)))
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+TEST: (4 (X 0))
+EXPC: (4 (X 0))
+PASS? T
+TEST: ((2 (X 1)) + (1 (Y 1)))
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+TEST: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+TEST: (7 (X 2))
+EXPC: (7 (X 2))
+PASS? T
+TEST: (1 (X 2))
+EXPC: (1 (X 2))
+PASS? T
+TEST: (12 (X 4))
+EXPC: (12 (X 4))
+PASS? T
+TEST: ((4 (X 2)) + (3 (Y 2)))
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+TEST: ((4 (X 2)) + (-3 (Y 2)))
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+TEST: (12 (X 2) (Y 2))
+EXPC: (12 (X 2) (Y 2))
+PASS? T
+TEST: (12 (X 5) (Y 4))
+EXPC: (12 (X 5) (Y 4))
+PASS? T
+TEST: (4 (X 2))
+EXPC: (4 (X 2))
+PASS? T
+TEST: (4 (X 5) (Y 5))
+EXPC: (4 (X 5) (Y 5))
+PASS? T
+TEST: (8 (X 2) (Y 5))
+EXPC: (8 (X 2) (Y 5))
+PASS? T
+TEST: ((4 (X 2)) + (2 (Y 5)))
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + (-2 (Y 5)))
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+TEST: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+TEST: ((1 (X 2)) + (-1 (Y 2)))
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+TEST: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+TEST: ((2 (X 1)) + (2 (X 1) (Y 1)))
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+TEST: (4 (X 0))
+EXPC: (4 (X 0))
+PASS? T
+TEST: ((2 (X 1)) + (1 (Y 1)))
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+TEST: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+TEST: (7 (X 2))
+EXPC: (7 (X 2))
+PASS? T
+TEST: (1 (X 2))
+EXPC: (1 (X 2))
+PASS? T
+TEST: (12 (X 4))
+EXPC: (12 (X 4))
+PASS? T
+TEST: ((4 (X 2)) + (3 (Y 2)))
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+TEST: ((4 (X 2)) + (-3 (Y 2)))
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+TEST: (12 (X 2) (Y 2))
+EXPC: (12 (X 2) (Y 2))
+PASS? T
+TEST: (12 (X 5) (Y 4))
+EXPC: (12 (X 5) (Y 4))
+PASS? T
+TEST: (4 (X 2))
+EXPC: (4 (X 2))
+PASS? T
+TEST: (4 (X 5) (Y 5))
+EXPC: (4 (X 5) (Y 5))
+PASS? T
+TEST: (8 (X 2) (Y 5))
+EXPC: (8 (X 2) (Y 5))
+PASS? T
+TEST: ((4 (X 2)) + (2 (Y 5)))
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + (-2 (Y 5)))
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+TEST: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+TEST: ((1 (X 2)) + (-1 (Y 2)))
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+TEST: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+TEST: ((2 (X 1)) + (2 (X 1) (Y 1)))
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+TEST: (4 (X 0))
+EXPC: (4 (X 0))
+PASS? T
+TEST: ((2 (X 1)) + (1 (Y 1)))
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+TEST: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+TEST: (7 (X 2))
+EXPC: (7 (X 2))
+PASS? T
+TEST: (1 (X 2))
+EXPC: (1 (X 2))
+PASS? T
+TEST: (12 (X 4))
+EXPC: (12 (X 4))
+PASS? T
+TEST: ((4 (X 2)) + (3 (Y 2)))
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+TEST: ((4 (X 2)) + (-3 (Y 2)))
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+TEST: (12 (X 2) (Y 2))
+EXPC: (12 (X 2) (Y 2))
+PASS? T
+TEST: (12 (X 5) (Y 4))
+EXPC: (12 (X 5) (Y 4))
+PASS? T
+TEST: (4 (X 2))
+EXPC: (4 (X 2))
+PASS? T
+TEST: (4 (X 5) (Y 5))
+EXPC: (4 (X 5) (Y 5))
+PASS? T
+TEST: (8 (X 2) (Y 5))
+EXPC: (8 (X 2) (Y 5))
+PASS? T
+TEST: ((4 (X 2)) + (2 (Y 5)))
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + (-2 (Y 5)))
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+TEST: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+TEST: ((1 (X 2)) + (-1 (Y 2)))
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+TEST: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+TEST: ((2 (X 1)) + (2 (X 1) (Y 1)))
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+TEST: (4 (X 0))
+EXPC: (4 (X 0))
+PASS? T
+TEST: ((2 (X 1)) + (1 (Y 1)))
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+TEST: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+TEST: (7 (X 2))
+EXPC: (7 (X 2))
+PASS? T
+TEST: (1 (X 2))
+EXPC: (1 (X 2))
+PASS? T
+TEST: (12 (X 4))
+EXPC: (12 (X 4))
+PASS? T
+TEST: ((4 (X 2)) + (3 (Y 2)))
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+TEST: ((4 (X 2)) + (-3 (Y 2)))
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+TEST: (12 (X 2) (Y 2))
+EXPC: (12 (X 2) (Y 2))
+PASS? T
+TEST: (12 (X 5) (Y 4))
+EXPC: (12 (X 5) (Y 4))
+PASS? T
+TEST: (4 (X 2))
+EXPC: (4 (X 2))
+PASS? T
+TEST: (4 (X 5) (Y 5))
+EXPC: (4 (X 5) (Y 5))
+PASS? T
+TEST: (8 (X 2) (Y 5))
+EXPC: (8 (X 2) (Y 5))
+PASS? T
+TEST: ((4 (X 2)) + (2 (Y 5)))
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + (-2 (Y 5)))
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+TEST: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+TEST: ((1 (X 2)) + (-1 (Y 2)))
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+TEST: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+TEST: ((2 (X 1)) + (2 (X 1) (Y 1)))
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+TEST: (4 (X 0))
+EXPC: (4 (X 0))
+PASS? T
+TEST: ((2 (X 1)) + (1 (Y 1)))
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+TEST: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+TEST: (7 (X 2))
+EXPC: (7 (X 2))
+PASS? T
+TEST: (7 (X 2))
+EXPC: (1 (X 2))
+PASS? NIL
+TEST: (12 (X 4))
+EXPC: (12 (X 4))
+PASS? T
+TEST: ((4 (X 2)) + (3 (Y 2)))
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+TEST: ((4 (X 2)) + (3 (Y 2)))
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+PASS? NIL
+TEST: (12 (X 2) (Y 2))
+EXPC: (12 (X 2) (Y 2))
+PASS? T
+TEST: (12 (X 5) (Y 4))
+EXPC: (12 (X 5) (Y 4))
+PASS? T
+TEST: (4 (X 2))
+EXPC: (4 (X 2))
+PASS? T
+TEST: (4 (X 5) (Y 5))
+EXPC: (4 (X 5) (Y 5))
+PASS? T
+TEST: (8 (X 2) (Y 5))
+EXPC: (8 (X 2) (Y 5))
+PASS? T
+TEST: ((4 (X 2)) + (2 (Y 5)))
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + (2 (Y 5)))
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+PASS? NIL
+TEST: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? NIL
+TEST: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+TEST: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+TEST: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+PASS? NIL
+TEST: 
+((3780 (X 4) (Y 1)) +
+ ((7560 (X 4) (Y 2)) +
+  ((1680 (X 3) (Y 8)) +
+   ((378 (X 2) (Y 3)) +
+    ((168 (X 1) (Y 10)) +
+     ((3360 (X 3) (Y 9)) +
+      ((756 (X 2) (Y 4)) + ((336 (X 1) (Y 11)) + (7 (X 1) (Z 2))))))))))
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? NIL
+TEST: ((2 (X 1)) + (2 (X 1) (Y 1)))
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+TEST: (4 (X 0))
+EXPC: (4 (X 0))
+PASS? T
+TEST: ((2 (X 1)) + (1 (Y 1)))
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+TEST: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+TEST: (7 (X 2))
+EXPC: (7 (X 2))
+PASS? T
+TEST: (7 (X 2))
+EXPC: (1 (X 2))
+PASS? NIL
+TEST: (12 (X 4))
+EXPC: (12 (X 4))
+PASS? T
+TEST: ((4 (X 2)) + (3 (Y 2)))
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+TEST: ((4 (X 2)) + (3 (Y 2)))
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+PASS? NIL
+TEST: (12 (X 2) (Y 2))
+EXPC: (12 (X 2) (Y 2))
+PASS? T
+TEST: (12 (X 5) (Y 4))
+EXPC: (12 (X 5) (Y 4))
+PASS? T
+TEST: (4 (X 2))
+EXPC: (4 (X 2))
+PASS? T
+TEST: (4 (X 5) (Y 5))
+EXPC: (4 (X 5) (Y 5))
+PASS? T
+TEST: (8 (X 2) (Y 5))
+EXPC: (8 (X 2) (Y 5))
+PASS? T
+TEST: ((4 (X 2)) + (2 (Y 5)))
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + (2 (Y 5)))
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+PASS? NIL
+TEST: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? NIL
+TEST: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+TEST: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+TEST: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+PASS? NIL
+TEST: 
+((3780 (X 4) (Y 1)) +
+ ((7560 (X 4) (Y 2)) +
+  ((1680 (X 3) (Y 8)) +
+   ((378 (X 2) (Y 3)) +
+    ((168 (X 1) (Y 10)) +
+     ((3360 (X 3) (Y 9)) +
+      ((756 (X 2) (Y 4)) + ((336 (X 1) (Y 11)) + (7 (X 1) (Z 2))))))))))
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? NIL
+TEST: ((2 (X 1)) + (2 (X 1) (Y 1)))
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+TEST: (4 (X 0))
+EXPC: (4 (X 0))
+PASS? T
+TEST: ((2 (X 1)) + (1 (Y 1)))
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+TEST: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+TEST: (7 (X 2))
+EXPC: (7 (X 2))
+PASS? T
+TEST: (1 (X 2))
+EXPC: (1 (X 2))
+PASS? T
+TEST: (12 (X 4))
+EXPC: (12 (X 4))
+PASS? T
+TEST: ((4 (X 2)) + (3 (Y 2)))
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+TEST: ((4 (X 2)) + (-3 (Y 2)))
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+TEST: (12 (X 2) (Y 2))
+EXPC: (12 (X 2) (Y 2))
+PASS? T
+TEST: (12 (X 5) (Y 4))
+EXPC: (12 (X 5) (Y 4))
+PASS? T
+TEST: (4 (X 2))
+EXPC: (4 (X 2))
+PASS? T
+TEST: (4 (X 5) (Y 5))
+EXPC: (4 (X 5) (Y 5))
+PASS? T
+TEST: (8 (X 2) (Y 5))
+EXPC: (8 (X 2) (Y 5))
+PASS? T
+TEST: ((4 (X 2)) + (2 (Y 5)))
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + (-2 (Y 5)))
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+TEST: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+TEST: ((1 (X 2)) + (-1 (Y 2)))
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+TEST: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+TEST: ((2 (X 1)) + (2 (X 1) (Y 1)))
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+TEST: (4 (X 0))
+EXPC: (4 (X 0))
+PASS? T
+TEST: ((2 (X 1)) + (1 (Y 1)))
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+TEST: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+TEST: (7 (X 2))
+EXPC: (7 (X 2))
+PASS? T
+TEST: (1 (X 2))
+EXPC: (1 (X 2))
+PASS? T
+TEST: (12 (X 4))
+EXPC: (12 (X 4))
+PASS? T
+TEST: ((4 (X 2)) + (3 (Y 2)))
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+TEST: ((4 (X 2)) + (-3 (Y 2)))
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+TEST: (12 (X 2) (Y 2))
+EXPC: (12 (X 2) (Y 2))
+PASS? T
+TEST: (12 (X 5) (Y 4))
+EXPC: (12 (X 5) (Y 4))
+PASS? T
+TEST: (4 (X 2))
+EXPC: (4 (X 2))
+PASS? T
+TEST: (4 (X 5) (Y 5))
+EXPC: (4 (X 5) (Y 5))
+PASS? T
+TEST: (8 (X 2) (Y 5))
+EXPC: (8 (X 2) (Y 5))
+PASS? T
+TEST: ((4 (X 2)) + (2 (Y 5)))
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + (-2 (Y 5)))
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+TEST: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+TEST: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+TEST: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+TEST: ((1 (X 2)) + (-1 (Y 2)))
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+TEST: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T

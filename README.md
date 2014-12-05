@@ -28,6 +28,10 @@
 ; Written by rc566@bath.ac.uk
 ; Written for GNU CLISP 2.49 (2010-07-07) (http://clisp.cons.org/)
 ; 80 character line width enforced
+; 
+; A set of tests was priorly produced when the representation was derived,
+; which enabled test-driven development. These tests get output to the console
+; and to the included .txt file.
 
 ;;;;;;;;;;;;;;;;;;
 ; REPRESENTATION ;
@@ -41,7 +45,22 @@
 ; x = arbitrary single character
 ; exponent = some signed integer
 ; operator = [*, +]
-; term with (x 0) indicates a constant
+; term in the form (n (x 0)) indicates a constant
 ; (x exponent)s are sorted alphabetically
-; inputs and results must always be a list of binary operations, such as:
+; inputs and results must always be a list of binary infix operations, such as:
 ; ((x + (2x + y)) * 2x)
+; Examples:
+; (2 (x 1)) := 2x
+; (1 (x 2)) := x^2
+; (2 (x 2) (y 2)) := 2(x^2)(y^2)
+; 
+; A word on alternative considerations for representation:
+; A different scheme, based on implicit positional 
+; terms for polynomials may have been more performant. Example:
+; (2 1 0) := 2x
+; (1 2 0) := x^2
+; (2 2 2) := 2(x^2)(y^2)
+; This scheme was considered for its minimalism and low complexity,
+; but the chosen representation allowed a
+; more readable and easier to understand format for human comprehension
+; at the cost of a higher implementation complexity.

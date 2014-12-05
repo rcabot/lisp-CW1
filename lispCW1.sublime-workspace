@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"sumTerm",
+				"sumTerms-it"
+			],
+			[
+				"sum",
+				"sumTerms"
+			],
+			[
 				"remove",
 				"removec0"
 			],
@@ -467,7 +475,7 @@
 			"file": "poly.lisp",
 			"settings":
 			{
-				"buffer_size": 11027,
+				"buffer_size": 10940,
 				"line_ending": "Windows"
 			}
 		},
@@ -536,6 +544,8 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Ryan/Drive/Uni/Programming/OGL/CM20219 Coursework/loadobj/loadobj/loadobj.cpp",
+		"/C/Users/Ryan/Drive/Uni/Programming/OGL/CM20219 Coursework/EigenV/EigenV/EigenV.cpp",
 		"/C/Users/Ryan/Drive/Uni/Programming/Lisp/CW1/old.lisp",
 		"/C/Users/Ryan/Drive/Uni/Programming/Lisp/CW1/lambda.lisp",
 		"/C/wamp/www/IP15/css/custom.css",
@@ -661,9 +671,7 @@
 		"/C/wamp/www/templates/window/about.html.twig",
 		"/C/wamp/www/templates/club/create.html.twig",
 		"/C/wamp/www/instructor/act_tournament_create.php",
-		"/C/wamp/www/global_mysql.php",
-		"/C/wamp/www/global_mysql - Copy.php",
-		"/C/wamp/www/wiredmad/vendor/bin/doctrine.php"
+		"/C/wamp/www/global_mysql.php"
 	],
 	"find":
 	{
@@ -682,6 +690,38 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"	cube",
+			" cube",
+			"tempcube",
+			"y",
+			"Y",
+			"y",
+			"Y",
+			"y",
+			"X",
+			"x",
+			"X",
+			"x",
+			"X",
+			"x",
+			"X",
+			"x",
+			"X",
+			"x",
+			"bunVertices",
+			"bun",
+			"bunVertices[bunFaceIndices[i].x - 1]",
+			"a31",
+			"a13",
+			"a12",
+			"a21",
+			"a23",
+			"a32",
+			"a22",
+			"a33",
+			"a11",
+			"ABB",
+			"removec0",
 			"+",
 			"doTest",
 			";= ",
@@ -777,39 +817,7 @@
 			"span class=\"glyph",
 			"dive",
 			"simplify",
-			"'((b 2) (c 3))",
-			"coeff*",
-			"2",
-			"span3",
-			"html",
-			"foolist",
-			"print",
-			"testExpression",
-			"(simplify",
-			"printTest",
-			"print",
-			"format t (concatenate (string",
-			"(string",
-			"p",
-			"(format t",
-			"(p",
-			"(4",
-			"Cover Template for Bootstrap_files",
-			"http://getbootstrap.com/examples/dashboard",
-			"href",
-			"http://getbootstrap.com/examples/dashboard/#",
-			"getboot",
-			"icon",
-			"template_files",
-			"./template_files",
-			"y",
-			"x",
-			"s",
-			"norms",
-			"cube[",
-			" cube[",
-			"cube[",
-			"norms"
+			"'((b 2) (c 3))"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -839,15 +847,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11027,
+						"buffer_size": 10940,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								9323,
-								11027
+								10940,
+								10940
 							]
 						],
 						"settings":
@@ -889,7 +897,7 @@
 							"syntax": "Packages/Markdown/Markdown.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 101.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,

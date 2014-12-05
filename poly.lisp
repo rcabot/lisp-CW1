@@ -18,11 +18,14 @@
 ; end of file writing functionality
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun negate (x)
+    (p* x '(-1 (x 0))))
+
 (defun pIsIn (term expression)
     "gets a representative TERM and a representative EXPRESSION 
     and returns true if it contains the term"
     (if expression
-        (if (equal term (car (car expression))) 
+        (if (equal term (caar expression)) 
             t 
             (pIsIn term (cdr expression)))
         nil))
@@ -30,9 +33,9 @@
 (defun isTerm (exp)
     "returns true if exp is a representational TERM
     and false otherwise"
-    (cond ((equal '+ (car (cdr exp))) nil)
-          ((equal '- (car (cdr exp))) nil)
-          ((equal '* (car (cdr exp))) nil)
+    (cond ((equal '+ (cadr exp)) nil)
+          ((equal '- (cadr exp)) nil)
+          ((equal '* (cadr exp)) nil)
           (t exp)))
 
 (defun removec0 (exp)
@@ -49,13 +52,13 @@
     if not the only term, 
     and also 0 coeff terms"
 	(if (> (list-length exp) 1)
-			(remove-if #'(lambda (term) (equal 0 (car (cdr term)))) exp)
+			(remove-if #'(lambda (term) (equal 0 (cadr term))) exp)
 			exp)) 
 
 (defun orderInner (exp)
     "gets a TERM without a coefficient and 
     sorts the inner symbols and their exponents
-    (extensible wrapper for the quicksort function)"
+    (extensible wrapper for modified quicksort function)"
     (qsort exp))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -94,7 +97,7 @@
     + and returns a single sided binary tree of expressions
     e.g. (a + b + c):=(a + (b + c)"
     (if (> (list-length exp) 1)
-        (list (car exp) (car (cdr exp)) (binarify (cdr (cdr exp)))) 
+        (list (car exp) (cadr exp) (binarify (cddr exp))) 
         (car exp)))
 
 (defun simplify (exp)
@@ -106,12 +109,12 @@
     depending on it's contents, or returns if exp is a 
     TERM"
     (let ((foo exp)) ;;collect
-            (cond ((equal '+ (car (cdr foo))) 
-                    (p+ (car foo) (car (cdr (cdr foo)))))
-                  ((equal '- (car (cdr foo))) 
-                    (p- (car foo) (car (cdr (cdr foo)))))
-                  ((equal '* (car (cdr foo))) 
-                    (p* (car foo) (car (cdr (cdr foo)))))
+            (cond ((equal '+ (cadr foo)) 
+                    (p+ (car foo) (caddr foo)))
+                  ((equal '- (cadr foo)) 
+                    (p- (car foo) (caddr foo)))
+                  ((equal '* (cadr foo))
+                    (p* (car foo) (caddr foo)))
                   (t foo))))
 
 (defun delimit+ (exp)
@@ -126,7 +129,7 @@
     and returns their product"
     (if (equal op1 op2) 
         (p* x y)
-        (p* y (p* x '(-1 (x 0))))))
+        (p* y (negate x))))
 
 (defun squish* (x y)
     "takes 2 representative TERMs without 
@@ -136,13 +139,13 @@
             (append 
                 (map 'list 
                     #'(lambda (foo) 
-                        (if (equal (car (car y)) (car foo)) 
+                        (if (equal (caar y) (car foo)) 
                             (list 
                                 (car foo) 
-                                (+ (car (cdr foo)) (car (cdr (car y)))))
+                                (+ (cadr foo) (cadar y)))
                             foo))
                     x)
-                (if (pIsIn (car (car y)) x) 
+                (if (pIsIn (caar y) x) 
                     '() 
                     (list (car y))))
         (cdr y))
@@ -155,7 +158,7 @@
             (if old 
                 (sumTerms 
                     (car it) 
-                    (append (list (car (cdr (cdr it)))) (car (cdr it))))
+                    (append (list (caddr it)) (cadr it)))
                 new)))
 
 (defun sumTerms-it (term old new)
@@ -163,7 +166,7 @@
     adds it (if it can) to every other term in the list, 
     returns them appended to new"
     (if old
-        (if (equal (cdr (car old)) (cdr term)) 
+        (if (equal (cdar old) (cdr term)) 
             (sumTerms-it (p+ term (car old)) (cdr old) new) 
             (sumTerms-it term (cdr old) (append new (list (car old)))))
         (list old new term)))
@@ -179,15 +182,15 @@
 (defun collect-it (old new)
     "gets a representational expression and returns a flattened 
     list of terms which can be summed together"
-    (cond ((equal '+ (car (cdr old))) 
+    (cond ((equal '+ (cadr old)) 
             (append new 
                 (collect-it (car old) new) 
-                (collect-it (car (cdr (cdr old))) new)))
-          ((equal '- (car (cdr old))) 
+                (collect-it (caddr old) new)))
+          ((equal '- (cadr old)) 
             (append new 
                 (collect-it (car old) new) 
-                (collect-it (p* '(-1 (x 0)) (car (cdr (cdr old)))) new)))
-          ((equal '* (car (cdr old))) 
+                (collect-it (negate (caddr old)) new)))
+          ((equal '* (cadr old)) 
             (append new (list old)))
           (t 
             (append new (list old)))))
@@ -203,26 +206,26 @@
                       (p2 (pickPermute* 
                             (car x) 
                             '+ 
-                            (car (cdr y)) 
-                            (car (cdr (cdr y)))))
+                            (cadr y) 
+                            (caddr y)))
                       (p3 (pickPermute* 
-                            (car (cdr (cdr x))) 
-                            (car (cdr y)) 
+                            (caddr x) 
+                            (cadr y) 
                             '+ 
                             (car y)))
                       (p4 (pickPermute* 
-                            (car (cdr (cdr x))) 
-                            (car (cdr x)) 
-                            (car (cdr y)) 
-                            (car (cdr (cdr y))))))
+                            (caddr x) 
+                            (cadr x) 
+                            (cadr y) 
+                            (caddr y))))
                     (dive (binarify (delimit+ (remove '() 
                             (list p1 p2 p3 p4))))))
                 (let ((p1 (pickPermute* 
                         (car x) '+ '+ y))
                       (p2 (pickPermute* 
-                        (car (cdr (cdr x))) 
+                        (caddr x) 
                         '+ 
-                        (car (cdr x)) 
+                        (cadr x) 
                         y)))
                      (dive (binarify (delimit+ (remove '() 
                         (list p1 p2)))))))
@@ -230,7 +233,7 @@
                 (let ((p1 (pickPermute* 
                         (car y) '+ '+ x))
                       (p2 (pickPermute* 
-                        (car (cdr (cdr y))) '+ (car (cdr y)) x)))
+                        (caddr y) '+ (cadr y) x)))
                     (dive (binarify (delimit+ (remove '() (list p1 p2))))))
                 (append
                     (list (* (car x) (car y))) 
@@ -246,7 +249,7 @@
 (defun p- (exp1 exp2)
     "subtracts EXPRESSION or TERM exp1 from 
     EXPRESSION or TERM exp2"
-    (p+ exp1 (p* exp2 '(-1 (x 0)))))
+    (p+ exp1 (negate exp2)))
 
 ; TEST SUITE:
 
