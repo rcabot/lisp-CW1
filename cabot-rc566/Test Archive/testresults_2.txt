@@ -1,0 +1,3961 @@
+TEST: Simplification.
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+RESU: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+
+TEST: Add 2x and 2xy
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+RESU: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+
+TEST: Mult 2 and 2
+EXPC: (4 (X 0))
+RESU: (4 (X 0))
+PASS? T
+
+TEST: Add x and x+y
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+RESU: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+
+TEST: Mult x+y and x+y^2
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+RESU: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+
+TEST: Add 4x^2 and 3x^2
+EXPC: (7 (X 2))
+RESU: (7 (X 2))
+PASS? T
+
+TEST: Subtr 3x^2 from 4x^2
+EXPC: (1 (X 2))
+RESU: (1 (X 2))
+PASS? T
+
+TEST: Mult 4x^2 and 3x^2
+EXPC: (12 (X 4))
+RESU: (12 (X 4))
+PASS? T
+
+TEST: Add 4x^2 and 3y^2
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+RESU: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+
+TEST: Subtr 3y^2 from 4x^2
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+RESU: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+
+TEST: Mult 4x^2 and 3y^2
+EXPC: (12 (X 2) (Y 2))
+RESU: (12 (X 2) (Y 2))
+PASS? T
+
+TEST: Mult 4(x^2)(y^2) and 3(x^3)(y^2)
+EXPC: (12 (X 5) (Y 4))
+RESU: (12 (X 5) (Y 4))
+PASS? T
+
+TEST: (p* p1 p2)
+EXPC: 
+((2 (X 2) (Y 1)) +
+ ((1 (X 2)) +
+  ((1 (X 1) (Z 1)) +
+   ((2 (X 1) (Y 2)) +
+    ((2 (X 1) (Y 1)) +
+     ((1 (X 1) (Y 1)) + ((1 (Y 1) (Z 1)) + ((1 (X 1)) + (1 (Z 1))))))))))
+RESU: 
+((2 (X 2) (Y 1)) +
+ ((1 (X 2)) +
+  ((1 (X 1) (Z 1)) +
+   ((2 (X 1) (Y 2)) +
+    ((2 (X 1) (Y 1)) +
+     ((1 (X 1) (Y 1)) + ((1 (Y 1) (Z 1)) + ((1 (X 1)) + (1 (Z 1))))))))))
+PASS? T
+
+TEST: (p+ p1 p2)
+EXPC: ((2 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + ((2 (X 1) (Y 1)) + (1 (Z 1))))))
+RESU: ((2 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + ((2 (X 1) (Y 1)) + (1 (Z 1))))))
+PASS? T
+
+TEST: (p- p1 p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1)))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1)))))
+PASS? T
+
+TEST: (p- (p+ p1 p2) p2)
+EXPC: 
+((1 (X 1)) +
+ ((1 (Y 1)) +
+  ((1 (X 0)) +
+   ((2 (X 1) (Y 1)) + ((1 (Z 1)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1))))))))
+RESU: 
+((1 (X 1)) +
+ ((1 (Y 1)) +
+  ((1 (X 0)) +
+   ((2 (X 1) (Y 1)) + ((1 (Z 1)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1))))))))
+PASS? T
+
+TEST: (p+ (p- p1 p2) p2)
+EXPC: 
+((1 (Y 1)) +
+ ((1 (X 0)) +
+  ((-2 (X 1) (Y 1)) +
+   ((-1 (Z 1)) + ((2 (X 1) (Y 1)) + ((1 (X 1)) + (1 (Z 1))))))))
+RESU: 
+((1 (Y 1)) +
+ ((1 (X 0)) +
+  ((-2 (X 1) (Y 1)) +
+   ((-1 (Z 1)) + ((2 (X 1) (Y 1)) + ((1 (X 1)) + (1 (Z 1))))))))
+PASS? T
+
+TEST: (p- (p- (p+ p1 p2) p2) p2)
+EXPC: 
+((1 (Y 1)) +
+ ((1 (X 0)) +
+  ((2 (X 1) (Y 1)) +
+   ((1 (Z 1)) +
+    ((-2 (X 1) (Y 1)) + ((-1 (Z 1)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1)))))))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1)))))
+PASS? NIL
+
+TEST: 
+negate - expression -> expression
+    (negate '((1 (x 1)) + (1 (y 1))))
+EXPC: ((-1 (X 1)) + (-1 (Y 1)))
+RESU: ((-1 (X 1)) + (-1 (Y 1)))
+PASS? T
+
+TEST: 
+pIsIn - expo, term with no coeff -> bool
+    (pIsIn 'z '((x 2) (y 1) (x 10) (z 1)))
+EXPC: T
+RESU: T
+PASS? T
+
+TEST: 
+isTerm - expression -> bool
+    (isTerm '(2 (x 2) (z 2) (y 3)))
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+removec0 - flat list of terms -> flat list of terms
+    (removec0 '((2 (x 0)) (0 (x 2)) (0 (x 1))))
+EXPC: ((2 (X 0)))
+RESU: ((2 (X 0)))
+PASS? T
+
+TEST: 
+removex0 - term with no coeff -> term with no coeff
+    (removex0 '((x 0) (x 2) (x 1)))
+EXPC: ((X 2) (X 1))
+RESU: ((X 2) (X 1))
+PASS? T
+
+TEST: 
+removex0 - term with no coeff -> term with no coeff
+    (removex0 '((x 0) (y 0)))
+EXPC: ((X 0))
+RESU: NIL
+PASS? NIL
+
+TEST: 
+orderInner - term with no coeff -> term with no coeff
+    (orderInner '((x 0) (u 0) (a 2) (z 2)))
+EXPC: ((A 2) (U 0) (X 0) (Z 2))
+RESU: ((A 2) (U 0) (X 0) (Z 2))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1))))
+EXPC: (1 (X 1))
+RESU: (1 (X 1))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1)) + (2 (x 1))))
+EXPC: ((1 (X 1)) + (2 (X 1)))
+RESU: ((1 (X 1)) + (2 (X 1)))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1)) + (2 (x 1)) + (1 (x 1)) + (2 (x 1))))
+EXPC: ((1 (X 1)) + ((2 (X 1)) + ((1 (X 1)) + (2 (X 1)))))
+RESU: ((1 (X 1)) + ((2 (X 1)) + ((1 (X 1)) + (2 (X 1)))))
+PASS? T
+
+TEST: 
+delimit+ - flat list of expressions -> flat list of 
+    expressions with pluses
+    (delimit+ '((2 (x 0)) (0 (x 2)) (0 (x 1))))
+EXPC: ((2 (X 0)) + (0 (X 2)) + (0 (X 1)))
+RESU: ((2 (X 0)) + (0 (X 2)) + (0 (X 1)))
+PASS? T
+
+TEST: 
+delimit+ - flat list of expressions -> flat list of 
+    expressions with pluses
+    (delimit+ '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+pickPermute* - expression, sign, sign, expression -> expression
+    (pickPermute* '(2 (x 2)) '+ '- '(2 (y 2)))
+EXPC: (-4 (X 2) (Y 2))
+RESU: (-4 (X 2) (Y 2))
+PASS? T
+
+TEST: 
+squish* - term with no coeff, term with no coeff -> term with no coeff
+    (squish* '((x 0) (x 1) (y 2)) '((y 2) (x -1) (z 2) (y 3)))
+EXPC: ((Y 7) (Z 2))
+RESU: ((X -1) (X 0) (Y 7) (Z 2))
+PASS? NIL
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '() '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9)))) 
+              '())
+EXPC: ((6 (X 1)) (3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9))))
+RESU: ((6 (X 1)) (3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9))))
+PASS? T
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it '() '() '())
+EXPC: (NIL NIL NIL)
+RESU: (NIL NIL NIL)
+PASS? T
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it '() '() '())
+EXPC: (NIL NIL NIL)
+RESU: (NIL NIL NIL)
+PASS? T
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it 
+        '(3 (x 9)) 
+        '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9))))  
+        '())
+EXPC: (NIL ((4 (X 1)) (3 (X 2) (Y 3)) (2 (X 1)) ((2 (X 1)) * (9 (Y 9)))) (3 (X 9)))
+RESU: (NIL ((4 (X 1)) (3 (X 2) (Y 3)) (2 (X 1)) ((2 (X 1)) * (9 (Y 9)))) (3 (X 9)))
+PASS? T
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it 
+        '(3 (x 1)) 
+        '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9))))  
+        '())
+EXPC: (NIL ((3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9)))) (9 (X 1)))
+RESU: (NIL ((3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9)))) (9 (X 1)))
+PASS? T
+
+TEST: 
+collect - expression -> expression
+    (collect '((1 (x 1)) + ((1 (y 1)) + ((1 (x 0)) +
+   ((2 (x 1) (y 1)) + ((1 (z 1)) + ((-2 (x 1) (y 1)) + (-1 (z 1)))))))))
+EXPC: ((1 (X 1)) + ((1 (Y 1)) + (1 (X 0))))
+RESU: 
+((1 (X 1)) +
+ ((1 (Y 1)) +
+  ((1 (X 0)) +
+   ((2 (X 1) (Y 1)) + ((1 (Z 1)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1))))))))
+PASS? NIL
+
+TEST: 
+collect-it - expression, empty list -> flattened list
+    (collect-it '((1 (x 1)) + ((1 (y 1)) + ((1 (x 0)) +
+   ((2 (x 1) (y 1)) + ((1 (z 1)) + ((-2 (x 1) (y 1)) + (-1 (z 1)))))))) '())
+EXPC: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+RESU: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+PASS? T
+
+TEST: Simplification of 4x^2
+EXPC: (4 (X 2))
+RESU: (4 (X 2))
+PASS? T
+
+TEST: Simplification of 4x(y^5) * x^4
+EXPC: (4 (X 5) (Y 5))
+RESU: (4 (X 5) (Y 5))
+PASS? T
+
+TEST: Simplification of 4x^2 * 2y^5
+EXPC: (8 (X 2) (Y 5))
+RESU: (8 (X 2) (Y 5))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+RESU: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+
+TEST: Simplification of 4x^2 - 2y^5
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+RESU: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+RESU: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+
+TEST: Simplification of 4x^2 - 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+RESU: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5 * 7z^2
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+RESU: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+
+TEST: Simplification of (x + y) * (x + y)
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+RESU: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+
+TEST: Simplification of (x + y) * (x - y)
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+RESU: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+
+TEST: Simplification.
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+RESU: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+
+TEST: Add 2x and 2xy
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+RESU: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+
+TEST: Mult 2 and 2
+EXPC: (4 (X 0))
+RESU: (4 (X 0))
+PASS? T
+
+TEST: Add x and x+y
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+RESU: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+
+TEST: Mult x+y and x+y^2
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+RESU: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+
+TEST: Add 4x^2 and 3x^2
+EXPC: (7 (X 2))
+RESU: (7 (X 2))
+PASS? T
+
+TEST: Subtr 3x^2 from 4x^2
+EXPC: (1 (X 2))
+RESU: (1 (X 2))
+PASS? T
+
+TEST: Mult 4x^2 and 3x^2
+EXPC: (12 (X 4))
+RESU: (12 (X 4))
+PASS? T
+
+TEST: Add 4x^2 and 3y^2
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+RESU: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+
+TEST: Subtr 3y^2 from 4x^2
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+RESU: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+
+TEST: Mult 4x^2 and 3y^2
+EXPC: (12 (X 2) (Y 2))
+RESU: (12 (X 2) (Y 2))
+PASS? T
+
+TEST: Mult 4(x^2)(y^2) and 3(x^3)(y^2)
+EXPC: (12 (X 5) (Y 4))
+RESU: (12 (X 5) (Y 4))
+PASS? T
+
+TEST: (p* p1 p2)
+EXPC: 
+((2 (X 2) (Y 1)) +
+ ((1 (X 2)) +
+  ((1 (X 1) (Z 1)) +
+   ((2 (X 1) (Y 2)) +
+    ((2 (X 1) (Y 1)) +
+     ((1 (X 1) (Y 1)) + ((1 (Y 1) (Z 1)) + ((1 (X 1)) + (1 (Z 1))))))))))
+RESU: 
+((2 (X 2) (Y 1)) +
+ ((1 (X 2)) +
+  ((1 (X 1) (Z 1)) +
+   ((2 (X 1) (Y 2)) +
+    ((2 (X 1) (Y 1)) +
+     ((1 (X 1) (Y 1)) + ((1 (Y 1) (Z 1)) + ((1 (X 1)) + (1 (Z 1))))))))))
+PASS? T
+
+TEST: (p+ p1 p2)
+EXPC: ((2 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + ((2 (X 1) (Y 1)) + (1 (Z 1))))))
+RESU: ((2 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + ((2 (X 1) (Y 1)) + (1 (Z 1))))))
+PASS? T
+
+TEST: (p- p1 p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1)))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1)))))
+PASS? T
+
+TEST: (p- (p+ p1 p2) p2)
+EXPC: 
+((1 (X 1)) +
+ ((1 (Y 1)) +
+  ((1 (X 0)) +
+   ((2 (X 1) (Y 1)) + ((1 (Z 1)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1))))))))
+RESU: 
+((1 (X 1)) +
+ ((1 (Y 1)) +
+  ((1 (X 0)) +
+   ((2 (X 1) (Y 1)) + ((1 (Z 1)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1))))))))
+PASS? T
+
+TEST: (p+ (p- p1 p2) p2)
+EXPC: 
+((1 (Y 1)) +
+ ((1 (X 0)) +
+  ((-2 (X 1) (Y 1)) +
+   ((-1 (Z 1)) + ((2 (X 1) (Y 1)) + ((1 (X 1)) + (1 (Z 1))))))))
+RESU: 
+((1 (Y 1)) +
+ ((1 (X 0)) +
+  ((-2 (X 1) (Y 1)) +
+   ((-1 (Z 1)) + ((2 (X 1) (Y 1)) + ((1 (X 1)) + (1 (Z 1))))))))
+PASS? T
+
+TEST: (p- (p- (p+ p1 p2) p2) p2)
+EXPC: 
+((1 (Y 1)) +
+ ((1 (X 0)) +
+  ((2 (X 1) (Y 1)) +
+   ((1 (Z 1)) +
+    ((-2 (X 1) (Y 1)) + ((-1 (Z 1)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1)))))))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1)))))
+PASS? NIL
+
+TEST: 
+negate - expression -> expression
+    (negate '((1 (x 1)) + (1 (y 1))))
+EXPC: ((-1 (X 1)) + (-1 (Y 1)))
+RESU: ((-1 (X 1)) + (-1 (Y 1)))
+PASS? T
+
+TEST: 
+pIsIn - expo, term with no coeff -> bool
+    (pIsIn 'z '((x 2) (y 1) (x 10) (z 1)))
+EXPC: T
+RESU: T
+PASS? T
+
+TEST: 
+isTerm - expression -> bool
+    (isTerm '(2 (x 2) (z 2) (y 3)))
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+removec0 - flat list of terms -> flat list of terms
+    (removec0 '((2 (x 0)) (0 (x 2)) (0 (x 1))))
+EXPC: ((2 (X 0)))
+RESU: ((2 (X 0)))
+PASS? T
+
+TEST: 
+removex0 - term with no coeff -> term with no coeff
+    (removex0 '((x 0) (x 2) (x 1)))
+EXPC: ((X 2) (X 1))
+RESU: ((X 2) (X 1))
+PASS? T
+
+TEST: 
+removex0 - term with no coeff -> term with no coeff
+    (removex0 '((x 0) (y 0)))
+EXPC: ((X 0))
+RESU: NIL
+PASS? NIL
+
+TEST: 
+orderInner - term with no coeff -> term with no coeff
+    (orderInner '((x 0) (u 0) (a 2) (z 2)))
+EXPC: ((A 2) (U 0) (X 0) (Z 2))
+RESU: ((A 2) (U 0) (X 0) (Z 2))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1))))
+EXPC: (1 (X 1))
+RESU: (1 (X 1))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1)) + (2 (x 1))))
+EXPC: ((1 (X 1)) + (2 (X 1)))
+RESU: ((1 (X 1)) + (2 (X 1)))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1)) + (2 (x 1)) + (1 (x 1)) + (2 (x 1))))
+EXPC: ((1 (X 1)) + ((2 (X 1)) + ((1 (X 1)) + (2 (X 1)))))
+RESU: ((1 (X 1)) + ((2 (X 1)) + ((1 (X 1)) + (2 (X 1)))))
+PASS? T
+
+TEST: 
+delimit+ - flat list of expressions -> flat list of 
+    expressions with pluses
+    (delimit+ '((2 (x 0)) (0 (x 2)) (0 (x 1))))
+EXPC: ((2 (X 0)) + (0 (X 2)) + (0 (X 1)))
+RESU: ((2 (X 0)) + (0 (X 2)) + (0 (X 1)))
+PASS? T
+
+TEST: 
+delimit+ - flat list of expressions -> flat list of 
+    expressions with pluses
+    (delimit+ '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+pickPermute* - expression, sign, sign, expression -> expression
+    (pickPermute* '(2 (x 2)) '+ '- '(2 (y 2)))
+EXPC: (-4 (X 2) (Y 2))
+RESU: (-4 (X 2) (Y 2))
+PASS? T
+
+TEST: 
+squish* - term with no coeff, term with no coeff -> term with no coeff
+    (squish* '((x 0) (x 1) (y 2)) '((y 2) (x -1) (z 2) (y 3)))
+EXPC: ((Y 7) (Z 2))
+RESU: ((X -1) (X 0) (Y 7) (Z 2))
+PASS? NIL
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '() '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9)))) 
+              '())
+EXPC: ((6 (X 1)) (3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9))))
+RESU: ((6 (X 1)) (3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9))))
+PASS? T
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) 
+                (-2 (X 1) (Y 1)) (-1 (Z 1)))
+              '())
+EXPC: NIL
+RESU: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it '() '() '())
+EXPC: (NIL NIL NIL)
+RESU: (NIL NIL NIL)
+PASS? T
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it 
+        '(3 (x 9)) 
+        '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9))))  
+        '())
+EXPC: (NIL ((4 (X 1)) (3 (X 2) (Y 3)) (2 (X 1)) ((2 (X 1)) * (9 (Y 9)))) (3 (X 9)))
+RESU: (NIL ((4 (X 1)) (3 (X 2) (Y 3)) (2 (X 1)) ((2 (X 1)) * (9 (Y 9)))) (3 (X 9)))
+PASS? T
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it 
+        '(3 (x 1)) 
+        '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9))))  
+        '())
+EXPC: (NIL ((3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9)))) (9 (X 1)))
+RESU: (NIL ((3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9)))) (9 (X 1)))
+PASS? T
+
+TEST: 
+collect - expression -> expression
+    (collect '((1 (x 1)) + ((1 (y 1)) + ((1 (x 0)) +
+   ((2 (x 1) (y 1)) + ((1 (z 1)) + ((-2 (x 1) (y 1)) + (-1 (z 1)))))))))
+EXPC: ((1 (X 1)) + ((1 (Y 1)) + (1 (X 0))))
+RESU: 
+((1 (X 1)) +
+ ((1 (Y 1)) +
+  ((1 (X 0)) +
+   ((2 (X 1) (Y 1)) + ((1 (Z 1)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1))))))))
+PASS? NIL
+
+TEST: 
+collect-it - expression, empty list -> flattened list
+    (collect-it '((1 (x 1)) + ((1 (y 1)) + ((1 (x 0)) +
+   ((2 (x 1) (y 1)) + ((1 (z 1)) + ((-2 (x 1) (y 1)) + (-1 (z 1)))))))) '())
+EXPC: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+RESU: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+PASS? T
+
+TEST: Simplification of 4x^2
+EXPC: (4 (X 2))
+RESU: (4 (X 2))
+PASS? T
+
+TEST: Simplification of 4x(y^5) * x^4
+EXPC: (4 (X 5) (Y 5))
+RESU: (4 (X 5) (Y 5))
+PASS? T
+
+TEST: Simplification of 4x^2 * 2y^5
+EXPC: (8 (X 2) (Y 5))
+RESU: (8 (X 2) (Y 5))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+RESU: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+
+TEST: Simplification of 4x^2 - 2y^5
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+RESU: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+RESU: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+
+TEST: Simplification of 4x^2 - 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+RESU: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5 * 7z^2
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+RESU: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+
+TEST: Simplification of (x + y) * (x + y)
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+RESU: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+
+TEST: Simplification of (x + y) * (x - y)
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+RESU: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+
+TEST: Simplification.
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+RESU: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) 
+                (-2 (X 1) (Y 1)) (-1 (Z 1)))
+              '())
+EXPC: ((1 (X 1)) (1 (Y 1)) (1 (X 0)))
+RESU: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+PASS? NIL
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) 
+                (-2 (X 1) (Y 1)) (-1 (Z 1)))
+              '())
+EXPC: ((1 (X 1)) (1 (Y 1)) (1 (X 0)))
+RESU: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+PASS? NIL
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) 
+                (-2 (X 1) (Y 1)) (-1 (Z 1)))
+              '())
+EXPC: ((1 (X 1)) (1 (Y 1)) (1 (X 0)))
+RESU: ((1 (X 1)) (1 (Y 1)) (1 (X 0)) (0 (X 1) (Y 1)) (0 (Z 1)) (-1 (Z 1)))
+PASS? NIL
+
+TEST: Add 2x and 2xy
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+RESU: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+
+TEST: Mult 2 and 2
+EXPC: (4 (X 0))
+RESU: (4 (X 0))
+PASS? T
+
+TEST: Add x and x+y
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+RESU: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+
+TEST: Mult x+y and x+y^2
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+RESU: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+
+TEST: Add 4x^2 and 3x^2
+EXPC: (7 (X 2))
+RESU: (7 (X 2))
+PASS? T
+
+TEST: Subtr 3x^2 from 4x^2
+EXPC: (1 (X 2))
+RESU: (1 (X 2))
+PASS? T
+
+TEST: Mult 4x^2 and 3x^2
+EXPC: (12 (X 4))
+RESU: (12 (X 4))
+PASS? T
+
+TEST: Add 4x^2 and 3y^2
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+RESU: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+
+TEST: Subtr 3y^2 from 4x^2
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+RESU: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+
+TEST: Mult 4x^2 and 3y^2
+EXPC: (12 (X 2) (Y 2))
+RESU: (12 (X 2) (Y 2))
+PASS? T
+
+TEST: Mult 4(x^2)(y^2) and 3(x^3)(y^2)
+EXPC: (12 (X 5) (Y 4))
+RESU: (12 (X 5) (Y 4))
+PASS? T
+
+TEST: (p* p1 p2)
+EXPC: 
+((2 (X 2) (Y 1)) +
+ ((1 (X 2)) +
+  ((1 (X 1) (Z 1)) +
+   ((2 (X 1) (Y 2)) +
+    ((3 (X 1) (Y 1)) + ((1 (Y 1) (Z 1)) + ((1 (X 1)) + (1 (Z 1)))))))))
+RESU: 
+((2 (X 2) (Y 1)) +
+ ((1 (X 2)) +
+  ((1 (X 1) (Z 1)) +
+   ((2 (X 1) (Y 2)) +
+    ((3 (X 1) (Y 1)) + ((1 (Y 1) (Z 1)) + ((1 (X 1)) + (1 (Z 1)))))))))
+PASS? T
+
+TEST: (p+ p1 p2)
+EXPC: ((2 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + ((2 (X 1) (Y 1)) + (1 (Z 1))))))
+RESU: ((2 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + ((2 (X 1) (Y 1)) + (1 (Z 1))))))
+PASS? T
+
+TEST: (p- p1 p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1)))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1)))))
+PASS? T
+
+TEST: (p- (p+ p1 p2) p2)
+EXPC: ((1 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + (-1 (Z 1)))))
+RESU: ((1 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + (-1 (Z 1)))))
+PASS? T
+
+TEST: (p+ (p- p1 p2) p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + (1 (X 1))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + (1 (X 1))))
+PASS? T
+
+TEST: (p- (p- (p+ p1 p2) p2) p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (Z 1)) + (-2 (X 1) (Y 1)))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (Z 1)) + (-2 (X 1) (Y 1)))))
+PASS? T
+
+TEST: 
+negate - expression -> expression
+    (negate '((1 (x 1)) + (1 (y 1))))
+EXPC: ((-1 (X 1)) + (-1 (Y 1)))
+RESU: ((-1 (X 1)) + (-1 (Y 1)))
+PASS? T
+
+TEST: 
+pIsIn - expo, term with no coeff -> bool
+    (pIsIn 'z '((x 2) (y 1) (x 10) (z 1)))
+EXPC: T
+RESU: T
+PASS? T
+
+TEST: 
+isTerm - expression -> bool
+    (isTerm '(2 (x 2) (z 2) (y 3)))
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+removec0 - flat list of terms -> flat list of terms
+    (removec0 '((2 (x 0)) (0 (x 2)) (0 (x 1))))
+EXPC: ((2 (X 0)))
+RESU: ((2 (X 0)))
+PASS? T
+
+TEST: 
+removex0 - term with no coeff -> term with no coeff
+    (removex0 '((x 0) (x 2) (x 1)))
+EXPC: ((X 2) (X 1))
+RESU: ((X 2) (X 1))
+PASS? T
+
+TEST: 
+removex0 - term with no coeff -> term with no coeff
+    (removex0 '((x 0) (y 0)))
+EXPC: ((X 0))
+RESU: NIL
+PASS? NIL
+
+TEST: 
+orderInner - term with no coeff -> term with no coeff
+    (orderInner '((x 0) (u 0) (a 2) (z 2)))
+EXPC: ((A 2) (U 0) (X 0) (Z 2))
+RESU: ((A 2) (U 0) (X 0) (Z 2))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1))))
+EXPC: (1 (X 1))
+RESU: (1 (X 1))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1)) + (2 (x 1))))
+EXPC: ((1 (X 1)) + (2 (X 1)))
+RESU: ((1 (X 1)) + (2 (X 1)))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1)) + (2 (x 1)) + (1 (x 1)) + (2 (x 1))))
+EXPC: ((1 (X 1)) + ((2 (X 1)) + ((1 (X 1)) + (2 (X 1)))))
+RESU: ((1 (X 1)) + ((2 (X 1)) + ((1 (X 1)) + (2 (X 1)))))
+PASS? T
+
+TEST: 
+delimit+ - flat list of expressions -> flat list of 
+    expressions with pluses
+    (delimit+ '((2 (x 0)) (0 (x 2)) (0 (x 1))))
+EXPC: ((2 (X 0)) + (0 (X 2)) + (0 (X 1)))
+RESU: ((2 (X 0)) + (0 (X 2)) + (0 (X 1)))
+PASS? T
+
+TEST: 
+delimit+ - flat list of expressions -> flat list of 
+    expressions with pluses
+    (delimit+ '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+pickPermute* - expression, sign, sign, expression -> expression
+    (pickPermute* '(2 (x 2)) '+ '- '(2 (y 2)))
+EXPC: (-4 (X 2) (Y 2))
+RESU: (-4 (X 2) (Y 2))
+PASS? T
+
+TEST: 
+squish* - term with no coeff, term with no coeff -> term with no coeff
+    (squish* '((x 0) (x 1) (y 2)) '((y 2) (x -1) (z 2) (y 3)))
+EXPC: ((Y 7) (Z 2))
+RESU: ((X -1) (X 0) (Y 7) (Z 2))
+PASS? NIL
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '() '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9)))) 
+              '())
+EXPC: ((6 (X 1)) (3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9))))
+RESU: ((6 (X 1)) (3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9))))
+PASS? T
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) 
+                (-2 (X 1) (Y 1)) (-1 (Z 1)))
+              '())
+EXPC: ((1 (X 1)) (1 (Y 1)) (1 (X 0)))
+RESU: ((1 (X 1)) (1 (Y 1)) (1 (X 0)) (0 (X 1) (Y 1)) (0 (Z 1)) (-1 (Z 1)))
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it '() '() '())
+EXPC: (NIL NIL NIL)
+RESU: (NIL)
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it 
+        '(3 (x 9)) 
+        '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9))))  
+        '())
+EXPC: (NIL ((4 (X 1)) (3 (X 2) (Y 3)) (2 (X 1)) ((2 (X 1)) * (9 (Y 9)))) (3 (X 9)))
+RESU: ((3 (X 9)))
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it 
+        '(3 (x 1)) 
+        '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9))))  
+        '())
+EXPC: (NIL ((3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9)))) (9 (X 1)))
+RESU: ((9 (X 1)))
+PASS? NIL
+
+TEST: 
+collect - expression -> expression
+    (collect '((1 (x 1)) + ((1 (y 1)) + ((1 (x 0)) +
+   ((2 (x 1) (y 1)) + ((1 (z 1)) + ((-2 (x 1) (y 1)) + (-1 (z 1)))))))))
+EXPC: ((1 (X 1)) + ((1 (Y 1)) + (1 (X 0))))
+RESU: ((1 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + (-1 (Z 1)))))
+PASS? NIL
+
+TEST: 
+collect-it - expression, empty list -> flattened list
+    (collect-it '((1 (x 1)) + ((1 (y 1)) + ((1 (x 0)) +
+   ((2 (x 1) (y 1)) + ((1 (z 1)) + ((-2 (x 1) (y 1)) + (-1 (z 1)))))))) '())
+EXPC: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+RESU: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+PASS? T
+
+TEST: Simplification of 4x^2
+EXPC: (4 (X 2))
+RESU: (4 (X 2))
+PASS? T
+
+TEST: Simplification of 4x(y^5) * x^4
+EXPC: (4 (X 5) (Y 5))
+RESU: (4 (X 5) (Y 5))
+PASS? T
+
+TEST: Simplification of 4x^2 * 2y^5
+EXPC: (8 (X 2) (Y 5))
+RESU: (8 (X 2) (Y 5))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+RESU: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+
+TEST: Simplification of 4x^2 - 2y^5
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+RESU: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+RESU: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+
+TEST: Simplification of 4x^2 - 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+RESU: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5 * 7z^2
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+RESU: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+
+TEST: Simplification of (x + y) * (x + y)
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+RESU: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+
+TEST: Simplification of (x + y) * (x - y)
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+RESU: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+
+TEST: Simplification.
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+RESU: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+
+TEST: Add 2x and 2xy
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+RESU: NIL
+PASS? NIL
+
+TEST: Mult 2 and 2
+EXPC: (4 (X 0))
+RESU: (4 (X 0))
+PASS? T
+
+TEST: Add x and x+y
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+RESU: NIL
+PASS? NIL
+
+TEST: Add 2x and 2xy
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+RESU: ((2 (X 1)) + ((2 (X 1) (Y 1)) + NIL))
+PASS? NIL
+
+TEST: Mult 2 and 2
+EXPC: (4 (X 0))
+RESU: (4 (X 0))
+PASS? T
+
+TEST: Add x and x+y
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+RESU: ((2 (X 1)) + ((1 (Y 1)) + (NIL + NIL)))
+PASS? NIL
+
+TEST: Add 2x and 2xy
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+RESU: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+
+TEST: Mult 2 and 2
+EXPC: (4 (X 0))
+RESU: (4 (X 0))
+PASS? T
+
+TEST: Add x and x+y
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+RESU: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+
+TEST: Mult x+y and x+y^2
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+RESU: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+
+TEST: Add 4x^2 and 3x^2
+EXPC: (7 (X 2))
+RESU: (7 (X 2))
+PASS? T
+
+TEST: Subtr 3x^2 from 4x^2
+EXPC: (1 (X 2))
+RESU: (1 (X 2))
+PASS? T
+
+TEST: Mult 4x^2 and 3x^2
+EXPC: (12 (X 4))
+RESU: (12 (X 4))
+PASS? T
+
+TEST: Add 4x^2 and 3y^2
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+RESU: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+
+TEST: Subtr 3y^2 from 4x^2
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+RESU: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+
+TEST: Mult 4x^2 and 3y^2
+EXPC: (12 (X 2) (Y 2))
+RESU: (12 (X 2) (Y 2))
+PASS? T
+
+TEST: Mult 4(x^2)(y^2) and 3(x^3)(y^2)
+EXPC: (12 (X 5) (Y 4))
+RESU: (12 (X 5) (Y 4))
+PASS? T
+
+TEST: (p* p1 p2)
+EXPC: 
+((2 (X 2) (Y 1)) +
+ ((1 (X 2)) +
+  ((1 (X 1) (Z 1)) +
+   ((2 (X 1) (Y 2)) +
+    ((3 (X 1) (Y 1)) + ((1 (Y 1) (Z 1)) + ((1 (X 1)) + (1 (Z 1)))))))))
+RESU: 
+((2 (X 2) (Y 1)) +
+ ((1 (X 2)) +
+  ((1 (X 1) (Z 1)) +
+   ((2 (X 1) (Y 2)) +
+    ((3 (X 1) (Y 1)) + ((1 (Y 1) (Z 1)) + ((1 (X 1)) + (1 (Z 1)))))))))
+PASS? T
+
+TEST: (p+ p1 p2)
+EXPC: ((2 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + ((2 (X 1) (Y 1)) + (1 (Z 1))))))
+RESU: ((2 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + ((2 (X 1) (Y 1)) + (1 (Z 1))))))
+PASS? T
+
+TEST: (p- p1 p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1)))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1)))))
+PASS? T
+
+TEST: (p- (p+ p1 p2) p2)
+EXPC: ((1 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + (-1 (Z 1)))))
+RESU: ((1 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + (-1 (Z 1)))))
+PASS? T
+
+TEST: (p+ (p- p1 p2) p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + (1 (X 1))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + (1 (X 1))))
+PASS? T
+
+TEST: (p- (p- (p+ p1 p2) p2) p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (Z 1)) + (-2 (X 1) (Y 1)))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (Z 1)) + (-2 (X 1) (Y 1)))))
+PASS? T
+
+TEST: 
+negate - expression -> expression
+    (negate '((1 (x 1)) + (1 (y 1))))
+EXPC: ((-1 (X 1)) + (-1 (Y 1)))
+RESU: ((-1 (X 1)) + (-1 (Y 1)))
+PASS? T
+
+TEST: 
+pIsIn - expo, term with no coeff -> bool
+    (pIsIn 'z '((x 2) (y 1) (x 10) (z 1)))
+EXPC: T
+RESU: T
+PASS? T
+
+TEST: 
+isTerm - expression -> bool
+    (isTerm '(2 (x 2) (z 2) (y 3)))
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+removec0 - flat list of terms -> flat list of terms
+    (removec0 '((2 (x 0)) (0 (x 2)) (0 (x 1))))
+EXPC: ((2 (X 0)))
+RESU: ((2 (X 0)))
+PASS? T
+
+TEST: 
+removex0 - term with no coeff -> term with no coeff
+    (removex0 '((x 0) (x 2) (x 1)))
+EXPC: ((X 2) (X 1))
+RESU: ((X 2) (X 1))
+PASS? T
+
+TEST: 
+removex0 - term with no coeff -> term with no coeff
+    (removex0 '((x 0) (y 0)))
+EXPC: ((X 0))
+RESU: NIL
+PASS? NIL
+
+TEST: 
+orderInner - term with no coeff -> term with no coeff
+    (orderInner '((x 0) (u 0) (a 2) (z 2)))
+EXPC: ((A 2) (U 0) (X 0) (Z 2))
+RESU: ((A 2) (U 0) (X 0) (Z 2))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1))))
+EXPC: (1 (X 1))
+RESU: (1 (X 1))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1)) + (2 (x 1))))
+EXPC: ((1 (X 1)) + (2 (X 1)))
+RESU: ((1 (X 1)) + (2 (X 1)))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1)) + (2 (x 1)) + (1 (x 1)) + (2 (x 1))))
+EXPC: ((1 (X 1)) + ((2 (X 1)) + ((1 (X 1)) + (2 (X 1)))))
+RESU: ((1 (X 1)) + ((2 (X 1)) + ((1 (X 1)) + (2 (X 1)))))
+PASS? T
+
+TEST: 
+delimit+ - flat list of expressions -> flat list of 
+    expressions with pluses
+    (delimit+ '((2 (x 0)) (0 (x 2)) (0 (x 1))))
+EXPC: ((2 (X 0)) + (0 (X 2)) + (0 (X 1)))
+RESU: ((2 (X 0)) + (0 (X 2)) + (0 (X 1)))
+PASS? T
+
+TEST: 
+delimit+ - flat list of expressions -> flat list of 
+    expressions with pluses
+    (delimit+ '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+pickPermute* - expression, sign, sign, expression -> expression
+    (pickPermute* '(2 (x 2)) '+ '- '(2 (y 2)))
+EXPC: (-4 (X 2) (Y 2))
+RESU: (-4 (X 2) (Y 2))
+PASS? T
+
+TEST: 
+squish* - term with no coeff, term with no coeff -> term with no coeff
+    (squish* '((x 0) (x 1) (y 2)) '((y 2) (x -1) (z 2) (y 3)))
+EXPC: ((Y 7) (Z 2))
+RESU: ((X -1) (X 0) (Y 7) (Z 2))
+PASS? NIL
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '() '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9)))) 
+              '())
+EXPC: ((6 (X 1)) (3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9))))
+RESU: ((6 (X 1)) (3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9))))
+PASS? T
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) 
+                (-2 (X 1) (Y 1)) (-1 (Z 1)))
+              '())
+EXPC: ((1 (X 1)) (1 (Y 1)) (1 (X 0)))
+RESU: ((1 (X 1)) (1 (Y 1)) (1 (X 0)) (0 (X 1) (Y 1)) (0 (Z 1)) (-1 (Z 1)))
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it '() '() '())
+EXPC: (NIL NIL NIL)
+RESU: (NIL)
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it 
+        '(3 (x 9)) 
+        '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9))))  
+        '())
+EXPC: (NIL ((4 (X 1)) (3 (X 2) (Y 3)) (2 (X 1)) ((2 (X 1)) * (9 (Y 9)))) (3 (X 9)))
+RESU: ((3 (X 9)))
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it 
+        '(3 (x 1)) 
+        '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9))))  
+        '())
+EXPC: (NIL ((3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9)))) (9 (X 1)))
+RESU: ((9 (X 1)))
+PASS? NIL
+
+TEST: 
+collect - expression -> expression
+    (collect '((1 (x 1)) + ((1 (y 1)) + ((1 (x 0)) +
+   ((2 (x 1) (y 1)) + ((1 (z 1)) + ((-2 (x 1) (y 1)) + (-1 (z 1)))))))))
+EXPC: ((1 (X 1)) + ((1 (Y 1)) + (1 (X 0))))
+RESU: ((1 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + (-1 (Z 1)))))
+PASS? NIL
+
+TEST: 
+collect-it - expression, empty list -> flattened list
+    (collect-it '((1 (x 1)) + ((1 (y 1)) + ((1 (x 0)) +
+   ((2 (x 1) (y 1)) + ((1 (z 1)) + ((-2 (x 1) (y 1)) + (-1 (z 1)))))))) '())
+EXPC: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+RESU: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+PASS? T
+
+TEST: Simplification of 4x^2
+EXPC: (4 (X 2))
+RESU: (4 (X 2))
+PASS? T
+
+TEST: Simplification of 4x(y^5) * x^4
+EXPC: (4 (X 5) (Y 5))
+RESU: (4 (X 5) (Y 5))
+PASS? T
+
+TEST: Simplification of 4x^2 * 2y^5
+EXPC: (8 (X 2) (Y 5))
+RESU: (8 (X 2) (Y 5))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+RESU: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+
+TEST: Simplification of 4x^2 - 2y^5
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+RESU: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+RESU: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+
+TEST: Simplification of 4x^2 - 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+RESU: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5 * 7z^2
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+RESU: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+
+TEST: Simplification of (x + y) * (x + y)
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+RESU: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+
+TEST: Simplification of (x + y) * (x - y)
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+RESU: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+
+TEST: Simplification.
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+RESU: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+
+TEST: Add 2x and 2xy
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+RESU: ((2 (X 1)) + ((2 (X 1) (Y 1)) + NIL))
+PASS? NIL
+
+TEST: Mult 2 and 2
+EXPC: (4 (X 0))
+RESU: (4 (X 0))
+PASS? T
+
+TEST: Add x and x+y
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+RESU: ((2 (X 1)) + ((1 (Y 1)) + (NIL + NIL)))
+PASS? NIL
+
+TEST: Add 2x and 2xy
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+RESU: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+
+TEST: Mult 2 and 2
+EXPC: (4 (X 0))
+RESU: (4 (X 0))
+PASS? T
+
+TEST: Add x and x+y
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+RESU: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+
+TEST: Mult x+y and x+y^2
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+RESU: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+
+TEST: Add 4x^2 and 3x^2
+EXPC: (7 (X 2))
+RESU: (7 (X 2))
+PASS? T
+
+TEST: Subtr 3x^2 from 4x^2
+EXPC: (1 (X 2))
+RESU: (1 (X 2))
+PASS? T
+
+TEST: Mult 4x^2 and 3x^2
+EXPC: (12 (X 4))
+RESU: (12 (X 4))
+PASS? T
+
+TEST: Add 4x^2 and 3y^2
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+RESU: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+
+TEST: Subtr 3y^2 from 4x^2
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+RESU: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+
+TEST: Mult 4x^2 and 3y^2
+EXPC: (12 (X 2) (Y 2))
+RESU: (12 (X 2) (Y 2))
+PASS? T
+
+TEST: Mult 4(x^2)(y^2) and 3(x^3)(y^2)
+EXPC: (12 (X 5) (Y 4))
+RESU: (12 (X 5) (Y 4))
+PASS? T
+
+TEST: (p* p1 p2)
+EXPC: 
+((2 (X 2) (Y 1)) +
+ ((1 (X 2)) +
+  ((1 (X 1) (Z 1)) +
+   ((2 (X 1) (Y 2)) +
+    ((3 (X 1) (Y 1)) + ((1 (Y 1) (Z 1)) + ((1 (X 1)) + (1 (Z 1)))))))))
+RESU: 
+((2 (X 2) (Y 1)) +
+ ((1 (X 2)) +
+  ((1 (X 1) (Z 1)) +
+   ((2 (X 1) (Y 2)) +
+    ((3 (X 1) (Y 1)) + ((1 (Y 1) (Z 1)) + ((1 (X 1)) + (1 (Z 1)))))))))
+PASS? T
+
+TEST: (p+ p1 p2)
+EXPC: ((2 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + ((2 (X 1) (Y 1)) + (1 (Z 1))))))
+RESU: ((2 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + ((2 (X 1) (Y 1)) + (1 (Z 1))))))
+PASS? T
+
+TEST: (p- p1 p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1)))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1)))))
+PASS? T
+
+TEST: (p- (p+ p1 p2) p2)
+EXPC: ((1 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + (-1 (Z 1)))))
+RESU: ((1 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + (-1 (Z 1)))))
+PASS? T
+
+TEST: (p+ (p- p1 p2) p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + (1 (X 1))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + (1 (X 1))))
+PASS? T
+
+TEST: (p- (p- (p+ p1 p2) p2) p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (Z 1)) + (-2 (X 1) (Y 1)))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (Z 1)) + (-2 (X 1) (Y 1)))))
+PASS? T
+
+TEST: 
+negate - expression -> expression
+    (negate '((1 (x 1)) + (1 (y 1))))
+EXPC: ((-1 (X 1)) + (-1 (Y 1)))
+RESU: ((-1 (X 1)) + (-1 (Y 1)))
+PASS? T
+
+TEST: 
+pIsIn - expo, term with no coeff -> bool
+    (pIsIn 'z '((x 2) (y 1) (x 10) (z 1)))
+EXPC: T
+RESU: T
+PASS? T
+
+TEST: 
+isTerm - expression -> bool
+    (isTerm '(2 (x 2) (z 2) (y 3)))
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+removec0 - flat list of terms -> flat list of terms
+    (removec0 '((2 (x 0)) (0 (x 2)) (0 (x 1))))
+EXPC: ((2 (X 0)))
+RESU: ((2 (X 0)))
+PASS? T
+
+TEST: 
+removex0 - term with no coeff -> term with no coeff
+    (removex0 '((x 0) (x 2) (x 1)))
+EXPC: ((X 2) (X 1))
+RESU: ((X 2) (X 1))
+PASS? T
+
+TEST: 
+removex0 - term with no coeff -> term with no coeff
+    (removex0 '((x 0) (y 0)))
+EXPC: ((X 0))
+RESU: NIL
+PASS? NIL
+
+TEST: 
+orderInner - term with no coeff -> term with no coeff
+    (orderInner '((x 0) (u 0) (a 2) (z 2)))
+EXPC: ((A 2) (U 0) (X 0) (Z 2))
+RESU: ((A 2) (U 0) (X 0) (Z 2))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1))))
+EXPC: (1 (X 1))
+RESU: (1 (X 1))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1)) + (2 (x 1))))
+EXPC: ((1 (X 1)) + (2 (X 1)))
+RESU: ((1 (X 1)) + (2 (X 1)))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1)) + (2 (x 1)) + (1 (x 1)) + (2 (x 1))))
+EXPC: ((1 (X 1)) + ((2 (X 1)) + ((1 (X 1)) + (2 (X 1)))))
+RESU: ((1 (X 1)) + ((2 (X 1)) + ((1 (X 1)) + (2 (X 1)))))
+PASS? T
+
+TEST: 
+delimit+ - flat list of expressions -> flat list of 
+    expressions with pluses
+    (delimit+ '((2 (x 0)) (0 (x 2)) (0 (x 1))))
+EXPC: ((2 (X 0)) + (0 (X 2)) + (0 (X 1)))
+RESU: ((2 (X 0)) + (0 (X 2)) + (0 (X 1)))
+PASS? T
+
+TEST: 
+delimit+ - flat list of expressions -> flat list of 
+    expressions with pluses
+    (delimit+ '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+pickPermute* - expression, sign, sign, expression -> expression
+    (pickPermute* '(2 (x 2)) '+ '- '(2 (y 2)))
+EXPC: (-4 (X 2) (Y 2))
+RESU: (-4 (X 2) (Y 2))
+PASS? T
+
+TEST: 
+squish* - term with no coeff, term with no coeff -> term with no coeff
+    (squish* '((x 0) (x 1) (y 2)) '((y 2) (x -1) (z 2) (y 3)))
+EXPC: ((Y 7) (Z 2))
+RESU: ((X -1) (X 0) (Y 7) (Z 2))
+PASS? NIL
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '() '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9)))) 
+              '())
+EXPC: ((6 (X 1)) (3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9))))
+RESU: ((6 (X 1)) (3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9))))
+PASS? T
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) 
+                (-2 (X 1) (Y 1)) (-1 (Z 1)))
+              '())
+EXPC: ((1 (X 1)) (1 (Y 1)) (1 (X 0)))
+RESU: ((1 (X 1)) (1 (Y 1)) (1 (X 0)) (0 (X 1) (Y 1)) (0 (Z 1)) (-1 (Z 1)))
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it '() '() '())
+EXPC: (NIL NIL NIL)
+RESU: (NIL)
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it 
+        '(3 (x 9)) 
+        '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9))))  
+        '())
+EXPC: (NIL ((4 (X 1)) (3 (X 2) (Y 3)) (2 (X 1)) ((2 (X 1)) * (9 (Y 9)))) (3 (X 9)))
+RESU: ((3 (X 9)))
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it 
+        '(3 (x 1)) 
+        '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9))))  
+        '())
+EXPC: (NIL ((3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9)))) (9 (X 1)))
+RESU: ((9 (X 1)))
+PASS? NIL
+
+TEST: 
+collect - expression -> expression
+    (collect '((1 (x 1)) + ((1 (y 1)) + ((1 (x 0)) +
+   ((2 (x 1) (y 1)) + ((1 (z 1)) + ((-2 (x 1) (y 1)) + (-1 (z 1)))))))))
+EXPC: ((1 (X 1)) + ((1 (Y 1)) + (1 (X 0))))
+RESU: ((1 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + (-1 (Z 1)))))
+PASS? NIL
+
+TEST: 
+collect-it - expression, empty list -> flattened list
+    (collect-it '((1 (x 1)) + ((1 (y 1)) + ((1 (x 0)) +
+   ((2 (x 1) (y 1)) + ((1 (z 1)) + ((-2 (x 1) (y 1)) + (-1 (z 1)))))))) '())
+EXPC: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+RESU: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+PASS? T
+
+TEST: Simplification of 4x^2
+EXPC: (4 (X 2))
+RESU: (4 (X 2))
+PASS? T
+
+TEST: Simplification of 4x(y^5) * x^4
+EXPC: (4 (X 5) (Y 5))
+RESU: (4 (X 5) (Y 5))
+PASS? T
+
+TEST: Simplification of 4x^2 * 2y^5
+EXPC: (8 (X 2) (Y 5))
+RESU: (8 (X 2) (Y 5))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+RESU: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+
+TEST: Simplification of 4x^2 - 2y^5
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+RESU: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+RESU: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+
+TEST: Simplification of 4x^2 - 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+RESU: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5 * 7z^2
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+RESU: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+
+TEST: Simplification of (x + y) * (x + y)
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+RESU: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+
+TEST: Simplification of (x + y) * (x - y)
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+RESU: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+
+TEST: Simplification.
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+RESU: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+
+TEST: Add 2x and 2xy
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+RESU: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+
+TEST: Mult 2 and 2
+EXPC: (4 (X 0))
+RESU: (4 (X 0))
+PASS? T
+
+TEST: Add x and x+y
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+RESU: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+
+TEST: Mult x+y and x+y^2
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+RESU: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+
+TEST: Add 4x^2 and 3x^2
+EXPC: (7 (X 2))
+RESU: (7 (X 2))
+PASS? T
+
+TEST: Subtr 3x^2 from 4x^2
+EXPC: (1 (X 2))
+RESU: (1 (X 2))
+PASS? T
+
+TEST: Mult 4x^2 and 3x^2
+EXPC: (12 (X 4))
+RESU: (12 (X 4))
+PASS? T
+
+TEST: Add 4x^2 and 3y^2
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+RESU: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+
+TEST: Subtr 3y^2 from 4x^2
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+RESU: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+
+TEST: Mult 4x^2 and 3y^2
+EXPC: (12 (X 2) (Y 2))
+RESU: (12 (X 2) (Y 2))
+PASS? T
+
+TEST: Mult 4(x^2)(y^2) and 3(x^3)(y^2)
+EXPC: (12 (X 5) (Y 4))
+RESU: (12 (X 5) (Y 4))
+PASS? T
+
+TEST: (p* p1 p2)
+EXPC: 
+((2 (X 2) (Y 1)) +
+ ((1 (X 2)) +
+  ((1 (X 1) (Z 1)) +
+   ((2 (X 1) (Y 2)) +
+    ((3 (X 1) (Y 1)) + ((1 (Y 1) (Z 1)) + ((1 (X 1)) + (1 (Z 1)))))))))
+RESU: 
+((2 (X 2) (Y 1)) +
+ ((1 (X 2)) +
+  ((1 (X 1) (Z 1)) +
+   ((2 (X 1) (Y 2)) +
+    ((3 (X 1) (Y 1)) + ((1 (Y 1) (Z 1)) + ((1 (X 1)) + (1 (Z 1)))))))))
+PASS? T
+
+TEST: (p+ p1 p2)
+EXPC: ((2 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + ((2 (X 1) (Y 1)) + (1 (Z 1))))))
+RESU: ((2 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + ((2 (X 1) (Y 1)) + (1 (Z 1))))))
+PASS? T
+
+TEST: (p- p1 p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1)))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1)))))
+PASS? T
+
+TEST: (p- (p+ p1 p2) p2)
+EXPC: ((1 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + (-1 (Z 1)))))
+RESU: ((1 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + (-1 (Z 1)))))
+PASS? T
+
+TEST: (p+ (p- p1 p2) p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + (1 (X 1))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + (1 (X 1))))
+PASS? T
+
+TEST: (p- (p- (p+ p1 p2) p2) p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (Z 1)) + (-2 (X 1) (Y 1)))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (Z 1)) + (-2 (X 1) (Y 1)))))
+PASS? T
+
+TEST: 
+negate - expression -> expression
+    (negate '((1 (x 1)) + (1 (y 1))))
+EXPC: ((-1 (X 1)) + (-1 (Y 1)))
+RESU: ((-1 (X 1)) + (-1 (Y 1)))
+PASS? T
+
+TEST: 
+pIsIn - expo, term with no coeff -> bool
+    (pIsIn 'z '((x 2) (y 1) (x 10) (z 1)))
+EXPC: T
+RESU: T
+PASS? T
+
+TEST: 
+isTerm - expression -> bool
+    (isTerm '(2 (x 2) (z 2) (y 3)))
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+removec0 - flat list of terms -> flat list of terms
+    (removec0 '((2 (x 0)) (0 (x 2)) (0 (x 1))))
+EXPC: ((2 (X 0)))
+RESU: ((2 (X 0)))
+PASS? T
+
+TEST: 
+removex0 - term with no coeff -> term with no coeff
+    (removex0 '((x 0) (x 2) (x 1)))
+EXPC: ((X 2) (X 1))
+RESU: ((X 2) (X 1))
+PASS? T
+
+TEST: 
+removex0 - term with no coeff -> term with no coeff
+    (removex0 '((x 0) (y 0)))
+EXPC: ((X 0))
+RESU: NIL
+PASS? NIL
+
+TEST: 
+orderInner - term with no coeff -> term with no coeff
+    (orderInner '((x 0) (u 0) (a 2) (z 2)))
+EXPC: ((A 2) (U 0) (X 0) (Z 2))
+RESU: ((A 2) (U 0) (X 0) (Z 2))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1))))
+EXPC: (1 (X 1))
+RESU: (1 (X 1))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1)) + (2 (x 1))))
+EXPC: ((1 (X 1)) + (2 (X 1)))
+RESU: ((1 (X 1)) + (2 (X 1)))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1)) + (2 (x 1)) + (1 (x 1)) + (2 (x 1))))
+EXPC: ((1 (X 1)) + ((2 (X 1)) + ((1 (X 1)) + (2 (X 1)))))
+RESU: ((1 (X 1)) + ((2 (X 1)) + ((1 (X 1)) + (2 (X 1)))))
+PASS? T
+
+TEST: 
+delimit+ - flat list of expressions -> flat list of 
+    expressions with pluses
+    (delimit+ '((2 (x 0)) (0 (x 2)) (0 (x 1))))
+EXPC: ((2 (X 0)) + (0 (X 2)) + (0 (X 1)))
+RESU: ((2 (X 0)) + (0 (X 2)) + (0 (X 1)))
+PASS? T
+
+TEST: 
+delimit+ - flat list of expressions -> flat list of 
+    expressions with pluses
+    (delimit+ '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+pickPermute* - expression, sign, sign, expression -> expression
+    (pickPermute* '(2 (x 2)) '+ '- '(2 (y 2)))
+EXPC: (-4 (X 2) (Y 2))
+RESU: (-4 (X 2) (Y 2))
+PASS? T
+
+TEST: 
+squish* - term with no coeff, term with no coeff -> term with no coeff
+    (squish* '((x 0) (x 1) (y 2)) '((y 2) (x -1) (z 2) (y 3)))
+EXPC: ((Y 7) (Z 2))
+RESU: ((X -1) (X 0) (Y 7) (Z 2))
+PASS? NIL
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '() '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9)))) 
+              '())
+EXPC: ((6 (X 1)) (3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9))))
+RESU: ((6 (X 1)) (3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9))))
+PASS? T
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) 
+                (-2 (X 1) (Y 1)) (-1 (Z 1)))
+              '())
+EXPC: ((1 (X 1)) (1 (Y 1)) (1 (X 0)))
+RESU: ((1 (X 1)) (1 (Y 1)) (1 (X 0)) (0 (X 1) (Y 1)) (0 (Z 1)) (-1 (Z 1)))
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it '() '() '())
+EXPC: (NIL NIL NIL)
+RESU: (NIL NIL)
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it 
+        '(3 (x 9)) 
+        '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9))))  
+        '())
+EXPC: (NIL ((4 (X 1)) (3 (X 2) (Y 3)) (2 (X 1)) ((2 (X 1)) * (9 (Y 9)))) (3 (X 9)))
+RESU: (NIL (3 (X 9)))
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it 
+        '(3 (x 1)) 
+        '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9))))  
+        '())
+EXPC: (NIL ((3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9)))) (9 (X 1)))
+RESU: (NIL (9 (X 1)))
+PASS? NIL
+
+TEST: 
+collect - expression -> expression
+    (collect '((1 (x 1)) + ((1 (y 1)) + ((1 (x 0)) +
+   ((2 (x 1) (y 1)) + ((1 (z 1)) + ((-2 (x 1) (y 1)) + (-1 (z 1)))))))))
+EXPC: ((1 (X 1)) + ((1 (Y 1)) + (1 (X 0))))
+RESU: ((1 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + (-1 (Z 1)))))
+PASS? NIL
+
+TEST: 
+collect-it - expression, empty list -> flattened list
+    (collect-it '((1 (x 1)) + ((1 (y 1)) + ((1 (x 0)) +
+   ((2 (x 1) (y 1)) + ((1 (z 1)) + ((-2 (x 1) (y 1)) + (-1 (z 1)))))))) '())
+EXPC: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+RESU: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+PASS? T
+
+TEST: Simplification of 4x^2
+EXPC: (4 (X 2))
+RESU: (4 (X 2))
+PASS? T
+
+TEST: Simplification of 4x(y^5) * x^4
+EXPC: (4 (X 5) (Y 5))
+RESU: (4 (X 5) (Y 5))
+PASS? T
+
+TEST: Simplification of 4x^2 * 2y^5
+EXPC: (8 (X 2) (Y 5))
+RESU: (8 (X 2) (Y 5))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+RESU: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+
+TEST: Simplification of 4x^2 - 2y^5
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+RESU: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+RESU: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+
+TEST: Simplification of 4x^2 - 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+RESU: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5 * 7z^2
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+RESU: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+
+TEST: Simplification of (x + y) * (x + y)
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+RESU: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+
+TEST: Simplification of (x + y) * (x - y)
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+RESU: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+
+TEST: Simplification.
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+RESU: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+
+TEST: Add 2x and 2xy
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+RESU: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+
+TEST: Mult 2 and 2
+EXPC: (4 (X 0))
+RESU: (4 (X 0))
+PASS? T
+
+TEST: Add x and x+y
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+RESU: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+
+TEST: Mult x+y and x+y^2
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+RESU: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+
+TEST: Add 4x^2 and 3x^2
+EXPC: (7 (X 2))
+RESU: (7 (X 2))
+PASS? T
+
+TEST: Subtr 3x^2 from 4x^2
+EXPC: (1 (X 2))
+RESU: (1 (X 2))
+PASS? T
+
+TEST: Mult 4x^2 and 3x^2
+EXPC: (12 (X 4))
+RESU: (12 (X 4))
+PASS? T
+
+TEST: Add 4x^2 and 3y^2
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+RESU: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+
+TEST: Subtr 3y^2 from 4x^2
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+RESU: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+
+TEST: Mult 4x^2 and 3y^2
+EXPC: (12 (X 2) (Y 2))
+RESU: (12 (X 2) (Y 2))
+PASS? T
+
+TEST: Mult 4(x^2)(y^2) and 3(x^3)(y^2)
+EXPC: (12 (X 5) (Y 4))
+RESU: (12 (X 5) (Y 4))
+PASS? T
+
+TEST: (p* p1 p2)
+EXPC: 
+((2 (X 2) (Y 1)) +
+ ((1 (X 2)) +
+  ((1 (X 1) (Z 1)) +
+   ((2 (X 1) (Y 2)) +
+    ((3 (X 1) (Y 1)) + ((1 (Y 1) (Z 1)) + ((1 (X 1)) + (1 (Z 1)))))))))
+RESU: 
+((2 (X 2) (Y 1)) +
+ ((1 (X 2)) +
+  ((1 (X 1) (Z 1)) +
+   ((2 (X 1) (Y 2)) +
+    ((3 (X 1) (Y 1)) + ((1 (Y 1) (Z 1)) + ((1 (X 1)) + (1 (Z 1)))))))))
+PASS? T
+
+TEST: (p+ p1 p2)
+EXPC: ((2 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + ((2 (X 1) (Y 1)) + (1 (Z 1))))))
+RESU: ((2 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + ((2 (X 1) (Y 1)) + (1 (Z 1))))))
+PASS? T
+
+TEST: (p- p1 p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1)))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1)))))
+PASS? T
+
+TEST: (p- (p+ p1 p2) p2)
+EXPC: ((1 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + (-1 (Z 1)))))
+RESU: ((1 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + (-1 (Z 1)))))
+PASS? T
+
+TEST: (p+ (p- p1 p2) p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + (1 (X 1))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + (1 (X 1))))
+PASS? T
+
+TEST: (p- (p- (p+ p1 p2) p2) p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (Z 1)) + (-2 (X 1) (Y 1)))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (Z 1)) + (-2 (X 1) (Y 1)))))
+PASS? T
+
+TEST: 
+negate - expression -> expression
+    (negate '((1 (x 1)) + (1 (y 1))))
+EXPC: ((-1 (X 1)) + (-1 (Y 1)))
+RESU: ((-1 (X 1)) + (-1 (Y 1)))
+PASS? T
+
+TEST: 
+pIsIn - expo, term with no coeff -> bool
+    (pIsIn 'z '((x 2) (y 1) (x 10) (z 1)))
+EXPC: T
+RESU: T
+PASS? T
+
+TEST: 
+isTerm - expression -> bool
+    (isTerm '(2 (x 2) (z 2) (y 3)))
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+removec0 - flat list of terms -> flat list of terms
+    (removec0 '((2 (x 0)) (0 (x 2)) (0 (x 1))))
+EXPC: ((2 (X 0)))
+RESU: ((2 (X 0)))
+PASS? T
+
+TEST: 
+removex0 - term with no coeff -> term with no coeff
+    (removex0 '((x 0) (x 2) (x 1)))
+EXPC: ((X 2) (X 1))
+RESU: ((X 2) (X 1))
+PASS? T
+
+TEST: 
+removex0 - term with no coeff -> term with no coeff
+    (removex0 '((x 0) (y 0)))
+EXPC: ((X 0))
+RESU: NIL
+PASS? NIL
+
+TEST: 
+orderInner - term with no coeff -> term with no coeff
+    (orderInner '((x 0) (u 0) (a 2) (z 2)))
+EXPC: ((A 2) (U 0) (X 0) (Z 2))
+RESU: ((A 2) (U 0) (X 0) (Z 2))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1))))
+EXPC: (1 (X 1))
+RESU: (1 (X 1))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1)) + (2 (x 1))))
+EXPC: ((1 (X 1)) + (2 (X 1)))
+RESU: ((1 (X 1)) + (2 (X 1)))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1)) + (2 (x 1)) + (1 (x 1)) + (2 (x 1))))
+EXPC: ((1 (X 1)) + ((2 (X 1)) + ((1 (X 1)) + (2 (X 1)))))
+RESU: ((1 (X 1)) + ((2 (X 1)) + ((1 (X 1)) + (2 (X 1)))))
+PASS? T
+
+TEST: 
+delimit+ - flat list of expressions -> flat list of 
+    expressions with pluses
+    (delimit+ '((2 (x 0)) (0 (x 2)) (0 (x 1))))
+EXPC: ((2 (X 0)) + (0 (X 2)) + (0 (X 1)))
+RESU: ((2 (X 0)) + (0 (X 2)) + (0 (X 1)))
+PASS? T
+
+TEST: 
+delimit+ - flat list of expressions -> flat list of 
+    expressions with pluses
+    (delimit+ '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+pickPermute* - expression, sign, sign, expression -> expression
+    (pickPermute* '(2 (x 2)) '+ '- '(2 (y 2)))
+EXPC: (-4 (X 2) (Y 2))
+RESU: (-4 (X 2) (Y 2))
+PASS? T
+
+TEST: 
+squish* - term with no coeff, term with no coeff -> term with no coeff
+    (squish* '((x 0) (x 1) (y 2)) '((y 2) (x -1) (z 2) (y 3)))
+EXPC: ((Y 7) (Z 2))
+RESU: ((X -1) (X 0) (Y 7) (Z 2))
+PASS? NIL
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '() '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9)))) 
+              '())
+EXPC: ((6 (X 1)) (3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9))))
+RESU: ((6 (X 1)) (3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9))))
+PASS? T
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) 
+                (-2 (X 1) (Y 1)) (-1 (Z 1)))
+              '())
+EXPC: ((1 (X 1)) (1 (Y 1)) (1 (X 0)))
+RESU: ((1 (X 1)) (1 (Y 1)) (1 (X 0)) (0 (X 1) (Y 1)) (0 (Z 1)) (-1 (Z 1)))
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it '() '() '())
+EXPC: (NIL NIL NIL)
+RESU: (NIL NIL)
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it 
+        '(3 (x 9)) 
+        '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9))))  
+        '())
+EXPC: (NIL ((4 (X 1)) (3 (X 2) (Y 3)) (2 (X 1)) ((2 (X 1)) * (9 (Y 9)))) (3 (X 9)))
+RESU: (NIL (3 (X 9)))
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it 
+        '(3 (x 1)) 
+        '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9))))  
+        '())
+EXPC: (NIL ((3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9)))) (9 (X 1)))
+RESU: (NIL (9 (X 1)))
+PASS? NIL
+
+TEST: 
+collect - expression -> expression
+    (collect '((1 (x 1)) + ((1 (y 1)) + ((1 (x 0)) +
+   ((2 (x 1) (y 1)) + ((1 (z 1)) + ((-2 (x 1) (y 1)) + (-1 (z 1)))))))))
+EXPC: ((1 (X 1)) + ((1 (Y 1)) + (1 (X 0))))
+RESU: ((1 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + (-1 (Z 1)))))
+PASS? NIL
+
+TEST: 
+collect-it - expression, empty list -> flattened list
+    (collect-it '((1 (x 1)) + ((1 (y 1)) + ((1 (x 0)) +
+   ((2 (x 1) (y 1)) + ((1 (z 1)) + ((-2 (x 1) (y 1)) + (-1 (z 1)))))))) '())
+EXPC: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+RESU: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+PASS? T
+
+TEST: Simplification of 4x^2
+EXPC: (4 (X 2))
+RESU: (4 (X 2))
+PASS? T
+
+TEST: Simplification of 4x(y^5) * x^4
+EXPC: (4 (X 5) (Y 5))
+RESU: (4 (X 5) (Y 5))
+PASS? T
+
+TEST: Simplification of 4x^2 * 2y^5
+EXPC: (8 (X 2) (Y 5))
+RESU: (8 (X 2) (Y 5))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+RESU: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+
+TEST: Simplification of 4x^2 - 2y^5
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+RESU: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+RESU: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+
+TEST: Simplification of 4x^2 - 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+RESU: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5 * 7z^2
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+RESU: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+
+TEST: Simplification of (x + y) * (x + y)
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+RESU: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+
+TEST: Simplification of (x + y) * (x - y)
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+RESU: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+
+TEST: Simplification.
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+RESU: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+
+TEST: Add 2x and 2xy
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+RESU: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+
+TEST: Mult 2 and 2
+EXPC: (4 (X 0))
+RESU: (4 (X 0))
+PASS? T
+
+TEST: Add x and x+y
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+RESU: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+
+TEST: Mult x+y and x+y^2
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+RESU: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+
+TEST: Add 4x^2 and 3x^2
+EXPC: (7 (X 2))
+RESU: (7 (X 2))
+PASS? T
+
+TEST: Subtr 3x^2 from 4x^2
+EXPC: (1 (X 2))
+RESU: (1 (X 2))
+PASS? T
+
+TEST: Mult 4x^2 and 3x^2
+EXPC: (12 (X 4))
+RESU: (12 (X 4))
+PASS? T
+
+TEST: Add 4x^2 and 3y^2
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+RESU: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+
+TEST: Subtr 3y^2 from 4x^2
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+RESU: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+
+TEST: Mult 4x^2 and 3y^2
+EXPC: (12 (X 2) (Y 2))
+RESU: (12 (X 2) (Y 2))
+PASS? T
+
+TEST: Mult 4(x^2)(y^2) and 3(x^3)(y^2)
+EXPC: (12 (X 5) (Y 4))
+RESU: (12 (X 5) (Y 4))
+PASS? T
+
+TEST: (p* p1 p2)
+EXPC: 
+((2 (X 2) (Y 1)) +
+ ((1 (X 2)) +
+  ((1 (X 1) (Z 1)) +
+   ((2 (X 1) (Y 2)) +
+    ((3 (X 1) (Y 1)) + ((1 (Y 1) (Z 1)) + ((1 (X 1)) + (1 (Z 1)))))))))
+RESU: 
+((2 (X 2) (Y 1)) +
+ ((1 (X 2)) +
+  ((1 (X 1) (Z 1)) +
+   ((2 (X 1) (Y 2)) +
+    ((3 (X 1) (Y 1)) + ((1 (Y 1) (Z 1)) + ((1 (X 1)) + (1 (Z 1)))))))))
+PASS? T
+
+TEST: (p+ p1 p2)
+EXPC: ((2 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + ((2 (X 1) (Y 1)) + (1 (Z 1))))))
+RESU: ((2 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + ((2 (X 1) (Y 1)) + (1 (Z 1))))))
+PASS? T
+
+TEST: (p- p1 p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1)))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1)))))
+PASS? T
+
+TEST: (p- (p+ p1 p2) p2)
+EXPC: ((1 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + (-1 (Z 1)))))
+RESU: ((1 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + (-1 (Z 1)))))
+PASS? T
+
+TEST: (p+ (p- p1 p2) p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + (1 (X 1))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + (1 (X 1))))
+PASS? T
+
+TEST: (p- (p- (p+ p1 p2) p2) p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (Z 1)) + (-2 (X 1) (Y 1)))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (Z 1)) + (-2 (X 1) (Y 1)))))
+PASS? T
+
+TEST: 
+negate - expression -> expression
+    (negate '((1 (x 1)) + (1 (y 1))))
+EXPC: ((-1 (X 1)) + (-1 (Y 1)))
+RESU: ((-1 (X 1)) + (-1 (Y 1)))
+PASS? T
+
+TEST: 
+pIsIn - expo, term with no coeff -> bool
+    (pIsIn 'z '((x 2) (y 1) (x 10) (z 1)))
+EXPC: T
+RESU: T
+PASS? T
+
+TEST: 
+isTerm - expression -> bool
+    (isTerm '(2 (x 2) (z 2) (y 3)))
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+removec0 - flat list of terms -> flat list of terms
+    (removec0 '((2 (x 0)) (0 (x 2)) (0 (x 1))))
+EXPC: ((2 (X 0)))
+RESU: ((2 (X 0)))
+PASS? T
+
+TEST: 
+removex0 - term with no coeff -> term with no coeff
+    (removex0 '((x 0) (x 2) (x 1)))
+EXPC: ((X 2) (X 1))
+RESU: ((X 2) (X 1))
+PASS? T
+
+TEST: 
+removex0 - term with no coeff -> term with no coeff
+    (removex0 '((x 0) (y 0)))
+EXPC: ((X 0))
+RESU: NIL
+PASS? NIL
+
+TEST: 
+orderInner - term with no coeff -> term with no coeff
+    (orderInner '((x 0) (u 0) (a 2) (z 2)))
+EXPC: ((A 2) (U 0) (X 0) (Z 2))
+RESU: ((A 2) (U 0) (X 0) (Z 2))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1))))
+EXPC: (1 (X 1))
+RESU: (1 (X 1))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1)) + (2 (x 1))))
+EXPC: ((1 (X 1)) + (2 (X 1)))
+RESU: ((1 (X 1)) + (2 (X 1)))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1)) + (2 (x 1)) + (1 (x 1)) + (2 (x 1))))
+EXPC: ((1 (X 1)) + ((2 (X 1)) + ((1 (X 1)) + (2 (X 1)))))
+RESU: ((1 (X 1)) + ((2 (X 1)) + ((1 (X 1)) + (2 (X 1)))))
+PASS? T
+
+TEST: 
+delimit+ - flat list of expressions -> flat list of 
+    expressions with pluses
+    (delimit+ '((2 (x 0)) (0 (x 2)) (0 (x 1))))
+EXPC: ((2 (X 0)) + (0 (X 2)) + (0 (X 1)))
+RESU: ((2 (X 0)) + (0 (X 2)) + (0 (X 1)))
+PASS? T
+
+TEST: 
+delimit+ - flat list of expressions -> flat list of 
+    expressions with pluses
+    (delimit+ '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+pickPermute* - expression, sign, sign, expression -> expression
+    (pickPermute* '(2 (x 2)) '+ '- '(2 (y 2)))
+EXPC: (-4 (X 2) (Y 2))
+RESU: (-4 (X 2) (Y 2))
+PASS? T
+
+TEST: 
+squish* - term with no coeff, term with no coeff -> term with no coeff
+    (squish* '((x 0) (x 1) (y 2)) '((y 2) (x -1) (z 2) (y 3)))
+EXPC: ((Y 7) (Z 2))
+RESU: ((X -1) (X 0) (Y 7) (Z 2))
+PASS? NIL
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '() '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9)))) 
+              '())
+EXPC: ((6 (X 1)) (3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9))))
+RESU: ((6 (X 1)) (3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9))))
+PASS? T
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) 
+                (-2 (X 1) (Y 1)) (-1 (Z 1)))
+              '())
+EXPC: ((1 (X 1)) (1 (Y 1)) (1 (X 0)))
+RESU: ((1 (X 1)) (1 (Y 1)) (1 (X 0)) (0 (X 1) (Y 1)) (0 (Z 1)) (-1 (Z 1)))
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it '() '() '())
+EXPC: (NIL NIL NIL)
+RESU: (NIL)
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it 
+        '(3 (x 9)) 
+        '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9))))  
+        '())
+EXPC: (NIL ((4 (X 1)) (3 (X 2) (Y 3)) (2 (X 1)) ((2 (X 1)) * (9 (Y 9)))) (3 (X 9)))
+RESU: ((3 (X 9)))
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it 
+        '(3 (x 1)) 
+        '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9))))  
+        '())
+EXPC: (NIL ((3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9)))) (9 (X 1)))
+RESU: ((9 (X 1)))
+PASS? NIL
+
+TEST: 
+collect - expression -> expression
+    (collect '((1 (x 1)) + ((1 (y 1)) + ((1 (x 0)) +
+   ((2 (x 1) (y 1)) + ((1 (z 1)) + ((-2 (x 1) (y 1)) + (-1 (z 1)))))))))
+EXPC: ((1 (X 1)) + ((1 (Y 1)) + (1 (X 0))))
+RESU: ((1 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + (-1 (Z 1)))))
+PASS? NIL
+
+TEST: 
+collect-it - expression, empty list -> flattened list
+    (collect-it '((1 (x 1)) + ((1 (y 1)) + ((1 (x 0)) +
+   ((2 (x 1) (y 1)) + ((1 (z 1)) + ((-2 (x 1) (y 1)) + (-1 (z 1)))))))) '())
+EXPC: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+RESU: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+PASS? T
+
+TEST: Simplification of 4x^2
+EXPC: (4 (X 2))
+RESU: (4 (X 2))
+PASS? T
+
+TEST: Simplification of 4x(y^5) * x^4
+EXPC: (4 (X 5) (Y 5))
+RESU: (4 (X 5) (Y 5))
+PASS? T
+
+TEST: Simplification of 4x^2 * 2y^5
+EXPC: (8 (X 2) (Y 5))
+RESU: (8 (X 2) (Y 5))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+RESU: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+
+TEST: Simplification of 4x^2 - 2y^5
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+RESU: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+RESU: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+
+TEST: Simplification of 4x^2 - 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+RESU: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5 * 7z^2
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+RESU: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+
+TEST: Simplification of (x + y) * (x + y)
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+RESU: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+
+TEST: Simplification of (x + y) * (x - y)
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+RESU: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+
+TEST: Simplification.
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+RESU: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+
+TEST: Add 2x and 2xy
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+RESU: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+
+TEST: Mult 2 and 2
+EXPC: (4 (X 0))
+RESU: (4 (X 0))
+PASS? T
+
+TEST: Add x and x+y
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+RESU: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+
+TEST: Mult x+y and x+y^2
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+RESU: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+
+TEST: Add 4x^2 and 3x^2
+EXPC: (7 (X 2))
+RESU: (7 (X 2))
+PASS? T
+
+TEST: Subtr 3x^2 from 4x^2
+EXPC: (1 (X 2))
+RESU: (1 (X 2))
+PASS? T
+
+TEST: Mult 4x^2 and 3x^2
+EXPC: (12 (X 4))
+RESU: (12 (X 4))
+PASS? T
+
+TEST: Add 4x^2 and 3y^2
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+RESU: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+
+TEST: Subtr 3y^2 from 4x^2
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+RESU: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+
+TEST: Mult 4x^2 and 3y^2
+EXPC: (12 (X 2) (Y 2))
+RESU: (12 (X 2) (Y 2))
+PASS? T
+
+TEST: Mult 4(x^2)(y^2) and 3(x^3)(y^2)
+EXPC: (12 (X 5) (Y 4))
+RESU: (12 (X 5) (Y 4))
+PASS? T
+
+TEST: (p* p1 p2)
+EXPC: 
+((2 (X 2) (Y 1)) +
+ ((1 (X 2)) +
+  ((1 (X 1) (Z 1)) +
+   ((2 (X 1) (Y 2)) +
+    ((3 (X 1) (Y 1)) + ((1 (Y 1) (Z 1)) + ((1 (X 1)) + (1 (Z 1)))))))))
+RESU: 
+((2 (X 2) (Y 1)) +
+ ((1 (X 2)) +
+  ((1 (X 1) (Z 1)) +
+   ((2 (X 1) (Y 2)) +
+    ((3 (X 1) (Y 1)) + ((1 (Y 1) (Z 1)) + ((1 (X 1)) + (1 (Z 1)))))))))
+PASS? T
+
+TEST: (p+ p1 p2)
+EXPC: ((2 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + ((2 (X 1) (Y 1)) + (1 (Z 1))))))
+RESU: ((2 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + ((2 (X 1) (Y 1)) + (1 (Z 1))))))
+PASS? T
+
+TEST: (p- p1 p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1)))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1)))))
+PASS? T
+
+TEST: (p- (p+ p1 p2) p2)
+EXPC: ((1 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + (-1 (Z 1)))))
+RESU: ((1 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + (-1 (Z 1)))))
+PASS? T
+
+TEST: (p+ (p- p1 p2) p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + (1 (X 1))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + (1 (X 1))))
+PASS? T
+
+TEST: (p- (p- (p+ p1 p2) p2) p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (Z 1)) + (-2 (X 1) (Y 1)))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (Z 1)) + (-2 (X 1) (Y 1)))))
+PASS? T
+
+TEST: 
+negate - expression -> expression
+    (negate '((1 (x 1)) + (1 (y 1))))
+EXPC: ((-1 (X 1)) + (-1 (Y 1)))
+RESU: ((-1 (X 1)) + (-1 (Y 1)))
+PASS? T
+
+TEST: 
+pIsIn - expo, term with no coeff -> bool
+    (pIsIn 'z '((x 2) (y 1) (x 10) (z 1)))
+EXPC: T
+RESU: T
+PASS? T
+
+TEST: 
+isTerm - expression -> bool
+    (isTerm '(2 (x 2) (z 2) (y 3)))
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+removec0 - flat list of terms -> flat list of terms
+    (removec0 '((2 (x 0)) (0 (x 2)) (0 (x 1))))
+EXPC: ((2 (X 0)))
+RESU: ((2 (X 0)))
+PASS? T
+
+TEST: 
+removex0 - term with no coeff -> term with no coeff
+    (removex0 '((x 0) (x 2) (x 1)))
+EXPC: ((X 2) (X 1))
+RESU: ((X 2) (X 1))
+PASS? T
+
+TEST: 
+removex0 - term with no coeff -> term with no coeff
+    (removex0 '((x 0) (y 0)))
+EXPC: ((X 0))
+RESU: NIL
+PASS? NIL
+
+TEST: 
+orderInner - term with no coeff -> term with no coeff
+    (orderInner '((x 0) (u 0) (a 2) (z 2)))
+EXPC: ((A 2) (U 0) (X 0) (Z 2))
+RESU: ((A 2) (U 0) (X 0) (Z 2))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1))))
+EXPC: (1 (X 1))
+RESU: (1 (X 1))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1)) + (2 (x 1))))
+EXPC: ((1 (X 1)) + (2 (X 1)))
+RESU: ((1 (X 1)) + (2 (X 1)))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1)) + (2 (x 1)) + (1 (x 1)) + (2 (x 1))))
+EXPC: ((1 (X 1)) + ((2 (X 1)) + ((1 (X 1)) + (2 (X 1)))))
+RESU: ((1 (X 1)) + ((2 (X 1)) + ((1 (X 1)) + (2 (X 1)))))
+PASS? T
+
+TEST: 
+delimit+ - flat list of expressions -> flat list of 
+    expressions with pluses
+    (delimit+ '((2 (x 0)) (0 (x 2)) (0 (x 1))))
+EXPC: ((2 (X 0)) + (0 (X 2)) + (0 (X 1)))
+RESU: ((2 (X 0)) + (0 (X 2)) + (0 (X 1)))
+PASS? T
+
+TEST: 
+delimit+ - flat list of expressions -> flat list of 
+    expressions with pluses
+    (delimit+ '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+pickPermute* - expression, sign, sign, expression -> expression
+    (pickPermute* '(2 (x 2)) '+ '- '(2 (y 2)))
+EXPC: (-4 (X 2) (Y 2))
+RESU: (-4 (X 2) (Y 2))
+PASS? T
+
+TEST: 
+squish* - term with no coeff, term with no coeff -> term with no coeff
+    (squish* '((x 0) (x 1) (y 2)) '((y 2) (x -1) (z 2) (y 3)))
+EXPC: ((Y 7) (Z 2))
+RESU: ((X -1) (X 0) (Y 7) (Z 2))
+PASS? NIL
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '() '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9)))) 
+              '())
+EXPC: ((6 (X 1)) (3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9))))
+RESU: ((6 (X 1)) (3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9))))
+PASS? T
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) 
+                (-2 (X 1) (Y 1)) (-1 (Z 1)))
+              '())
+EXPC: ((1 (X 1)) (1 (Y 1)) (1 (X 0)))
+RESU: ((1 (X 1)) (1 (Y 1)) (1 (X 0)) (0 (X 1) (Y 1)) (0 (Z 1)) (-1 (Z 1)))
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it '() '() '())
+EXPC: (NIL NIL NIL)
+RESU: (NIL)
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it 
+        '(3 (x 9)) 
+        '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9))))  
+        '())
+EXPC: (NIL ((4 (X 1)) (3 (X 2) (Y 3)) (2 (X 1)) ((2 (X 1)) * (9 (Y 9)))) (3 (X 9)))
+RESU: ((3 (X 9)))
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it 
+        '(3 (x 1)) 
+        '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9))))  
+        '())
+EXPC: (NIL ((3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9)))) (9 (X 1)))
+RESU: ((9 (X 1)))
+PASS? NIL
+
+TEST: 
+collect - expression -> expression
+    (collect '((1 (x 1)) + ((1 (y 1)) + ((1 (x 0)) +
+   ((2 (x 1) (y 1)) + ((1 (z 1)) + ((-2 (x 1) (y 1)) + (-1 (z 1)))))))))
+EXPC: ((1 (X 1)) + ((1 (Y 1)) + (1 (X 0))))
+RESU: ((1 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + (-1 (Z 1)))))
+PASS? NIL
+
+TEST: 
+collect-it - expression, empty list -> flattened list
+    (collect-it '((1 (x 1)) + ((1 (y 1)) + ((1 (x 0)) +
+   ((2 (x 1) (y 1)) + ((1 (z 1)) + ((-2 (x 1) (y 1)) + (-1 (z 1)))))))) '())
+EXPC: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+RESU: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+PASS? T
+
+TEST: Simplification of 4x^2
+EXPC: (4 (X 2))
+RESU: (4 (X 2))
+PASS? T
+
+TEST: Simplification of 4x(y^5) * x^4
+EXPC: (4 (X 5) (Y 5))
+RESU: (4 (X 5) (Y 5))
+PASS? T
+
+TEST: Simplification of 4x^2 * 2y^5
+EXPC: (8 (X 2) (Y 5))
+RESU: (8 (X 2) (Y 5))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+RESU: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+
+TEST: Simplification of 4x^2 - 2y^5
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+RESU: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+RESU: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+
+TEST: Simplification of 4x^2 - 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+RESU: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5 * 7z^2
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+RESU: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+
+TEST: Simplification of (x + y) * (x + y)
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+RESU: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+
+TEST: Simplification of (x + y) * (x - y)
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+RESU: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+
+TEST: Simplification.
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+RESU: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) 
+                (-2 (X 1) (Y 1)) (-1 (Z 1)))
+              '())
+EXPC: ((1 (X 1)) (1 (Y 1)) (1 (X 0)))
+RESU: ((1 (X 1)) (1 (Y 1)) (1 (X 0)) (0 (X 1) (Y 1)) (0 (Z 1)) (-1 (Z 1)))
+PASS? NIL
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) 
+                (-2 (X 1) (Y 1)) (-1 (Z 1)))
+              '())
+EXPC: ((1 (X 1)) (1 (Y 1)) (1 (X 0)))
+RESU: ((1 (X 1)) (1 (Y 1)) (1 (X 0)) (0 (X 1) (Y 1)) (0 (Z 1)))
+PASS? NIL
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) 
+                (-2 (X 1) (Y 1)) (-1 (Z 1)))
+              '())
+EXPC: ((1 (X 1)) (1 (Y 1)) (1 (X 0)))
+RESU: ((1 (X 1)) (1 (Y 1)) (1 (X 0)) (0 (X 1) (Y 1)) (0 (Z 1)))
+PASS? NIL
+
+TEST: Add 2x and 2xy
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+RESU: (2 (X 1))
+PASS? NIL
+
+TEST: Mult 2 and 2
+EXPC: (4 (X 0))
+RESU: (4 (X 0))
+PASS? T
+
+TEST: Add x and x+y
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+RESU: (2 (X 1))
+PASS? NIL
+
+TEST: Mult x+y and x+y^2
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+RESU: (1 (X 2))
+PASS? NIL
+
+TEST: Add 4x^2 and 3x^2
+EXPC: (7 (X 2))
+RESU: (7 (X 2))
+PASS? T
+
+TEST: Subtr 3x^2 from 4x^2
+EXPC: (1 (X 2))
+RESU: (1 (X 2))
+PASS? T
+
+TEST: Mult 4x^2 and 3x^2
+EXPC: (12 (X 4))
+RESU: (12 (X 4))
+PASS? T
+
+TEST: Add 4x^2 and 3y^2
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+RESU: (4 (X 2))
+PASS? NIL
+
+TEST: Subtr 3y^2 from 4x^2
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+RESU: (4 (X 2))
+PASS? NIL
+
+TEST: Mult 4x^2 and 3y^2
+EXPC: (12 (X 2) (Y 2))
+RESU: (12 (X 2) (Y 2))
+PASS? T
+
+TEST: Mult 4(x^2)(y^2) and 3(x^3)(y^2)
+EXPC: (12 (X 5) (Y 4))
+RESU: (12 (X 5) (Y 4))
+PASS? T
+
+TEST: (p* p1 p2)
+EXPC: (2 (X 2) (Y 1))
+RESU: (2 (X 2) (Y 1))
+PASS? T
+
+TEST: (p+ p1 p2)
+EXPC: (1 (X 1))
+RESU: (1 (X 1))
+PASS? T
+
+TEST: (p- p1 p2)
+EXPC: (1 (X 1))
+RESU: (1 (X 1))
+PASS? T
+
+TEST: (p- (p+ p1 p2) p2)
+EXPC: (1 (X 1))
+RESU: (1 (X 1))
+PASS? T
+
+TEST: (p+ (p- p1 p2) p2)
+EXPC: (1 (X 1))
+RESU: (1 (X 1))
+PASS? T
+
+TEST: (p- (p- (p+ p1 p2) p2) p2)
+EXPC: (1 (X 1))
+RESU: (1 (X 1))
+PASS? T
+
+TEST: 
+negate - expression -> expression
+    (negate '((1 (x 1)) + (1 (y 1))))
+EXPC: ((-1 (X 1)) + (-1 (Y 1)))
+RESU: (-1 (X 1))
+PASS? NIL
+
+TEST: 
+pIsIn - expo, term with no coeff -> bool
+    (pIsIn 'z '((x 2) (y 1) (x 10) (z 1)))
+EXPC: T
+RESU: T
+PASS? T
+
+TEST: 
+isTerm - expression -> bool
+    (isTerm '(2 (x 2) (z 2) (y 3)))
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+removec0 - flat list of terms -> flat list of terms
+    (removec0 '((2 (x 0)) (0 (x 2)) (0 (x 1))))
+EXPC: ((2 (X 0)))
+RESU: ((2 (X 0)))
+PASS? T
+
+TEST: 
+removex0 - term with no coeff -> term with no coeff
+    (removex0 '((x 0) (x 2) (x 1)))
+EXPC: ((X 2) (X 1))
+RESU: ((X 2) (X 1))
+PASS? T
+
+TEST: 
+removex0 - term with no coeff -> term with no coeff
+    (removex0 '((x 0) (y 0)))
+EXPC: ((X 0))
+RESU: NIL
+PASS? NIL
+
+TEST: 
+orderInner - term with no coeff -> term with no coeff
+    (orderInner '((x 0) (u 0) (a 2) (z 2)))
+EXPC: ((A 2) (U 0) (X 0) (Z 2))
+RESU: ((A 2) (U 0) (X 0) (Z 2))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1))))
+EXPC: (1 (X 1))
+RESU: (1 (X 1))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1)) + (2 (x 1))))
+EXPC: ((1 (X 1)) + (2 (X 1)))
+RESU: ((1 (X 1)) + (2 (X 1)))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1)) + (2 (x 1)) + (1 (x 1)) + (2 (x 1))))
+EXPC: ((1 (X 1)) + ((2 (X 1)) + ((1 (X 1)) + (2 (X 1)))))
+RESU: ((1 (X 1)) + ((2 (X 1)) + ((1 (X 1)) + (2 (X 1)))))
+PASS? T
+
+TEST: 
+delimit+ - flat list of expressions -> flat list of 
+    expressions with pluses
+    (delimit+ '((2 (x 0)) (0 (x 2)) (0 (x 1))))
+EXPC: ((2 (X 0)) + (0 (X 2)) + (0 (X 1)))
+RESU: ((2 (X 0)) + (0 (X 2)) + (0 (X 1)))
+PASS? T
+
+TEST: 
+delimit+ - flat list of expressions -> flat list of 
+    expressions with pluses
+    (delimit+ '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+pickPermute* - expression, sign, sign, expression -> expression
+    (pickPermute* '(2 (x 2)) '+ '- '(2 (y 2)))
+EXPC: (-4 (X 2) (Y 2))
+RESU: (-4 (X 2) (Y 2))
+PASS? T
+
+TEST: 
+squish* - term with no coeff, term with no coeff -> term with no coeff
+    (squish* '((x 0) (x 1) (y 2)) '((y 2) (x -1) (z 2) (y 3)))
+EXPC: ((Y 7) (Z 2))
+RESU: ((X -1) (X 0) (Y 7) (Z 2))
+PASS? NIL
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '() '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9)))) 
+              '())
+EXPC: ((6 (X 1)) (3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9))))
+RESU: ((6 (X 1)) (3 (X 2) (Y 3)))
+PASS? NIL
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) 
+                (-2 (X 1) (Y 1)) (-1 (Z 1)))
+              '())
+EXPC: ((1 (X 1)) (1 (Y 1)) (1 (X 0)))
+RESU: ((1 (X 1)) (1 (Y 1)) (1 (X 0)) (0 (X 1) (Y 1)) (0 (Z 1)))
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it '() '() '())
+EXPC: (NIL NIL NIL)
+RESU: (NIL)
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it 
+        '(3 (x 9)) 
+        '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9))))  
+        '())
+EXPC: (NIL ((4 (X 1)) (3 (X 2) (Y 3)) (2 (X 1)) ((2 (X 1)) * (9 (Y 9)))) (3 (X 9)))
+RESU: ((3 (X 9)))
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it 
+        '(3 (x 1)) 
+        '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9))))  
+        '())
+EXPC: (NIL ((3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9)))) (9 (X 1)))
+RESU: ((9 (X 1)))
+PASS? NIL
+
+TEST: 
+collect - expression -> expression
+    (collect '((1 (x 1)) + ((1 (y 1)) + ((1 (x 0)) +
+   ((2 (x 1) (y 1)) + ((1 (z 1)) + ((-2 (x 1) (y 1)) + (-1 (z 1)))))))))
+EXPC: ((1 (X 1)) + ((1 (Y 1)) + (1 (X 0))))
+RESU: ((1 (X 1)) + ((1 (Y 1)) + (1 (X 0))))
+PASS? T
+
+TEST: 
+collect-it - expression, empty list -> flattened list
+    (collect-it '((1 (x 1)) + ((1 (y 1)) + ((1 (x 0)) +
+   ((2 (x 1) (y 1)) + ((1 (z 1)) + ((-2 (x 1) (y 1)) + (-1 (z 1)))))))) '())
+EXPC: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+RESU: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+PASS? T
+
+TEST: Simplification of 4x^2
+EXPC: (4 (X 2))
+RESU: (4 (X 2))
+PASS? T
+
+TEST: Simplification of 4x(y^5) * x^4
+EXPC: (4 (X 5) (Y 5))
+RESU: (4 (X 5) (Y 5))
+PASS? T
+
+TEST: Simplification of 4x^2 * 2y^5
+EXPC: (8 (X 2) (Y 5))
+RESU: (8 (X 2) (Y 5))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+RESU: (4 (X 2))
+PASS? NIL
+
+TEST: Simplification of 4x^2 - 2y^5
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+RESU: (4 (X 2))
+PASS? NIL
+
+TEST: Simplification of 4x^2 + 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+RESU: (4 (X 2))
+PASS? NIL
+
+TEST: Simplification of 4x^2 - 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+RESU: (4 (X 2))
+PASS? NIL
+
+TEST: Simplification of 4x^2 + 2y^5 * 7z^2
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+RESU: (4 (X 2))
+PASS? NIL
+
+TEST: Simplification of (x + y) * (x + y)
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+RESU: (1 (X 2))
+PASS? NIL
+
+TEST: Simplification of (x + y) * (x - y)
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+RESU: (1 (X 2))
+PASS? NIL
+
+TEST: Simplification.
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+RESU: (3780 (X 4) (Y 1))
+PASS? NIL
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) 
+                (-2 (X 1) (Y 1)) (-1 (Z 1)))
+              '())
+EXPC: ((1 (X 1)) (1 (Y 1)) (1 (X 0)))
+RESU: ((1 (X 1)) (1 (Y 1)) (1 (X 0)) (0 (X 1) (Y 1)) (0 (Z 1)))
+PASS? NIL
+
+TEST: Simplification of 4x^2 + 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+RESU: (4 (X 2))
+PASS? NIL
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) 
+                (-2 (X 1) (Y 1)) (-1 (Z 1)))
+              '())
+EXPC: ((1 (X 1)) (1 (Y 1)) (1 (X 0)))
+RESU: ((1 (X 1)) (1 (Y 1)) (1 (X 0)) (0 (X 1) (Y 1)) (0 (Z 1)) (-1 (Z 1)))
+PASS? NIL
+
+TEST: Simplification of 4x^2 + 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+RESU: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) 
+                (-2 (X 1) (Y 1)) (-1 (Z 1)))
+              '())
+EXPC: ((1 (X 1)) (1 (Y 1)) (1 (X 0)))
+RESU: ((1 (X 1)) (1 (Y 1)) (1 (X 0)) (0 (X 1) (Y 1)) (0 (Z 1)) (-1 (Z 1)))
+PASS? NIL
+
+TEST: Simplification of 4x^2 + 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+RESU: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) 
+                (-2 (X 1) (Y 1)) (-1 (Z 1)))
+              '())
+EXPC: ((1 (X 1)) (1 (Y 1)) (1 (X 0)) (0 (X 1) (Y 1)) (0 (Z 1)))
+RESU: ((1 (X 1)) (1 (Y 1)) (1 (X 0)) (0 (X 1) (Y 1)) (0 (Z 1)) (-1 (Z 1)))
+PASS? NIL
+
+TEST: Simplification of 4x^2 + 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+RESU: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+
+TEST: Add 2x and 2xy
+EXPC: ((2 (X 1)) + (2 (X 1) (Y 1)))
+RESU: ((2 (X 1)) + (2 (X 1) (Y 1)))
+PASS? T
+
+TEST: Mult 2 and 2
+EXPC: (4 (X 0))
+RESU: (4 (X 0))
+PASS? T
+
+TEST: Add x and x+y
+EXPC: ((2 (X 1)) + (1 (Y 1)))
+RESU: ((2 (X 1)) + (1 (Y 1)))
+PASS? T
+
+TEST: Mult x+y and x+y^2
+EXPC: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+RESU: ((1 (X 2)) + ((1 (X 1) (Y 2)) + ((1 (X 1) (Y 1)) + (1 (Y 3)))))
+PASS? T
+
+TEST: Add 4x^2 and 3x^2
+EXPC: (7 (X 2))
+RESU: (7 (X 2))
+PASS? T
+
+TEST: Subtr 3x^2 from 4x^2
+EXPC: (1 (X 2))
+RESU: (1 (X 2))
+PASS? T
+
+TEST: Mult 4x^2 and 3x^2
+EXPC: (12 (X 4))
+RESU: (12 (X 4))
+PASS? T
+
+TEST: Add 4x^2 and 3y^2
+EXPC: ((4 (X 2)) + (3 (Y 2)))
+RESU: ((4 (X 2)) + (3 (Y 2)))
+PASS? T
+
+TEST: Subtr 3y^2 from 4x^2
+EXPC: ((4 (X 2)) + (-3 (Y 2)))
+RESU: ((4 (X 2)) + (-3 (Y 2)))
+PASS? T
+
+TEST: Mult 4x^2 and 3y^2
+EXPC: (12 (X 2) (Y 2))
+RESU: (12 (X 2) (Y 2))
+PASS? T
+
+TEST: Mult 4(x^2)(y^2) and 3(x^3)(y^2)
+EXPC: (12 (X 5) (Y 4))
+RESU: (12 (X 5) (Y 4))
+PASS? T
+
+TEST: (p* p1 p2)
+EXPC: 
+((2 (X 2) (Y 1)) +
+ ((1 (X 2)) +
+  ((1 (X 1) (Z 1)) +
+   ((2 (X 1) (Y 2)) +
+    ((3 (X 1) (Y 1)) + ((1 (Y 1) (Z 1)) + ((1 (X 1)) + (1 (Z 1)))))))))
+RESU: 
+((2 (X 2) (Y 1)) +
+ ((1 (X 2)) +
+  ((1 (X 1) (Z 1)) +
+   ((2 (X 1) (Y 2)) +
+    ((3 (X 1) (Y 1)) + ((1 (Y 1) (Z 1)) + ((1 (X 1)) + (1 (Z 1)))))))))
+PASS? T
+
+TEST: (p+ p1 p2)
+EXPC: ((2 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + ((2 (X 1) (Y 1)) + (1 (Z 1))))))
+RESU: ((2 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + ((2 (X 1) (Y 1)) + (1 (Z 1))))))
+PASS? T
+
+TEST: (p- p1 p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1)))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (X 1) (Y 1)) + (-1 (Z 1)))))
+PASS? T
+
+TEST: (p- (p+ p1 p2) p2)
+EXPC: ((1 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + (-1 (Z 1)))))
+RESU: ((1 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + (-1 (Z 1)))))
+PASS? T
+
+TEST: (p+ (p- p1 p2) p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + (1 (X 1))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + (1 (X 1))))
+PASS? T
+
+TEST: (p- (p- (p+ p1 p2) p2) p2)
+EXPC: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (Z 1)) + (-2 (X 1) (Y 1)))))
+RESU: ((1 (Y 1)) + ((1 (X 0)) + ((-2 (Z 1)) + (-2 (X 1) (Y 1)))))
+PASS? T
+
+TEST: 
+negate - expression -> expression
+    (negate '((1 (x 1)) + (1 (y 1))))
+EXPC: ((-1 (X 1)) + (-1 (Y 1)))
+RESU: ((-1 (X 1)) + (-1 (Y 1)))
+PASS? T
+
+TEST: 
+pIsIn - expo, term with no coeff -> bool
+    (pIsIn 'z '((x 2) (y 1) (x 10) (z 1)))
+EXPC: T
+RESU: T
+PASS? T
+
+TEST: 
+isTerm - expression -> bool
+    (isTerm '(2 (x 2) (z 2) (y 3)))
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+removec0 - flat list of terms -> flat list of terms
+    (removec0 '((2 (x 0)) (0 (x 2)) (0 (x 1))))
+EXPC: ((2 (X 0)))
+RESU: ((2 (X 0)))
+PASS? T
+
+TEST: 
+removex0 - term with no coeff -> term with no coeff
+    (removex0 '((x 0) (x 2) (x 1)))
+EXPC: ((X 2) (X 1))
+RESU: ((X 2) (X 1))
+PASS? T
+
+TEST: 
+removex0 - term with no coeff -> term with no coeff
+    (removex0 '((x 0) (y 0)))
+EXPC: ((X 0))
+RESU: NIL
+PASS? NIL
+
+TEST: 
+orderInner - term with no coeff -> term with no coeff
+    (orderInner '((x 0) (u 0) (a 2) (z 2)))
+EXPC: ((A 2) (U 0) (X 0) (Z 2))
+RESU: ((A 2) (U 0) (X 0) (Z 2))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1))))
+EXPC: (1 (X 1))
+RESU: (1 (X 1))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1)) + (2 (x 1))))
+EXPC: ((1 (X 1)) + (2 (X 1)))
+RESU: ((1 (X 1)) + (2 (X 1)))
+PASS? T
+
+TEST: 
+binarify - flat list of expressions with pluses -> binary expression
+    (binarify '((1 (x 1)) + (2 (x 1)) + (1 (x 1)) + (2 (x 1))))
+EXPC: ((1 (X 1)) + ((2 (X 1)) + ((1 (X 1)) + (2 (X 1)))))
+RESU: ((1 (X 1)) + ((2 (X 1)) + ((1 (X 1)) + (2 (X 1)))))
+PASS? T
+
+TEST: 
+delimit+ - flat list of expressions -> flat list of 
+    expressions with pluses
+    (delimit+ '((2 (x 0)) (0 (x 2)) (0 (x 1))))
+EXPC: ((2 (X 0)) + (0 (X 2)) + (0 (X 1)))
+RESU: ((2 (X 0)) + (0 (X 2)) + (0 (X 1)))
+PASS? T
+
+TEST: 
+delimit+ - flat list of expressions -> flat list of 
+    expressions with pluses
+    (delimit+ '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+pickPermute* - expression, sign, sign, expression -> expression
+    (pickPermute* '(2 (x 2)) '+ '- '(2 (y 2)))
+EXPC: (-4 (X 2) (Y 2))
+RESU: (-4 (X 2) (Y 2))
+PASS? T
+
+TEST: 
+squish* - term with no coeff, term with no coeff -> term with no coeff
+    (squish* '((x 0) (x 1) (y 2)) '((y 2) (x -1) (z 2) (y 3)))
+EXPC: ((Y 7) (Z 2))
+RESU: ((X -1) (X 0) (Y 7) (Z 2))
+PASS? NIL
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '() '())
+EXPC: NIL
+RESU: NIL
+PASS? T
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9)))) 
+              '())
+EXPC: ((6 (X 1)) (3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9))))
+RESU: ((6 (X 1)) (3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9))))
+PASS? T
+
+TEST: 
+sumTerms - flat list of expressions, empty list -> flat list of 
+    expressions
+    (sumTerms '((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) 
+                (-2 (X 1) (Y 1)) (-1 (Z 1)))
+              '())
+EXPC: ((1 (X 1)) (1 (Y 1)) (1 (X 0)) (0 (X 1) (Y 1)) (0 (Z 1)))
+RESU: ((1 (X 1)) (1 (Y 1)) (1 (X 0)) (0 (X 1) (Y 1)) (0 (Z 1)) (-1 (Z 1)))
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it '() '() '())
+EXPC: (NIL NIL NIL)
+RESU: (NIL)
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it 
+        '(3 (x 9)) 
+        '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9))))  
+        '())
+EXPC: (NIL ((4 (X 1)) (3 (X 2) (Y 3)) (2 (X 1)) ((2 (X 1)) * (9 (Y 9)))) (3 (X 9)))
+RESU: ((3 (X 9)))
+PASS? NIL
+
+TEST: 
+sumTerms-it - term, flat list of expression, empty list -> (flat list, 
+    flat list, term)
+    (sumTerms-it 
+        '(3 (x 1)) 
+        '((4 (x 1)) (3 (x 2) (y 3)) (2 (x 1)) ((2 (x 1)) * (9 (y 9))))  
+        '())
+EXPC: (NIL ((3 (X 2) (Y 3)) ((2 (X 1)) * (9 (Y 9)))) (9 (X 1)))
+RESU: ((9 (X 1)))
+PASS? NIL
+
+TEST: 
+collect - expression -> expression
+    (collect '((1 (x 1)) + ((1 (y 1)) + ((1 (x 0)) +
+   ((2 (x 1) (y 1)) + ((1 (z 1)) + ((-2 (x 1) (y 1)) + (-1 (z 1)))))))))
+EXPC: ((1 (X 1)) + ((1 (Y 1)) + (1 (X 0))))
+RESU: ((1 (X 1)) + ((1 (Y 1)) + ((1 (X 0)) + (-1 (Z 1)))))
+PASS? NIL
+
+TEST: 
+collect-it - expression, empty list -> flattened list
+    (collect-it '((1 (x 1)) + ((1 (y 1)) + ((1 (x 0)) +
+   ((2 (x 1) (y 1)) + ((1 (z 1)) + ((-2 (x 1) (y 1)) + (-1 (z 1)))))))) '())
+EXPC: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+RESU: 
+((1 (X 1)) (1 (Y 1)) (1 (X 0)) (2 (X 1) (Y 1)) (1 (Z 1)) (-2 (X 1) (Y 1))
+ (-1 (Z 1)))
+PASS? T
+
+TEST: Simplification of 4x^2
+EXPC: (4 (X 2))
+RESU: (4 (X 2))
+PASS? T
+
+TEST: Simplification of 4x(y^5) * x^4
+EXPC: (4 (X 5) (Y 5))
+RESU: (4 (X 5) (Y 5))
+PASS? T
+
+TEST: Simplification of 4x^2 * 2y^5
+EXPC: (8 (X 2) (Y 5))
+RESU: (8 (X 2) (Y 5))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5
+EXPC: ((4 (X 2)) + (2 (Y 5)))
+RESU: ((4 (X 2)) + (2 (Y 5)))
+PASS? T
+
+TEST: Simplification of 4x^2 - 2y^5
+EXPC: ((4 (X 2)) + (-2 (Y 5)))
+RESU: ((4 (X 2)) + (-2 (Y 5)))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+RESU: ((4 (X 2)) + ((2 (Y 5)) + (7 (Z 2))))
+PASS? T
+
+TEST: Simplification of 4x^2 - 2y^5 + 7z^2
+EXPC: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+RESU: ((4 (X 2)) + ((-2 (Y 5)) + (-7 (Z 2))))
+PASS? T
+
+TEST: Simplification of 4x^2 + 2y^5 * 7z^2
+EXPC: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+RESU: ((4 (X 2)) + (14 (Y 5) (Z 2)))
+PASS? T
+
+TEST: Simplification of (x + y) * (x + y)
+EXPC: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+RESU: ((1 (X 2)) + ((2 (X 1) (Y 1)) + (1 (Y 2))))
+PASS? T
+
+TEST: Simplification of (x + y) * (x - y)
+EXPC: ((1 (X 2)) + (-1 (Y 2)))
+RESU: ((1 (X 2)) + (-1 (Y 2)))
+PASS? T
+
+TEST: Simplification.
+EXPC: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+RESU: 
+((3780 (X 4) (Y 1)) +
+ ((1680 (X 3) (Y 8)) +
+  ((378 (X 2) (Y 3)) + ((168 (X 1) (Y 10)) + (-7 (X 1) (Z 2))))))
+PASS? T
+

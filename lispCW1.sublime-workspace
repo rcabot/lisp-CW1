@@ -4,16 +4,28 @@
 		"selected_items":
 		[
 			[
-				"sumTerm",
-				"sumTerms-it"
+				"remove",
+				"removeoldinstances"
+			],
+			[
+				"x",
+				"x"
+			],
+			[
+				"coeff",
+				"coefficient"
 			],
 			[
 				"sum",
-				"sumTerms"
+				"sumTerms-it"
 			],
 			[
-				"remove",
-				"removec0"
+				"coll",
+				"collect"
+			],
+			[
+				"sumTerm",
+				"sumTerms-it"
 			],
 			[
 				"deu",
@@ -22,10 +34,6 @@
 			[
 				"print",
 				"debugPrint"
-			],
-			[
-				"coll",
-				"collect-it"
 			],
 			[
 				"elemnt",
@@ -472,18 +480,10 @@
 	"buffers":
 	[
 		{
-			"file": "poly.lisp",
+			"file": "testsuite.lisp",
 			"settings":
 			{
-				"buffer_size": 10940,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "README.md",
-			"settings":
-			{
-				"buffer_size": 1757,
+				"buffer_size": 10331,
 				"line_ending": "Windows"
 			}
 		}
@@ -544,6 +544,9 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Ryan/Drive/Uni/Programming/Lisp/CW1/README.md",
+		"/C/Users/Ryan/Drive/Uni/Programming/Lisp/CW1/poly.lisp",
+		"/C/Users/Ryan/Drive/Uni/Programming/Lisp/rev.lisp",
 		"/C/Users/Ryan/Drive/Uni/Programming/OGL/CM20219 Coursework/loadobj/loadobj/loadobj.cpp",
 		"/C/Users/Ryan/Drive/Uni/Programming/OGL/CM20219 Coursework/EigenV/EigenV/EigenV.cpp",
 		"/C/Users/Ryan/Drive/Uni/Programming/Lisp/CW1/old.lisp",
@@ -668,14 +671,11 @@
 		"/C/wamp/www/act_club_create.php",
 		"/C/wamp/www/templates/window/club_create.html.twig",
 		"/C/wamp/www/templates/window/tournament_create.html.twig",
-		"/C/wamp/www/templates/window/about.html.twig",
-		"/C/wamp/www/templates/club/create.html.twig",
-		"/C/wamp/www/instructor/act_tournament_create.php",
-		"/C/wamp/www/global_mysql.php"
+		"/C/wamp/www/templates/window/about.html.twig"
 	],
 	"find":
 	{
-		"height": 35.0
+		"height": 34.0
 	},
 	"find_in_files":
 	{
@@ -690,6 +690,22 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"(",
+			"car",
+			"Y",
+			"X",
+			"pisin",
+			":~%",
+			",",
+			"'",
+			"p2",
+			"p1",
+			"doTest",
+			"'(-1 (x 0))",
+			"'(1 (x 0))",
+			"negate",
+			"(1 (x 0)",
+			"negate",
 			"	cube",
 			" cube",
 			"tempcube",
@@ -801,23 +817,7 @@
 			"     ",
 			"    ",
 			"   ",
-			"Order Queue",
-			"glyph gl",
-			"pull-right",
-			"button class",
-			"pull-right",
-			"dropdown-menu",
-			"pull-left",
-			"\"\"",
-			"\"",
-			"<span aria-hidden=\"true\" class=\"glyph glyph-remove pull-left",
-			"<span aria-hidden=\"true\" class=\"glyph glyph-ok",
-			"<span aria-hidden=\"true\"",
-			"\"></span></a",
-			"span class=\"glyph",
-			"dive",
-			"simplify",
-			"'((b 2) (c 3))"
+			"Order Queue"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -843,64 +843,32 @@
 			[
 				{
 					"buffer": 0,
-					"file": "poly.lisp",
+					"file": "testsuite.lisp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10940,
+						"buffer_size": 10331,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								10940,
-								10940
+								4667,
+								4667
 							]
 						],
 						"settings":
 						{
-							"rulers":
-							[
-								80
-							],
 							"syntax": "Packages/Lisp/Lisp.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 139.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "README.md",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1757,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1757,
-								1757
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Markdown/Markdown.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 101.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -908,7 +876,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 27.0
+		"height": 23.0
 	},
 	"input":
 	{
@@ -948,7 +916,7 @@
 	"project": "lispCW1.sublime-project",
 	"replace":
 	{
-		"height": 50.0
+		"height": 42.0
 	},
 	"save_all_on_build": true,
 	"select_file":
